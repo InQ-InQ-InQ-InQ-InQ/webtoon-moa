@@ -1,0 +1,60 @@
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    display: block;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    padding: 20px 50px;
+
+}
+
+.login-form {
+    /* display: block; */
+    padding-top: 10px;
+}
+
+.text-field {
+    display: block;
+    margin-bottom: 3px;
+    padding: 3px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+}
+
+.submit-btn {
+    display: block;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.find-box {
+    display: block;
+}
+
+ul {
+    /* list-style: none; */
+}
+
+li {
+    display: inline-block;
+}
+
+li:first-child:after {
+    content: "|";
+  }
+
+a {
+    text-decoration: none;
+    color: black;
+
+}
+
+/*
+    ul에 list-style: none 적용하면 li 요소 앞에 * 없어짐
+    li에 display: inline-block 적용하면 *도 사라지고 옆으로 나열됨
+*/

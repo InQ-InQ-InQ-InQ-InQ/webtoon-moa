@@ -1,0 +1,12 @@
+#header { 
+    display: flex;
+}
+
+.search-box {
+    margin-left: auto;
+    display: inline;
+}
+
+#search-btn {
+    padding: 8px 8px;
+}
