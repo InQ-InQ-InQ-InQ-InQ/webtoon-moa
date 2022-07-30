@@ -1,0 +1,38 @@
+/* COMMON */
+:root {
+  --moa-blue: #303F9F;
+  --moa-white: #f4fbff;
+  --moa-black: #1f1e1e;
+  --title-font: 80px;
+  --sub-title-font: 50px;
+  --large-font: 40px;
+  --mideum-font: 32px;
+  --small-font: 20px;
+}
+
+body {
+  color: var(--moa-black);
+  font-size: var(--mideum-font);
+  font-weight: 400;
+  line-height: 1.4; /*글자의 행간을 줌 (줄높이)*/
+  font-family: 'Noto Sans KR', sans-serif;
+}
+img {
+  display: block;
+  /* 이미지는 블럭요소가 된다 */
+}
+a {
+  /* 모든 a태그의 밑줄을 없애기 */
+  text-decoration: none;
+  color: var(--moa-black);
+}
+a:hover {
+  text-decoration: none;
+  color: var(--moa-black);
+}
+
+.inner {
+  width: 720px;
+  margin: 0 auto;
+  position: relative;
+}
