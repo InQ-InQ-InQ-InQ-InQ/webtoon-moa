@@ -6,6 +6,7 @@
   --moa-gray: #e0e0e0;
   --moa-black: #1f1e1e;
   --icon-color: #8d8d8d;
+  --line-color:#eeeeee;
   --title-font: 80px;
   --sub-title-font: 50px;
   --large-font: 40px;
@@ -44,18 +45,18 @@ header {
   width: 100%;
 }
 header > .inner {
-  height: 80px;
+  height: 120px;
   display: flex;
 }
 header .logo {
   cursor: pointer;
 }
 header .logo img {
-  height: 80px;
+  height: 120px;
 }
 header .search {
-  margin-left: 470px;
-  margin-top: 18px;
+  margin-left: 430px;
+  margin-top: 38px;
   display: flex;
 }
 header .search .icon.material-symbols-outlined {
@@ -69,16 +70,21 @@ header .search .search-text {
 }
 header .search .search-btn {
   position: absolute;
-  right: 70px;
-  top: 25px;
+  right: 130px;
+  top: 45px;
   background-color: transparent;
   border: 0;
   color: var(--icon-color);
 }
 header .menu  {
   margin-left: 10px;
-  margin-top: 29px;
+  margin-top: 49px;
 }
 header .menu .login_name {
   font-size: var(--small-font);
+}
+header .line {
+  background-color: var(--line-color);
+  height: 1.5px;
+  border: 0;
 }
