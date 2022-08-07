@@ -20,7 +20,7 @@ function initCrawlingDataToDB(){
 }
 
 function getWebtoonList(){
-    const excelData = xlsx.readFile(path.join(__dirname, '/public/webtoon-list.xlsx'));
+    const excelData = xlsx.readFile(path.join(__dirname, '/public/temp.xlsx'));
     return convertExcelToJson(excelData);
 }
 
