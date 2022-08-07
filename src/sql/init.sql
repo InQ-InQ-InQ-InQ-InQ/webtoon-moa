@@ -1,5 +1,5 @@
 CREATE TABLE USER (
-  id bigint(20) NOT NULL,
+  id bigint(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   identifier varchar(255) NOT NULL,
   password varchar(255) NOT NULL,
   username varchar(255) NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE WEBTOON (
 
 
 CREATE TABLE FAVORITES (
-    id bigint(20) NOT NULL AUTO_INCREMENT,
+    id bigint(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id bigint(20) NOT NULL,
     webtoon_id bigint(20) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES USER(id),
