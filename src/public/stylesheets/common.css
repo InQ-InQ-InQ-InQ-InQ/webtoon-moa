@@ -90,3 +90,34 @@ header .line {
 }
 
 /* Footer */
+footer {
+  position: fixed;
+  width: 100%;
+}
+footer > .inner {
+  height: 120px;
+  display: flex;
+  justify-content: space-between;
+}
+footer .line {
+  background-color: var(--line-color);
+  height: 1.5px;
+  border: 0;
+}
+footer .logo {
+  cursor: pointer;
+}
+footer .logo img {
+  height: 120px;
+  width: 120px;
+}
+footer .info {
+  margin: 10px 0 0 0;  
+  font-size: var(--small-font);
+}
+footer .ul {
+  list-style: none;
+}
+footer .li {
+  line-height: 170%;
+}
