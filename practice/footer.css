@@ -1,5 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 
+footer {
+  position: fixed;
+  width: 100%;
+}
+footer > .inner {
+  height: 120px;
+  display: flex;
+}
+footer .line {
+  background-color: var(--line-color);
+  height: 1.5px;
+  border: 0;
+}
+footer .logo {
+  cursor: pointer;
+  float: left;
+  margin: 15px 0 0 15px;
+}
+footer .logo img {
+  height: 120px;
+}
+footer .info {
+  float: right;
+  margin: 20px 15px 0 0;  
+}
+footer .ul {
+  list-style: none;
+}
+footer .li {
+  line-height: 170%;
+}
+
+
+
+
+
+
 .footer_inner {
     width: 1130px;
     margin: 0 auto;
