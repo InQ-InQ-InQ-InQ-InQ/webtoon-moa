@@ -1,7 +1,7 @@
 /* COMMON */
 :root {
-  --moa-blue: #303F9F;
-  --moa-orange: #FFBC58;
+  --moa-blue: #005D94;
+  --moa-orange: #FFCD4A;
   --moa-white: #f4fbff;
   --moa-gray: #e0e0e0;
   --moa-black: #1f1e1e;
@@ -90,3 +90,33 @@ header .line {
 }
 
 /* Footer */
+footer {
+  width: 100%;
+}
+footer > .inner {
+  height: 120px;
+  display: flex;
+  justify-content: space-between;
+}
+footer .line {
+  background-color: var(--line-color);
+  height: 1.5px;
+  border: 0;
+}
+footer .logo {
+  cursor: pointer;
+}
+footer .logo img {
+  height: 120px;
+  width: 120px;
+}
+footer .info {
+  margin: 10px 0 0 0;  
+  font-size: var(--small-font);
+}
+footer li {
+  line-height: 170%;
+}
+footer li .fa-brands {
+  color: var(--moa-blue);
+}
