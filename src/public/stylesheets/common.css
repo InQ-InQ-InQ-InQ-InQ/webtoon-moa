@@ -1,7 +1,7 @@
 /* COMMON */
 :root {
-  --moa-blue: #303F9F;
-  --moa-orange: #FFBC58;
+  --moa-blue: #005D94;
+  --moa-orange: #FFCD4A;
   --moa-white: #f4fbff;
   --moa-gray: #e0e0e0;
   --moa-black: #1f1e1e;
@@ -91,7 +91,6 @@ header .line {
 
 /* Footer */
 footer {
-  position: fixed;
   width: 100%;
 }
 footer > .inner {
@@ -115,9 +114,9 @@ footer .info {
   margin: 10px 0 0 0;  
   font-size: var(--small-font);
 }
-footer .ul {
-  list-style: none;
-}
-footer .li {
+footer li {
   line-height: 170%;
+}
+footer li .fa-brands {
+  color: var(--moa-blue);
 }
