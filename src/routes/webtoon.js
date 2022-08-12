@@ -44,10 +44,9 @@ router.get('/:day/:category/:platform', function(request, response, next) {
         response.send(webtoons);
     })
 })
-// 회원 즐겨찾기(좋아요) 순 웹툰 보기 API localhost:3000/webtoons/{favorites}/{day}
-/**
- * 플랫폼별, 조회순 웹툰 보기 API
- * localhost:3000/webtoons/{day}/favorites
+/*
+ *회원 즐겨찾기(좋아요) 순 웹툰 보기 API
+ * localhost:3000/webtoons/{day}/favorites&page={page}
  */
 router.get('/:day/:favorites', function(request, response, next){
     const day = request.params.day;
