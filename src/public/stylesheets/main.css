@@ -1,0 +1,67 @@
+/* COMMON */
+:root {
+  --moa-blue: #005D94;
+  --moa-orange: #FFCD4A;
+  --moa-white: #f4fbff;
+  --moa-gray: #e0e0e0;
+  --moa-black: #1f1e1e;
+  --moa-gray: #7f7f7f;
+  --icon-color: #8d8d8d;
+  --line-color:#eeeeee;
+  --title-font: 80px;
+  --sub-title-font: 50px;
+  --large-font: 40px;
+  --mideum-font: 18px;
+  --small-font: 15px;
+  --btn-font: 14px;
+}
+body {
+  color: var(--moa-black);
+  font-size: var(--mideum-font);
+  font-weight: 400;
+  line-height: 1.4; /*글자의 행간을 줌 (줄높이)*/
+  font-family: 'Noto Sans KR', sans-serif;
+}
+.inner {
+  width: 980px;
+  margin: 0 auto;
+  position: relative;
+  border: 0.5px solid black;
+}
+.view_type {
+  position: relative;
+  padding-bottom: 8px;
+  margin: 22px 0 0;
+  padding: 30px;
+  border: 3px solid red;
+  /* border-bottom: 1px solid #eaeaea; */
+
+}
+.view_type .sub_title {
+  float: left;
+  font-size: 16px;
+  /* line-height: 0px; */
+  color: black;
+  padding-bottom: 20px;
+}
+.view_type .sortby {
+  float: right;
+  list-style: none;
+  margin:0;
+  padding:0;
+  width: 300px;
+  height: 50px;
+}
+
+.sortby li {
+  font-size: 100px;
+  float: left;
+}
+
+/* 
+li .sort_popular, li .sort_count, li .sort_wish {  
+  display: inline-block;
+  text-decoration: none;
+  width: 10px;
+  height: 10px;
+} */
