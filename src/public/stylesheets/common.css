@@ -5,13 +5,15 @@
   --moa-white: #f4fbff;
   --moa-gray: #e0e0e0;
   --moa-black: #1f1e1e;
+  --moa-gray: #7f7f7f;
   --icon-color: #8d8d8d;
   --line-color:#eeeeee;
-  --title-font: 80px;
-  --sub-title-font: 50px;
-  --large-font: 40px;
-  --mideum-font: 20px;
+  --title-font: 32px;
+  --sub-title-font: 28px;
+  --large-font: 24px;
+  --mideum-font: 18px;
   --small-font: 15px;
+  --btn-font: 14px;
 }
 body {
   color: var(--moa-black);
@@ -38,10 +40,36 @@ a:hover {
   margin: 0 auto;
   position: relative;
 }
+/* Button */
+.btn {
+  display: block;
+  padding: 10px;
+  border: 0;
+  border-radius: 4px;
+  font-size: var(--btn-font);
+  font-weight: 500;
+  background-color: var(--moa-blue);
+  color: var(--moa-white);
+  cursor: pointer;
+  transition: .4s;
+}
+.btn:hover {
+  background-color: transparent;
+  color: var(--moa-blue);
+  font-weight: 650;
+}
+.btn.btn--reverse {
+  background-color: transparent;
+  color: var(--moa-black);
+}
+.btn.btn--reverse:hover {
+  background-color: var(--moa-blue);
+  color: var(--moa-white);
+  font-weight: 500;
+}
 
 /* Header */
 header {
-  position: fixed;
   width: 100%;
 }
 header > .inner {
