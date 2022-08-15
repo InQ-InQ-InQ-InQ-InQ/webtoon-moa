@@ -1,0 +1,150 @@
+/* COMMON */
+:root {
+  --moa-blue: #005D94;
+  --moa-orange: #FFCD4A;
+  --moa-white: #f4fbff;
+  --moa-gray: #e0e0e0;
+  --moa-black: #1f1e1e;
+  --moa-gray: #7f7f7f;
+  --icon-color: #8d8d8d;
+  --line-color:#eeeeee;
+  --title-font: 80px;
+  --sub-title-font: 50px;
+  --large-font: 40px;
+  --mideum-font: 18px;
+  --small-font: 15px;
+  --btn-font: 14px;
+}
+body {
+  color: var(--moa-black);
+  font-size: var(--mideum-font);
+  font-weight: 400;
+  line-height: 1.4; /*글자의 행간을 줌 (줄높이)*/
+  font-family: 'Noto Sans KR', sans-serif;
+}
+img {
+  display: block;
+  /* 이미지는 블럭요소가 된다 */
+}
+a {
+  /* 모든 a태그의 밑줄을 없애기 */
+  text-decoration: none;
+  color: var(--moa-black);
+}
+a:hover {
+  text-decoration: none;
+  color: var(--moa-black);
+}
+.inner {
+  width: 980px;
+  margin: 0 auto;
+  position: relative;
+}
+/* Button */
+.btn {
+  display: block;
+  padding: 10px;
+  border: 0;
+  border-radius: 4px;
+  font-size: var(--btn-font);
+  font-weight: 500;
+  background-color: var(--moa-blue);
+  color: var(--moa-white);
+  cursor: pointer;
+  transition: .4s;
+}
+.btn:hover {
+  background-color: transparent;
+  color: var(--moa-blue);
+  font-weight: 650;
+}
+.btn.btn--reverse {
+  background-color: transparent;
+  color: var(--moa-black);
+}
+.btn.btn--reverse:hover {
+  background-color: var(--moa-blue);
+  color: var(--moa-white);
+  font-weight: 500;
+}
+
+/* Header */
+header {
+  width: 100%;
+}
+header > .inner {
+  height: 120px;
+  display: flex;
+}
+header .logo {
+  cursor: pointer;
+}
+header .logo img {
+  height: 120px;
+}
+header .search {
+  margin-left: 430px;
+  margin-top: 38px;
+  display: flex;
+}
+header .search .icon.material-symbols-outlined {
+  font-size: 30px;
+}
+header .search .search-text {
+  height: 45px;
+  width: 300px;
+  padding-left: 10px;
+  border: 1px solid var(--moa-gray);
+}
+header .search .search-btn {
+  position: absolute;
+  right: 130px;
+  top: 45px;
+  background-color: transparent;
+  border: 0;
+  color: var(--icon-color);
+}
+header .menu  {
+  margin-left: 10px;
+  margin-top: 49px;
+}
+header .menu .login_name {
+  font-size: var(--small-font);
+}
+header .line {
+  background-color: var(--line-color);
+  height: 1.5px;
+  border: 0;
+}
+
+/* Footer */
+footer {
+  width: 100%;
+}
+footer > .inner {
+  height: 120px;
+  display: flex;
+  justify-content: space-between;
+}
+footer .line {
+  background-color: var(--line-color);
+  height: 1.5px;
+  border: 0;
+}
+footer .logo {
+  cursor: pointer;
+}
+footer .logo img {
+  height: 120px;
+  width: 120px;
+}
+footer .info {
+  margin: 10px 0 0 0;  
+  font-size: var(--small-font);
+}
+footer li {
+  line-height: 170%;
+}
+footer li .fa-brands {
+  color: var(--moa-blue);
+}
