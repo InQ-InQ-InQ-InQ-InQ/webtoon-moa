@@ -11,7 +11,6 @@ router.get('/:day', function(request, response, next){
     const sortType = request.query.sort;
     const page = request.query.page * 10;
     const offset = 10;
-
     
     const sql = `SELECT * FROM webtoon WHERE week = ? ORDER BY ? DESC LIMIT ?, ?`; 
     db.query(sql, [day, sortType, page, offset], function(error, webtoons){
