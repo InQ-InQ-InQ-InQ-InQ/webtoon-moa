@@ -34,6 +34,7 @@ const webtoonRouter = require('./routes/webtoon');
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/register', registerRouter);
 app.use('/webtoons', webtoonRouter);
 
 // catch 404 and forward to error handler
