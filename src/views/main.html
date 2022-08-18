@@ -1,376 +1,413 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <title>main</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webtoon MOA</title>
   <link rel="stylesheet" href="/src/public/stylesheets/main.css">
-
+  <!-- favicon 선언 -->
+  <link rel="icon" href="/images/moa_icon.png">
+  <!-- 브라우저 기본 CSS 초기화 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/src/public/stylesheets/common.css">
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+  crossorigin="anonymous"></script>
+  <!-- Material icons --> 
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp|Material+Symbols+Outlined" rel="stylesheet">
+  <!-- CSS 파일 -->
+  <link rel="stylesheet" href="/src/public/stylesheets/common.css">
+  <link rel="stylesheet" href="/src/public/stylesheets/main.css">
+  <!-- 공통 header 연결 -->
+  <script type="text/javascript">
+    $(document).ready( function() {
+      $("#headers").load("/src/views/header.html");  
+    });
+    $(document).ready( function() {
+      $("#footers").load("/src/views/footer.html");  
+    });
+  </script>
 </head>
 <body>
-  <div class="inner">
-    <div class="view_type">
-      <h3 class="sub_title">요일별 전체 웹툰</h3>
-      <ul class="sortby">
-        <li class="sel"><a class="sort_popular" onclick="" href="">인기순</a></li>
-        <li><a class="sort_count" onclick="" href="">조회순</a></li>
-        <li><a class="sort_wish" onclick="" href="">찜</a></li>
-      </ul>
-    </div>
 
-    <div class="content">
-      <div class="week">
-        <div class="mon"><a href="">월요 웹툰</a></div>
-        <div class="tue"><a href="">화요 웹툰</a></div>
-        <div class="wed"><a href="">수요 웹툰</a></div>
-        <div class="thu"><a href="">목요 웹툰</a></div>
-        <div class="fri"><a href="">금요 웹툰</a></div>
-        <div class="sat"><a href="">토요 웹툰</a></div>
-        <div class="sun"><a href="">일요 웹툰</a></div>
-      </div>
-      
-      <div class="platform">
-        <div class="all"><a href="">전체</a></div>
-        <div class="naver"><a href="">네이버웹툰</a></div>
-        <div class="kakao_w"><a href="">카카오웹툰</a></div>
-        <div class="kakao_p"><a href="">카카오페이지</a></div>
+  <!-- Header -->
+  <div id="headers"></div>
+
+  <section class="main">
+    <div class="inner">
+
+      <div class="view_type">
+        <div class="sub_title">요일별 전체 웹툰</div>
+        <ul class="sortby">
+          <li class="sort"><a class="sort_popular" href="">인기순</a></li>
+          <!-- onclick="clk_p" -->
+          <li class="sort"><a class="sort_count" onclick="" href="">조회순</a></li>
+          <li class="sort"><a class="sort_wish" onclick="" href="">찜</a></li>
+        </ul>
       </div>
 
+      <div class="content">
+        <div class="week">
+          <div class="mon"><a href=""><button class="btn">월요 웹툰</button></a></div>
+          <div class="tue"><a href=""><button class="btn">화요 웹툰</button></a></div>
+          <div class="wed"><a href=""><button class="btn">수요 웹툰</button></a></div>
+          <div class="thu"><a href=""><button class="btn">목요 웹툰</button></a></div>
+          <div class="fri"><a href=""><button class="btn">금요 웹툰</button></a></div>
+          <div class="sat"><a href=""><button class="btn">토요 웹툰</button></a></div>
+          <div class="sun"><a href=""><button class="btn">일요 웹툰</button></a></div>
+        </div>
+        
+        <div class="platform">
+          <div class="all"><input type="radio" class="radio_btn" name="chk_platform" id="radio1" value="all" checked="checked"><label for="radio1">전체</label></div>
+          <div class="naver"><input type="radio" class="radio_btn" name="chk_platform" id="radio2" value="naver"><label for="radio2">네이버웹툰</label></div>
+          <div class="kakao_w"><input type="radio" class="radio_btn" name="chk_platform" id="radio3" value="kakao_w"><label for="radio3">카카오웹툰</label></div>
+          <div class="kakao_p"><input type="radio" class="radio_btn" name="chk_platform" id="radio4" value="kakao_p"><label for="radio4">카카오페이지</label></div>
+        </div>
+
+      </div>
+
+      <div class="webtoon">
+        <ul>
+          <li class="one">
+            <!-- 썸네일 이미지 -->
+            <div class="thumbnail">
+              <a href="" title="참교육">
+                <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
+              </a>
+            </div>
+
+            <!-- 제목, 작가 -->
+            <dl>
+              <dt>
+                <a href="" title="참교육">참교육</a>
+              </dt>
+
+              <dd class="author">
+                <p>채용택 / 한가람</p>
+              </dd>
+
+              <!-- 찜 개수 -->
+              <dd class="wish">              
+                <!-- <div class="wish"> -->
+                  <span class="heart">
+                    <em style="width:98.56%">찜</em>
+                  </span>
+                  <strong>10</strong>
+                <!-- </div> -->
+              </dd>
+            </dl>
+          </li>
+
+          <li class="one">
+            <!-- 썸네일 이미지 -->
+            <div class="thumbnail">
+              <a href="" title="참교육">
+                <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
+              </a>
+            </div>
+
+            <!-- 제목, 작가 -->
+            <dl>
+              <dt>
+                <a href="" title="참교육">참교육</a>
+              </dt>
+
+              <dd class="author">
+                <p>채용택 / 한가람</p>
+              </dd>
+
+              <!-- 찜 개수 -->
+              <dd class="wish">              
+                <!-- <div class="wish"> -->
+                  <span class="heart">
+                    <em style="width:98.56%">찜</em>
+                  </span>
+                  <strong>10</strong>
+                <!-- </div> -->
+              </dd>
+            </dl>
+          </li>
+
+          <li class="one">
+            <!-- 썸네일 이미지 -->
+            <div class="thumbnail">
+              <a href="" title="참교육">
+                <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
+              </a>
+            </div>
+
+            <!-- 제목, 작가 -->
+            <dl>
+              <dt>
+                <a href="" title="참교육">참교육</a>
+              </dt>
+
+              <dd class="author">
+                <p>채용택 / 한가람</p>
+              </dd>
+
+              <!-- 찜 개수 -->
+              <dd class="wish">              
+                <!-- <div class="wish"> -->
+                  <span class="heart">
+                    <em style="width:98.56%">찜</em>
+                  </span>
+                  <strong>10</strong>
+                <!-- </div> -->
+              </dd>
+            </dl>
+          </li>
+
+          <li class="one">
+            <!-- 썸네일 이미지 -->
+            <div class="thumbnail">
+              <a href="" title="참교육">
+                <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
+              </a>
+            </div>
+
+            <!-- 제목, 작가 -->
+            <dl>
+              <dt>
+                <a href="" title="참교육">참교육</a>
+              </dt>
+
+              <dd class="author">
+                <p>채용택 / 한가람</p>
+              </dd>
+
+              <!-- 찜 개수 -->
+              <dd class="wish">              
+                <!-- <div class="wish"> -->
+                  <span class="heart">
+                    <em style="width:98.56%">찜</em>
+                  </span>
+                  <strong>10</strong>
+                <!-- </div> -->
+              </dd>
+            </dl>
+          </li>
+
+          <li class="one">
+            <!-- 썸네일 이미지 -->
+            <div class="thumbnail">
+              <a href="" title="참교육">
+                <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
+              </a>
+            </div>
+
+            <!-- 제목, 작가 -->
+            <dl>
+              <dt>
+                <a href="" title="참교육">참교육</a>
+              </dt>
+
+              <dd class="author">
+                <p>채용택 / 한가람</p>
+              </dd>
+
+              <!-- 찜 개수 -->
+              <dd class="wish">              
+                <!-- <div class="wish"> -->
+                  <span class="heart">
+                    <em style="width:98.56%">찜</em>
+                  </span>
+                  <strong>10</strong>
+                <!-- </div> -->
+              </dd>
+            </dl>
+          </li>
+
+          <li class="one">
+            <!-- 썸네일 이미지 -->
+            <div class="thumbnail">
+              <a href="" title="참교육">
+                <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
+              </a>
+            </div>
+
+            <!-- 제목, 작가 -->
+            <dl>
+              <dt>
+                <a href="" title="참교육">참교육</a>
+              </dt>
+
+              <dd class="author">
+                <p>채용택 / 한가람</p>
+              </dd>
+
+              <!-- 찜 개수 -->
+              <dd class="wish">              
+                <!-- <div class="wish"> -->
+                  <span class="heart">
+                    <em style="width:98.56%">찜</em>
+                  </span>
+                  <strong>10</strong>
+                <!-- </div> -->
+              </dd>
+            </dl>
+          </li>
+
+          <li class="one">
+            <!-- 썸네일 이미지 -->
+            <div class="thumbnail">
+              <a href="" title="참교육">
+                <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
+              </a>
+            </div>
+
+            <!-- 제목, 작가 -->
+            <dl>
+              <dt>
+                <a href="" title="참교육">참교육</a>
+              </dt>
+
+              <dd class="author">
+                <p>채용택 / 한가람</p>
+              </dd>
+
+              <!-- 찜 개수 -->
+              <dd class="wish">              
+                <!-- <div class="wish"> -->
+                  <span class="heart">
+                    <em style="width:98.56%">찜</em>
+                  </span>
+                  <strong>10</strong>
+                <!-- </div> -->
+              </dd>
+            </dl>
+          </li>
+
+          <li class="one">
+            <!-- 썸네일 이미지 -->
+            <div class="thumbnail">
+              <a href="" title="참교육">
+                <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
+              </a>
+            </div>
+
+            <!-- 제목, 작가 -->
+            <dl>
+              <dt>
+                <a href="" title="참교육">참교육</a>
+              </dt>
+
+              <dd class="author">
+                <p>채용택 / 한가람</p>
+              </dd>
+
+              <!-- 찜 개수 -->
+              <dd class="wish">              
+                <!-- <div class="wish"> -->
+                  <span class="heart">
+                    <em style="width:98.56%">찜</em>
+                  </span>
+                  <strong>10</strong>
+                <!-- </div> -->
+              </dd>
+            </dl>
+          </li>
+
+          <li class="one">
+            <!-- 썸네일 이미지 -->
+            <div class="thumbnail">
+              <a href="" title="참교육">
+                <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
+              </a>
+            </div>
+
+            <!-- 제목, 작가 -->
+            <dl>
+              <dt>
+                <a href="" title="참교육">참교육</a>
+              </dt>
+
+              <dd class="author">
+                <p>채용택 / 한가람</p>
+              </dd>
+
+              <!-- 찜 개수 -->
+              <dd class="wish">              
+                <!-- <div class="wish"> -->
+                  <span class="heart">
+                    <em style="width:98.56%">찜</em>
+                  </span>
+                  <strong>10</strong>
+                <!-- </div> -->
+              </dd>
+            </dl>
+          </li>
+
+          <li class="one">
+            <!-- 썸네일 이미지 -->
+            <div class="thumbnail">
+              <a href="" title="참교육">
+                <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
+              </a>
+            </div>
+
+            <!-- 제목, 작가 -->
+            <dl>
+              <dt>
+                <a href="" title="참교육">참교육</a>
+              </dt>
+
+              <dd class="author">
+                <p>채용택 / 한가람</p>
+              </dd>
+
+              <!-- 찜 개수 -->
+              <dd class="wish">              
+                <!-- <div class="wish"> -->
+                  <span class="heart">
+                    <em style="width:98.56%">찜</em>
+                  </span>
+                  <strong>10</strong>
+                <!-- </div> -->
+              </dd>
+            </dl>
+          </li>
+
+          <li class="one">
+            <!-- 썸네일 이미지 -->
+            <div class="thumbnail">
+              <a href="" title="참교육">
+                <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
+              </a>
+            </div>
+
+            <!-- 제목, 작가 -->
+            <dl>
+              <dt>
+                <a href="" title="참교육">참교육</a>
+              </dt>
+
+              <dd class="author">
+                <p>채용택 / 한가람</p>
+              </dd>
+
+              <!-- 찜 개수 -->
+              <dd class="wish">              
+                <!-- <div class="wish"> -->
+                  <span class="heart">
+                    <em style="width:98.56%">찜</em>
+                  </span>
+                  <strong>10</strong>
+                <!-- </div> -->
+              </dd>
+            </dl>
+          </li>
+
+        </ul>
+      </div>
+
     </div>
 
-    <div class="webtoon">
-      <ul>
-        <li class="one">
-          <!-- 썸네일 이미지 -->
-          <div class="thumbnail">
-            <a href="" title="참교육">
-              <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
-            </a>
-          </div>
-
-          <!-- 제목, 작가 -->
-          <dl>
-            <dt>
-              <a href="" title="참교육">참교육</a>
-            </dt>
-
-            <dd class="author">
-              <p>채용택 / 한가람</p>
-            </dd>
-
-            <!-- 찜 개수 -->
-            <dd class="wish">              
-              <!-- <div class="wish"> -->
-                <span class="heart">
-                  <em style="width:98.56%">찜</em>
-                </span>
-                <strong>10</strong>
-              <!-- </div> -->
-            </dd>
-          </dl>
-        </li>
-
-        <li class="one">
-          <!-- 썸네일 이미지 -->
-          <div class="thumbnail">
-            <a href="" title="참교육">
-              <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
-            </a>
-          </div>
-
-          <!-- 제목, 작가 -->
-          <dl>
-            <dt>
-              <a href="" title="참교육">참교육</a>
-            </dt>
-
-            <dd class="author">
-              <p>채용택 / 한가람</p>
-            </dd>
-
-            <!-- 찜 개수 -->
-            <dd class="wish">              
-              <!-- <div class="wish"> -->
-                <span class="heart">
-                  <em style="width:98.56%">찜</em>
-                </span>
-                <strong>10</strong>
-              <!-- </div> -->
-            </dd>
-          </dl>
-        </li>
-
-        <li class="one">
-          <!-- 썸네일 이미지 -->
-          <div class="thumbnail">
-            <a href="" title="참교육">
-              <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
-            </a>
-          </div>
-
-          <!-- 제목, 작가 -->
-          <dl>
-            <dt>
-              <a href="" title="참교육">참교육</a>
-            </dt>
-
-            <dd class="author">
-              <p>채용택 / 한가람</p>
-            </dd>
-
-            <!-- 찜 개수 -->
-            <dd class="wish">              
-              <!-- <div class="wish"> -->
-                <span class="heart">
-                  <em style="width:98.56%">찜</em>
-                </span>
-                <strong>10</strong>
-              <!-- </div> -->
-            </dd>
-          </dl>
-        </li>
-
-        <li class="one">
-          <!-- 썸네일 이미지 -->
-          <div class="thumbnail">
-            <a href="" title="참교육">
-              <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
-            </a>
-          </div>
-
-          <!-- 제목, 작가 -->
-          <dl>
-            <dt>
-              <a href="" title="참교육">참교육</a>
-            </dt>
-
-            <dd class="author">
-              <p>채용택 / 한가람</p>
-            </dd>
-
-            <!-- 찜 개수 -->
-            <dd class="wish">              
-              <!-- <div class="wish"> -->
-                <span class="heart">
-                  <em style="width:98.56%">찜</em>
-                </span>
-                <strong>10</strong>
-              <!-- </div> -->
-            </dd>
-          </dl>
-        </li>
-
-        <li class="one">
-          <!-- 썸네일 이미지 -->
-          <div class="thumbnail">
-            <a href="" title="참교육">
-              <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
-            </a>
-          </div>
-
-          <!-- 제목, 작가 -->
-          <dl>
-            <dt>
-              <a href="" title="참교육">참교육</a>
-            </dt>
-
-            <dd class="author">
-              <p>채용택 / 한가람</p>
-            </dd>
-
-            <!-- 찜 개수 -->
-            <dd class="wish">              
-              <!-- <div class="wish"> -->
-                <span class="heart">
-                  <em style="width:98.56%">찜</em>
-                </span>
-                <strong>10</strong>
-              <!-- </div> -->
-            </dd>
-          </dl>
-        </li>
-
-        <li class="one">
-          <!-- 썸네일 이미지 -->
-          <div class="thumbnail">
-            <a href="" title="참교육">
-              <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
-            </a>
-          </div>
-
-          <!-- 제목, 작가 -->
-          <dl>
-            <dt>
-              <a href="" title="참교육">참교육</a>
-            </dt>
-
-            <dd class="author">
-              <p>채용택 / 한가람</p>
-            </dd>
-
-            <!-- 찜 개수 -->
-            <dd class="wish">              
-              <!-- <div class="wish"> -->
-                <span class="heart">
-                  <em style="width:98.56%">찜</em>
-                </span>
-                <strong>10</strong>
-              <!-- </div> -->
-            </dd>
-          </dl>
-        </li>
-
-        <li class="one">
-          <!-- 썸네일 이미지 -->
-          <div class="thumbnail">
-            <a href="" title="참교육">
-              <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
-            </a>
-          </div>
-
-          <!-- 제목, 작가 -->
-          <dl>
-            <dt>
-              <a href="" title="참교육">참교육</a>
-            </dt>
-
-            <dd class="author">
-              <p>채용택 / 한가람</p>
-            </dd>
-
-            <!-- 찜 개수 -->
-            <dd class="wish">              
-              <!-- <div class="wish"> -->
-                <span class="heart">
-                  <em style="width:98.56%">찜</em>
-                </span>
-                <strong>10</strong>
-              <!-- </div> -->
-            </dd>
-          </dl>
-        </li>
-
-        <li class="one">
-          <!-- 썸네일 이미지 -->
-          <div class="thumbnail">
-            <a href="" title="참교육">
-              <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
-            </a>
-          </div>
-
-          <!-- 제목, 작가 -->
-          <dl>
-            <dt>
-              <a href="" title="참교육">참교육</a>
-            </dt>
-
-            <dd class="author">
-              <p>채용택 / 한가람</p>
-            </dd>
-
-            <!-- 찜 개수 -->
-            <dd class="wish">              
-              <!-- <div class="wish"> -->
-                <span class="heart">
-                  <em style="width:98.56%">찜</em>
-                </span>
-                <strong>10</strong>
-              <!-- </div> -->
-            </dd>
-          </dl>
-        </li>
-
-        <li class="one">
-          <!-- 썸네일 이미지 -->
-          <div class="thumbnail">
-            <a href="" title="참교육">
-              <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
-            </a>
-          </div>
-
-          <!-- 제목, 작가 -->
-          <dl>
-            <dt>
-              <a href="" title="참교육">참교육</a>
-            </dt>
-
-            <dd class="author">
-              <p>채용택 / 한가람</p>
-            </dd>
-
-            <!-- 찜 개수 -->
-            <dd class="wish">              
-              <!-- <div class="wish"> -->
-                <span class="heart">
-                  <em style="width:98.56%">찜</em>
-                </span>
-                <strong>10</strong>
-              <!-- </div> -->
-            </dd>
-          </dl>
-        </li>
-
-        <li class="one">
-          <!-- 썸네일 이미지 -->
-          <div class="thumbnail">
-            <a href="" title="참교육">
-              <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
-            </a>
-          </div>
-
-          <!-- 제목, 작가 -->
-          <dl>
-            <dt>
-              <a href="" title="참교육">참교육</a>
-            </dt>
-
-            <dd class="author">
-              <p>채용택 / 한가람</p>
-            </dd>
-
-            <!-- 찜 개수 -->
-            <dd class="wish">              
-              <!-- <div class="wish"> -->
-                <span class="heart">
-                  <em style="width:98.56%">찜</em>
-                </span>
-                <strong>10</strong>
-              <!-- </div> -->
-            </dd>
-          </dl>
-        </li>
-
-        <li class="one">
-          <!-- 썸네일 이미지 -->
-          <div class="thumbnail">
-            <a href="" title="참교육">
-              <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
-            </a>
-          </div>
-
-          <!-- 제목, 작가 -->
-          <dl>
-            <dt>
-              <a href="" title="참교육">참교육</a>
-            </dt>
-
-            <dd class="author">
-              <p>채용택 / 한가람</p>
-            </dd>
-
-            <!-- 찜 개수 -->
-            <dd class="wish">              
-              <!-- <div class="wish"> -->
-                <span class="heart">
-                  <em style="width:98.56%">찜</em>
-                </span>
-                <strong>10</strong>
-              <!-- </div> -->
-            </dd>
-          </dl>
-        </li>
-
-      </ul>
-    </div>
-
-  </div>
+  </section>
+  <!-- Footer -->
+  <div id="footers"></div>
+  <script src="/src/main.js"></script>
 </body>
 </html>

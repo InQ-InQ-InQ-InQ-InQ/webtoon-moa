@@ -1,42 +1,9 @@
-/* COMMON */
-:root {
-  --moa-blue: #005D94;
-  --moa-orange: #FFCD4A;
-  --moa-white: #f4fbff;
-  --moa-gray: #e0e0e0;
-  --moa-black: #1f1e1e;
-  --moa-gray: #7f7f7f;
-  --icon-color: #8d8d8d;
-  --line-color:#eeeeee;
-  --title-font: 80px;
-  --sub-title-font: 50px;
-  --large-font: 40px;
-  --mideum-font: 18px;
-  --small-font: 15px;
-  --btn-font: 14px;
-}
-body {
-  color: var(--moa-black);
-  font-size: var(--mideum-font);
-  font-weight: 400;
-  line-height: 1.4; /*글자의 행간을 줌 (줄높이)*/
-  font-family: 'Noto Sans KR', sans-serif;
-}
-a {
-  /* 모든 a태그의 밑줄을 없애기 */
-  text-decoration: none;
-  color: var(--moa-black);
-}
-a:hover {
-  text-decoration: none;
-  color: var(--moa-black);
-}
-.inner {
-  width: 980px;
+.main {
   margin: 0 auto;
-  position: relative;
-  border: 0.5px solid black;
+  margin-top: 30px;
+  margin-bottom: 50px;
 }
+
 .view_type {
   position: relative;
   width: 100%;
@@ -54,13 +21,17 @@ a:hover {
   color: black;
   /* padding-bottom: 20px; */
   border: 1px solid red;
-  font-size: var(--large-font);
   margin-top: 0px;
+  font-size: var(--sub-title-font);
+  margin-bottom: 25px;
+  color: var(--moa-blue);
+  font-weight: 700;
 }
 .view_type .sortby {
   float: right;
   list-style: none;
   padding-left: 0px;
+  margin-top: 32px;
 
   border: 1px solid red;
   font-size: var(--mideum-font);
@@ -71,7 +42,16 @@ a:hover {
   float: left;
   padding-left: 10px;
   text-decoration: none;
+  font-size: var(--mideum-font);
 }
+/* .sortby li.selected {
+  color: var(--moa-blue);
+} */
+
+.clicked {
+  color: black;
+}
+
 
 /* 
 li .sort_popular, li .sort_count, li .sort_wish {  
@@ -96,17 +76,9 @@ li .sort_popular, li .sort_count, li .sort_wish {
   border: 0.5px solid green;
 }
 
-/* .week div {
-  justify-content: space-between;
-
-  padding: 5px, 10px;
-  margin: 5px, 10px;
-
-  border: 0.3px solid red;
-} */
-
 .mon, .tue, .wed, .thu, .fri, .sat, .sun {
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  justify-content: center;
 
   /* padding: 30px; */
   /* margin: 20px; */
@@ -122,6 +94,20 @@ li .sort_popular, li .sort_count, li .sort_wish {
 
   border: 1px solid yellowgreen;
 }
+
+input[type=radio] {
+  display: none;
+}
+
+input[type=radio] + label {
+  display: inline-block;
+}
+
+input[type=radio]:checked + label {
+  background: var(--moa-blue);
+}
+
+
 
 .platform div {
   justify-content: space-between;
