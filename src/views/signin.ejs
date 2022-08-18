@@ -38,7 +38,10 @@
       <div class="main-title">
         <span class="title">로그인</span>
       </div>
-    
+      
+      <% if(exception){ %>
+        <div style="color:red;"><%= exception %></div>
+      <% } %>
       <form method="post" action="sign-in">
         <div class="div-body">
           <div class="row">

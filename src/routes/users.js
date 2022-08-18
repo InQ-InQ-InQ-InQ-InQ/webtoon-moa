@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../config/db');
+const { body, validationResult } = require('express-validator');
 
 router.get('/sign-in', function(request, response, next) {
-  response.render('signin');
+  const exception = request.query.exception;
+  response.render('signin', { exception: exception });
 });
 
 router.post('/sign-in', function(request, response, next){
@@ -19,13 +21,13 @@ router.post('/sign-in', function(request, response, next){
     
     if(user[0] === undefined){
       console.log(`Identifier not found`);
-      response.redirect('/users/sign-in');
+      response.redirect(`/users/sign-in?exception=존재하지 않는 계정입니다.`);
       return;
     }
 
     if(password !== user[0].password){
       console.log('Incorrect password');
-      response.redirect('/users/sign-in');
+      response.redirect('/users/sign-in?exception=비밀번호가 일치하지 않습니다.');
       return;
     }
     
