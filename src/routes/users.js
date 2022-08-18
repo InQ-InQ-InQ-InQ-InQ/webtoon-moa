@@ -3,6 +3,10 @@ const router = express.Router();
 const db = require('../config/db');
 
 router.get('/sign-in', function(request, response, next) {
+  if(request.session.user){
+    response.redirect('/');
+    return;
+  }
   const exception = request.query.exception;
   response.render('signin', { exception: exception });
 });
