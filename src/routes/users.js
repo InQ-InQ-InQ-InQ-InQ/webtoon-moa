@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../config/db');
-const { body, validationResult } = require('express-validator');
 
 router.get('/sign-in', function(request, response, next) {
   const exception = request.query.exception;
