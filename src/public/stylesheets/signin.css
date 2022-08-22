@@ -1,0 +1,57 @@
+.signin {
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.signin .main-title {
+  font-size: var(--sub-title-font);
+  margin-bottom: 25px;
+}
+.signin .main-title .title {
+  color: var(--moa-blue);
+  font-weight: 700;
+}
+.signin .text-body .row {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.signin .text-body .row .sub-title {
+  font-weight: 600;
+  color: var(--moa-blue);
+  margin-bottom: 10px;
+}
+.signin .text-body .row input {
+  width: 400px;
+  height: 40px;
+  color: var(--moa-blue);
+  border: 1px solid var(--moa-blue);
+  border-radius: 3px;
+  padding-left: 8px;
+}
+.signin .text-body .btn-row .btn {
+  font-size: var(--large-font);
+  width: 392px;
+}
+.signin .text-body .find-wrap {
+  display: flex;
+  margin: 0 65px;
+}
+.signin .text-body .find-wrap li {
+  margin: 15px 20px 0 0;
+}
+.signin .text-body .find-wrap li::after {
+  content: "|";
+  color: var(--moa-gray);
+  font-size: var(--btn-font);
+  padding-left: 10px;
+}
+.signin .text-body .find-wrap li:last-child::after {
+  content: "";
+}
+.signin .text-body .find-wrap .find-text {
+  display: inline-block;
+  font-size: var(--btn-font);
+  color: var(--moa-gray);
+}
