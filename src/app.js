@@ -30,12 +30,15 @@ app.use(
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const registerRouter = require('./routes/register');
 const webtoonRouter = require('./routes/webtoon');
+const favoritesRouter = require('./routes/favorites');
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/register', registerRouter);
 app.use('/webtoons', webtoonRouter);
+app.use('/favorites', favoritesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

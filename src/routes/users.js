@@ -35,9 +35,9 @@ router.post('/sign-in', function(request, response, next){
     }
     
     request.session.user = {
-      id: user.id,
-      identifier: user.identifier,
-      username: user.username,
+      id: user[0].id,
+      identifier: user[0].identifier,
+      username: user[0].username,
       authorized: true
     };
     
