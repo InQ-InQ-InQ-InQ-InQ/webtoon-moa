@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webtoon MOA</title>
+  <!-- favicon 선언 -->
+  <link rel="icon" href="/images/moa_icon.png">
+  <!-- 브라우저 기본 CSS 초기화 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+  crossorigin="anonymous"></script>
+  <!-- Material icons --> 
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp|Material+Symbols+Outlined" rel="stylesheet">
+  <!-- CSS 파일 -->
+  <link rel="stylesheet" href="/src/public/stylesheets/common.css">
+  <link rel="stylesheet" href="/src/public/stylesheets/signin.css">
+  <!-- 공통 header 연결 -->
+  <script type="text/javascript">
+    $(document).ready( function() {
+      $("#headers").load("/src/views/header.html");  
+    });
+    $(document).ready( function() {
+      $("#footers").load("/src/views/footer.html");  
+    });
+  </script>
+</head>
+
+<body>
+  <!-- Header -->
+  <div id="headers"></div>
+
+  <!-- Footer -->
+  <div id="footers"></div>
+
+</body>
+</html>
