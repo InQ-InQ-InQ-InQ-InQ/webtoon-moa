@@ -9,9 +9,8 @@
   width: 100%;
   height: 50px;
   padding-bottom: 8px;
-  /* margin: 22px 0 0;
-  padding: 30px; */
-  border: 1px solid red;
+
+  /* border: 1px solid red; */
   /* border-bottom: 1px solid #eaeaea; */
 }
 .view_type .sub_title {
@@ -20,7 +19,6 @@
   /* line-height: 0px; */
   color: black;
   /* padding-bottom: 20px; */
-  border: 1px solid red;
   margin-top: 0px;
   font-size: var(--sub-title-font);
   margin-bottom: 25px;
@@ -44,6 +42,15 @@
   text-decoration: none;
   font-size: var(--mideum-font);
 }
+
+.sortby li a {
+  
+}
+
+.sortby li .sort_popular.on {
+  color: red;
+}
+
 /* .sortby li.selected {
   color: var(--moa-blue);
 } */
@@ -65,18 +72,20 @@ li .sort_popular, li .sort_count, li .sort_wish {
   display: flex;
   flex-direction: column;
 
-
-  border: 1px solid blue;
+  /* border: 1px solid var(--line-color); */
 }
 .content .week {
   width: 100%;
   display: flex;
   flex-direction: row;
 
-  border: 0.5px solid green;
+  padding-top: 15px 0px;
+  margin-top: 10px;
+  /* border-top: 1px solid var(--line-color); */
 }
 
 .mon, .tue, .wed, .thu, .fri, .sat, .sun {
+/* .content .week .w { */
   /* justify-content: space-between; */
   justify-content: center;
 
@@ -84,42 +93,69 @@ li .sort_popular, li .sort_count, li .sort_wish {
   /* margin: 20px; */
   margin: auto;
 
-  border: 0.3px solid green;
+
+  /* border: 0.3px solid green; */
 }
+
+/* .clicked {
+  color: red;
+} */
+
+/* .main .content .wp_line {
+  background-color: black;
+  color: black;
+  height: 3px;
+  width: 100%;
+  border: 0;
+} */
 
 .content .platform {
-  width: 100%;
+  /* width: 100%; */
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
+  padding: 10px 0px;
+  margin-bottom: 10px;
 
-  border: 1px solid yellowgreen;
+  /* border: 1px solid yellowgreen; */
 }
 
-input[type=radio] {
+.main .content .platform .platform-box input[type=radio] {
   display: none;
 }
 
 input[type=radio] + label {
-  display: inline-block;
+  /* display: block; */
 }
 
 input[type=radio]:checked + label {
-  background: var(--moa-blue);
+  background-color: var(--moa-orange);
+  border-radius: 180px;
+  color: var(--moa-white);
+  padding: 15px;
+  font-size: var(--mideum-font);  
 }
 
-
-
 .platform div {
-  justify-content: space-between;
+  /* justify-content: space-between; */
   padding: 5px;
   margin: auto;
 
-  border: 0.3px solid red; 
+  /* border: 0.3px solid red;  */
+}
+
+.platform label {
+  padding: 5px 3px;
+  border: 0;
+  border-radius: 4px;
+  /* width: 200px; */
+
+  font-size: var(--mideum-font);  
 }
 
 .webtoon {
   width: 100%;
-  border: 0.5px solid green;
+  /* border: 0.5px solid green; */
+  margin-top: 10px;
 }
 
 .webtoon ul {
@@ -133,8 +169,8 @@ input[type=radio]:checked + label {
 
 .webtoon .one {
   margin-bottom: 20px;
-  width: 33%;
-  border: 0.5px solid var(--moa-blue);
+  width: 24.5%;
+  /* border: 0.5px solid var(--moa-blue); */
 }
 
 .webtoon li .thumbnail {
@@ -154,6 +190,23 @@ input[type=radio]:checked + label {
 .author p {
   margin: 0px;
 }
-
-
-
+button.btn {
+  font-size: var(--mideum-font);
+  width: 200px;
+  height: 80px;
+  margin: 0 10px;
+  border-radius: 0;
+  background-color: transparent;
+  color: var(--moa-black);
+  
+}
+button.btn:hover {
+  background-color: var(--moa-blue);
+  border-radius: 180px;
+  color: var(--moa-white);
+}
+.week-button.click-button {
+  background-color: var(--moa-blue);
+  border-radius: 180px;
+  color: var(--moa-white);
+}
