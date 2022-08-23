@@ -12,9 +12,6 @@
   color: var(--moa-blue);
   font-weight: 700;
 }
-.signup .text-body {
-  
-}
 .signup .text-body .row {
   margin-bottom: 30px;
   display: flex;
