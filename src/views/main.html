@@ -15,11 +15,14 @@
   crossorigin="anonymous"></script>
   <!-- Material icons --> 
   <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp|Material+Symbols+Outlined" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <!-- CSS 파일 -->
   <link rel="stylesheet" href="/src/public/stylesheets/common.css">
   <link rel="stylesheet" href="/src/public/stylesheets/main.css">
   <!-- JS 파일 -->
+  <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
   <script defer src="/src/main.js"></script>
+  
   <!-- 공통 header 연결 -->
   <script type="text/javascript">
     $(document).ready( function() {
@@ -41,84 +44,96 @@
       <div class="view_type">
         <div class="sub_title">요일별 웹툰</div>
         <ul class="sortby">
-          <li class="sort"><a class="sort_popular" href="">인기순</a></li>
-          <!-- onclick="clk_p" -->
-          <li class="sort"><a class="sort_count" onclick="" href="">조회순</a></li>
-          <li class="sort"><a class="sort_wish" onclick="" href="">찜</a></li>
+          <li class="sort"><div class="popular" value="popular">인기순</div></li>
+          <li class="sort"><div class="count" value="count">조회순</div></li>
+          <!-- <a class="sort_popular" href=""></a>
+          <a class="sort_count" onclick="" href=""></a> -->
+          <li class="sort2">
+            <!-- <a class="sort_wish" onclick="" href=""> -->
+              <div class="wish" value="wish">
+                <input type="checkbox" id="checkbox" />
+                <label for="checkbox">
+                  <svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
+                    <g id="Group" fill="none" fill-rule="evenodd" transform="translate(467 392)">
+                      <path d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z" id="heart" fill="#AAB8C2"/>
+                      <circle id="main-circ" fill="#E2264D" opacity="0" cx="29.5" cy="29.5" r="1.5"/>
+            
+                      <g id="grp7" opacity="0" transform="translate(7 6)">
+                        <circle id="oval1" fill="#9CD8C3" cx="2" cy="6" r="2"/>
+                        <circle id="oval2" fill="#8CE8C3" cx="5" cy="2" r="2"/>
+                      </g>
+            
+                      <g id="grp6" opacity="0" transform="translate(0 28)">
+                        <circle id="oval1" fill="#CC8EF5" cx="2" cy="7" r="2"/>
+                        <circle id="oval2" fill="#91D2FA" cx="3" cy="2" r="2"/>
+                      </g>
+            
+                      <g id="grp3" opacity="0" transform="translate(52 28)">
+                        <circle id="oval2" fill="#9CD8C3" cx="2" cy="7" r="2"/>
+                        <circle id="oval1" fill="#8CE8C3" cx="4" cy="2" r="2"/>
+                      </g>
+            
+                      <g id="grp2" opacity="0" transform="translate(44 6)">
+                        <circle id="oval2" fill="#CC8EF5" cx="5" cy="6" r="2"/>
+                        <circle id="oval1" fill="#CC8EF5" cx="2" cy="2" r="2"/>
+                      </g>
+            
+                      <g id="grp5" opacity="0" transform="translate(14 50)">
+                        <circle id="oval1" fill="#91D2FA" cx="6" cy="5" r="2"/>
+                        <circle id="oval2" fill="#91D2FA" cx="2" cy="2" r="2"/>
+                      </g>
+            
+                      <g id="grp4" opacity="0" transform="translate(35 50)">
+                        <circle id="oval1" fill="#F48EA7" cx="6" cy="5" r="2"/>
+                        <circle id="oval2" fill="#F48EA7" cx="2" cy="2" r="2"/>
+                      </g>
+            
+                      <g id="grp1" opacity="0" transform="translate(24)">
+                        <circle id="oval1" fill="#9FC7FA" cx="2.5" cy="3" r="2"/>
+                        <circle id="oval2" fill="#9FC7FA" cx="7.5" cy="2" r="2"/>
+                      </g>
+                    </g>
+                  </svg>
+                </label>
+              </div>
+            <!-- </a> -->
+          </li>
         </ul>
       </div>
       <hr>
 
       <div class="content">
         <div class="week">
-          <button class="week-button btn">월요일</button>
-          <button class="week-button btn" onclick="location.href='main.html'">화요일</button>
-          <button class="week-button btn">수요일</button>
-          <button class="week-button btn">목요일</button>
-          <button class="week-button btn">금요일</button>
-          <button class="week-button btn">토요일</button>
-          <button class="week-button btn">일요일</button>
-          <!-- <div class="w"><a href="">월요 웹툰</a></div>
-          <div class="w"><a href="">화요 웹툰</a></div>
-          <div class="w"><a href="">수요 웹툰</a></div>
-          <div class="w"><a href="">목요 웹툰</a></div>
-          <div class="w"><a href="">금요 웹툰</a></div>
-          <div class="w"><a href="">토요 웹툰</a></div>
-          <div class="w"><a href="">일요 웹툰</a></div> -->
+          <button class="week-button btn" value="mon">월요일</button>
+          <button class="week-button btn" value="tue">화요일</button>
+          <button class="week-button btn" value="wed">수요일</button>
+          <button class="week-button btn" value="thu">목요일</button>
+          <button class="week-button btn" value="fri">금요일</button>
+          <button class="week-button btn" value="sat">토요일</button>
+          <button class="week-button btn" value="sun">일요일</button>
         </div>
-
-        <hr class="wp_line">
         
         <div class="platform">
           <div class="platform-box">
-            <input type="radio" name="chk_platform" id="radio1" value="all" checked="checked"><label for="radio1">전체</label>
+            <input type="radio" name="chk_platform" id="radio1" value="all" checked><label for="radio1">전체</label>
             <!-- onclick="location.href=''"> -->
           </div>
           <div class="platform-box">
-            <input type="radio" name="chk_platform" id="radio2" value="naver"><label for="radio2">네이버웹툰</label>
+            <input type="radio" name="chk_platform" id="radio2" value="naverwebtoon"><label for="radio2">네이버웹툰</label>
           </div>
           <div class="platform-box">
-            <input type="radio" name="chk_platform" id="radio3" value="kakao_w"><label for="radio3">카카오웹툰</label>
+            <input type="radio" name="chk_platform" id="radio3" value="kakaowebtoon"><label for="radio3">카카오웹툰</label>
           </div>
           <div class="platform-box">
-            <input type="radio" name="chk_platform" id="radio4" value="kakao_p"><label for="radio4">카카오페이지</label>
+            <input type="radio" name="chk_platform" id="radio4" value="kakaopage"><label for="radio4">카카오페이지</label>
           </div>
         </div>
 
       </div>
+      <hr>
 
       <div class="webtoon">
         <ul>
-          <li class="one">
-            <!-- 썸네일 이미지 -->
-            <div class="thumbnail">
-              <a href="" title="참교육">
-                <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
-              </a>
-            </div>
-
-            <!-- 제목, 작가 -->
-            <dl>
-              <dt>
-                <a href="" title="참교육">참교육</a>
-              </dt>
-
-              <dd class="author">
-                <p>채용택 / 한가람</p>
-              </dd>
-
-              <!-- 찜 개수 -->
-              <dd class="wish">              
-                <!-- <div class="wish"> -->
-                  <span class="heart">
-                    <em style="width:98.56%">찜</em>
-                  </span>
-                  <strong>10</strong>
-                <!-- </div> -->
-              </dd>
-            </dl>
-          </li>
-
           <li class="one">
             <!-- 썸네일 이미지 -->
             <div class="thumbnail">
