@@ -30,14 +30,12 @@ app.use(
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const registerRouter = require('./routes/register');
 const webtoonRouter = require('./routes/webtoon');
 const favoritesRouter = require('./routes/favorites');
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/register', registerRouter);
-app.use('/webtoons', webtoonRouter);
+app.use('/webtoon', webtoonRouter);
 app.use('/favorites', favoritesRouter);
 
 // catch 404 and forward to error handler
@@ -49,6 +47,7 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
+  console.log(err.message);
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
