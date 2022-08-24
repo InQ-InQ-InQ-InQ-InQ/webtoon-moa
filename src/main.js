@@ -82,21 +82,65 @@ function call(check_week, check_platform) {
 
   $.ajax({
     type: "GET",
-    url: "/webtoon/list/" + day + "/" + platform + "?page=" + page,
-    // url: "https://jsonplaceholder.typicode.com/users",
+    // url: "/webtoon/list/" + day + "/" + platform + "?page=" + page,
+    url: "https://jsonplaceholder.typicode.com/users",
     dataType: "json",
     success: function(data) {
       console.log(data);
       webtoonData.push(data);
       console.log(webtoonData);
-    }
 
+      for(let i = 0; i < data.length; i++) {
+
+        function create_webtoon(i) {
+          // title = data[i].title;
+          // author = data[i].author;
+          // img_url = data[i].img_url;
+          // web_url = data[i].web_url;
+          // click_count = data[i].click_count;
+
+          id = data[i].id;
+          title = data[i].name;
+
+          const li = document.createElement("li");
+
+          li.setAttribute('id', title);
+
+          const textNode = document.createTextNode(title);
+          li.appendChild(textNode);
+
+          document.getElementById('webtoon_ul').appendChild(li);
+
+        }
+
+        create_webtoon(i);
+        // id = data[i].id;
+        // name = data[i].name;
+
+        // console.log(id, name);
+      };
+    
+
+    }
   });
 
   // 여기에 포문 써서
   // 어레이 리스트 webtoonData에 담겨 있는 정보들 하나씩 뽑아내며 웹툰 카드 쭈르륵 만들어주기(?)
+
+  console.log(webtoonData);
+  
+  for(let i = 0; i < webtoonData.length; i++) {
+    id = webtoonData[i](id);
+    console.log(id);
+  };
+
+  for(let i = 0; i < webtoonData.length; i++) {
+    console.log(i);
+    
+  };
 }
 
+// 프론트 단에서는 월화수목금토일(0 ~ 6)
 function settingWeek(check_week) {
   return check_week += 1
 }
