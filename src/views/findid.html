@@ -17,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp|Material+Symbols+Outlined" rel="stylesheet">
   <!-- CSS 파일 -->
   <link rel="stylesheet" href="/src/public/stylesheets/common.css">
-  <link rel="stylesheet" href="/src/public/stylesheets/signin.css">
+  <link rel="stylesheet" href="/src/public/stylesheets/findid.css">
   <!-- 공통 header 연결 -->
   <script type="text/javascript">
     $(document).ready( function() {
@@ -47,19 +47,24 @@
             <span class="find-title">회원정보에 등록한 이메일로 인증</span>
             <span class="find-subtitle">본인확인 이메일 주소와 입력한 이메일 주소가 같아야, 인증번호를 받을 수 있습니다.</span>
           </div>
-
-          <div class="row">
-            <label for="memberName" class="sub-title">이름</label>
-            <input type="text" id="memberName" name="memberName" required
-            minlength="2" maxlength="10">
+          <div class="row-group">
+            <div class="row">
+              <label for="findId" class="sub-title">이메일</label>
+              <input type="email" id="findId" name="findId" required>
+            </div>
+            <!-- 인증번호 받기 버튼 -->
+            <div class="btn-row">
+              <input class="btn" type="submit" value="인증번호 받기">
+            </div>
           </div>
-          <div class="row">
-            <label for="findEmail" class="sub-title">이메일</label>
-            <input type="email" id="findEmail" name="findEmail" required>
-          </div>
-          <!-- 인증번호 받기 버튼 -->
           <!-- 인증번호 입력받는 input -->
+          <div class="row">
+            <input type="text" id="findEmail" name="findEmail" required>
+          </div>
           <!-- 확인 버튼 -->
+          <div class="btn-row">
+            <input class="btn" type="submit" value="확인">
+          </div>
         </div>
       </form>
 
