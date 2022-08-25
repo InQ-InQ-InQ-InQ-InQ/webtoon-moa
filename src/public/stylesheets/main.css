@@ -171,26 +171,26 @@ input[type=radio]:checked + label {
   flex-wrap: wrap;
 }
 
-.webtoon .one {
+.webtoon li {
   margin-bottom: 40px;
   width: 24.8%;
   /* border: 0.5px solid var(--moa-blue); */
 }
 
-.webtoon li .thumbnail {
+.webtoon li div[id^=thumbnail] {
   float: left;
 }
 
-.webtoon .one dl {
+.webtoon dl {
   margin-top: 7px;
   margin-left: 10px;
   float: left;
 }
 
-.webtoon .one .author, .wish {
+.webtoon dd {
   margin-left: 0px;
 }
-.author p {
+dd p {
   margin: 0px;
 }
 button.btn {

@@ -80,6 +80,9 @@ function call(check_week, check_platform) {
 
   var webtoonData = new Array();
 
+  $('#webtoon_list').empty();
+
+
   $.ajax({
     type: "GET",
     // url: "/webtoon/list/" + day + "/" + platform + "?page=" + page,
@@ -93,24 +96,77 @@ function call(check_week, check_platform) {
       for(let i = 0; i < data.length; i++) {
 
         function create_webtoon(i) {
+          // id = data[i].id;
           // title = data[i].title;
           // author = data[i].author;
           // img_url = data[i].img_url;
           // web_url = data[i].web_url;
           // click_count = data[i].click_count;
 
+          // id = data[i].id;
+          // title = data[i].name;
+
           id = data[i].id;
           title = data[i].name;
+          author = data[i].username;
+          img_url = data[i].phone;
+          web_url = data[i].website;
+          click_count = data[i].id;
+          
 
-          const li = document.createElement("li");
+          let one = document.createElement("li");
+          one.setAttribute('id', 'one' + id);
+          document.getElementById('webtoon_list').appendChild(one);
 
-          li.setAttribute('id', title);
+          let thumbnail = document.createElement("div");
+          thumbnail.setAttribute('id', 'thumbnail' + id);
+          document.getElementById("one" + id).appendChild(thumbnail);
 
-          const textNode = document.createTextNode(title);
-          li.appendChild(textNode);
+          let img_a = document.createElement("a");
+          img_a.setAttribute('id', 'img_a' + id);
+          img_a.setAttribute('href', 'web_url');
+          document.getElementById('thumbnail' + id).appendChild(img_a);
 
-          document.getElementById('webtoon_ul').appendChild(li);
+          let img_src = document.createElement("img");
+          img_src.setAttribute('src', 'img_url');
+          img_src.setAttribute('width', '83');
+          img_src.setAttribute('height', '90');
+          document.getElementById('img_a' + id).appendChild(img_src);
 
+
+
+          let m_dl = document.createElement("dl");
+          m_dl.setAttribute('id', 'dl' + id);
+          document.getElementById("one" + id).appendChild(m_dl);
+
+          let m_dt = document.createElement("dt");
+          m_dt.setAttribute('id', 'dt' + id);
+          document.getElementById("dl" + id).appendChild(m_dt);
+
+          let m_a = document.createElement("a");
+          m_a.setAttribute('href', 'web_url');
+          document.getElementById("dt" + id).appendChild(m_a);
+
+          let m_dd1 = document.createElement("dd");
+          m_dd1.setAttribute('id', 'author' + id);
+          document.getElementById("dl" + id).appendChild(m_dd1);
+
+          let m_p = document.createElement("p");
+          m_p.innerText = author;
+          document.getElementById("author" + id).appendChild(m_p);
+
+
+          let m_dd2 = document.createElement("dd");
+          m_dd2.setAttribute('id', 'wish' + id);
+          document.getElementById("dl" + id).appendChild(m_dd2);
+
+          let m_span = document.createElement("span");
+          m_span.setAttribute('id', 'w' + id);
+          document.getElementById("wish" + id).appendChild(m_span);
+
+          let m_click = document.createElement("p");
+          m_click.innerText = click_count;
+          document.getElementById("wish" + id).appendChild(m_click);
         }
 
         create_webtoon(i);
