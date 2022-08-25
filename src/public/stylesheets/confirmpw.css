@@ -1,0 +1,50 @@
+.confirmpw {
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.confirmpw .main-title {
+  font-size: var(--sub-title-font);
+  margin-bottom: 10px;
+}
+.confirmpw .main-title .title {
+  color: var(--moa-blue);
+  font-weight: 700;
+}
+.confirmpw .text-body .notice {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--small-font);
+  color: var(--moa-gray);
+  margin-bottom: 14px;
+}
+.confirmpw .text-body .notice .pw-title {
+  font-weight: 600;
+}
+.confirmpw .text-body .row {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.confirmpw .text-body .row .sub-title {
+  font-weight: 600;
+  color: var(--moa-blue);
+  margin-bottom: 10px;
+}
+.confirmpw .text-body .row input {
+  width: 400px;
+  height: 40px;
+  color: var(--moa-blue);
+  border: 1px solid var(--moa-blue);
+  border-radius: 3px;
+  padding-left: 8px;
+}
+.confirmpw  .text-body .btn-row {
+  margin-top: 40px;
+}
+.confirmpw  .text-body .btn-row .btn {
+  font-size: var(--medium-font);
+  width: 412px;
+  height: 55px;
+}
