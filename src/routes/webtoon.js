@@ -9,7 +9,7 @@ router.get('/list/:day', function(request, response, next){
     const day = request.params.day;
     const { page, sort } = request.query;
     const offset = 10;
-    
+
     const sql = filterQueryBySortType(sort, 'WHERE week = ?'); 
     db.query(sql, [day, sort, page * 10, offset], function(error, webtoons){
         if(error) {

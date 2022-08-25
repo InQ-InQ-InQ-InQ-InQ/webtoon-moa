@@ -32,11 +32,13 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const webtoonRouter = require('./routes/webtoon');
 const favoritesRouter = require('./routes/favorites');
+const oauthRouter = require('./routes/oauth');
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/webtoon', webtoonRouter);
 app.use('/favorites', favoritesRouter);
+app.use('/auth', oauthRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

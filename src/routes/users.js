@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const db = require('../config/db');
 const auth = require('./common/auth');
+require('dotenv').config();
+
+const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.KAKAO_CLIENT_ID}&redirect_uri=${process.env.KAKAO_REDIRECT_URI}`;
+const naverLoginUrl = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${process.env.NAVER_CLIENT_ID}&redirect_uri=${process.env.NAVER_REDIRECT_URI}&state=webtoon-moa`;
 
 router.get('/sign-up', (request, response)=>{
   //인증받은 사용자인지 체크
@@ -44,9 +48,8 @@ router.get('/sign-in', function(request, response) {
     response.redirect('/');
     return;
   }
-
   const exception = request.query.exception;
-  response.render('signin', { exception: exception });
+  response.render('signin', { exception: exception, kakaoLoginUrl: kakaoLoginUrl, naverLoginUrl: naverLoginUrl });
 });
 
 router.post('/sign-in', function(request, response){
@@ -93,11 +96,6 @@ router.get('/sign-out', function(request, response){
     if(error){
       console.log(`session error=${error}`);
       throw error;
-    }
-    // 세션이 존재하지 않을 경우
-    if(!auth.isLogin(request, response)){
-      response.redirect('/users/sign-in');
-      return;
     }
 
     response.redirect('/');
