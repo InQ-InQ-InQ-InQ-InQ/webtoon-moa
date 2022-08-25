@@ -53,17 +53,15 @@
               <input type="email" id="findId" name="findId" required>
             </div>
             <!-- 인증번호 받기 버튼 -->
-            <div class="btn-row">
-              <input class="btn" type="submit" value="인증번호 받기">
-            </div>
+            <input class="btn" type="submit" value="인증번호 받기">
           </div>
           <!-- 인증번호 입력받는 input -->
-          <div class="row">
-            <input type="text" id="findEmail" name="findEmail" required>
-          </div>
-          <!-- 확인 버튼 -->
-          <div class="btn-row">
-            <input class="btn" type="submit" value="확인">
+          <div class="row-group">
+            <div class="row">
+              <input type="text" id="findEmail" name="findEmail" placeholder="인증번호를 입력하세요." required>
+            </div>
+            <!-- 확인 버튼 -->
+            <input class="btn btn--orange submit-btn" type="submit" value="확인" onClick="location.href='/src/views/confirmid.html'">
           </div>
         </div>
       </form>

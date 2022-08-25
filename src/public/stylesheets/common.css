@@ -74,6 +74,14 @@ button {
   color: var(--moa-white);
   font-weight: 500;
 }
+.btn.btn--orange {
+  background-color: var(--moa-orange);
+  color: var(--moa-black);
+}
+.btn.btn--orange:hover {
+  background-color: var(--moa-blue);
+  color: var(--moa-white);
+}
 
 /* Header */
 header {
