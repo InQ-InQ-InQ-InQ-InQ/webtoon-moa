@@ -18,58 +18,66 @@
   <!-- CSS 파일 -->
   <link rel="stylesheet" href="stylesheets/common.css">
   <link rel="stylesheet" href="stylesheets/findpw.css">
+  <!-- 공통 header 연결 -->
+  <script type="text/javascript">
+    $(document).ready( function() {
+      $("#headers").load("/static/header.ejs");  
+    });
+    $(document).ready( function() {
+      $("#footers").load("/static/footer.ejs");  
+    });
+  </script>
 </head>
 
 <body>
+  <!-- Header -->
+  <div id="headers"></div>
 
   <!-- Find PW -->
-  <section class="findpw">
+  <section class="reset-pw">
     <div class="inner">
 
       <div class="main-title">
         <span class="title">비밀번호 찾기</span>
       </div>
-
-      <form action="">
         <div class="text-body">
           <div class="notice">
             <span class="find-title">회원정보에 등록한 이메일로 인증</span>
             <span class="find-subtitle">본인확인 이메일 주소와 입력한 이메일 주소가 같아야, 인증번호를 받을 수 있습니다.</span>
           </div>
 
-          <div class="row-group">
+   
+          <!-- <div class="row-group">
             <div class="row">
-              <label for="fpwId" class="sub-title">아이디</label>
-              <input type="text" id="fpwId" name="fpwId" placeholder="비밀번호를 찾고자 하는 아이디를 입력하세요." required>
+              <label for="findId" class="sub-title">아이디</label>
+              <input type="text" id="findId" name="findId" placeholder="비밀번호를 찾고자 하는 아이디를 입력하세요." required>
             </div>
-          </div>
-
+          </div> -->
+     <form method="post" action="find-pw">
           <div class="row-group">
             <div class="row">
-              <label for="fpwEmail" class="sub-title">이메일</label>
-              <input type="email" id="fpwEmail" name="fpwEmail" required>
+              <label for="pwEmail" class="sub-title">이메일</label>
+              <input type="text" id="pwEmail" name="pwEmail" required>
             </div>
             <!-- 인증번호 받기 버튼 -->
-            <input class="btn" type="submit" value="인증번호 받기">
+            <input class="btn" type="submit" value="인증번호받기">
           </div>
-          <!-- 인증번호 입력받는 input -->
+          <!-- 인증번호 입력받는 input
           <div class="row-group">
             <div class="row">
-              <input type="text" id="fpwNumber" name="fpwNumber" placeholder="인증번호를 입력하세요." required>
+              <input type="text" id="pwToken" name="pwToken" placeholder="인증번호를 입력하세요." required>
             </div>
-            <!-- 확인 버튼 -->
-            <input class="btn btn--orange submit-btn" type="submit" value="확인" onClick="location.href='/src/views/confirmpw.html'">
-          </div>
-        </div>
-      </form>
+            확인 버튼 -->
+            <!-- <input class="btn btn--orange submit-btn" type="submit" value="확인"> -->
+            <!-- <input class="btn btn--orange submit-btn" type="submit" value="확인" onClick="location.href='/views/confirmpw.html'"> -->
+          <!-- </div> --> -->
+    </form>
 
     </div>
   </section>
 
   <!-- Footer -->
-  <div id="footers">
-    <%- include footer.ejs %>
-  </div>
+  <div id="footers"></div>
 
 </body>
 </html>

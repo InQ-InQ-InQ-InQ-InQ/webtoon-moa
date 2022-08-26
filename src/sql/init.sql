@@ -26,4 +26,12 @@ CREATE TABLE FAVORITES (
     FOREIGN KEY (user_id) REFERENCES USER(id),
     FOREIGN KEY (webtoon_id) REFERENCES WEBTOON(id)
 );
+
+
+CREATE TABLE EmailAuth (
+    id varchar(255) PRIMARY KEY,
+    token varchar(255) NOT NULL
+);
+
+
  

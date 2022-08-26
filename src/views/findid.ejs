@@ -16,56 +16,68 @@
   <!-- Material icons --> 
   <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp|Material+Symbols+Outlined" rel="stylesheet">
   <!-- CSS 파일 -->
-  <link rel="stylesheet" href="stylesheets/common.css">
-  <link rel="stylesheet" href="stylesheets/findid.css">
+  <link rel="stylesheet" href="/stylesheets/common.css">
+  <link rel="stylesheet" href="/stylesheets/findid.css">
+  <!-- 공통 header 연결 -->
+  <script type="text/javascript">
+    $(document).ready( function() {
+      $("#headers").load("/views/header.html");  
+    });
+    $(document).ready( function() {
+      $("#footers").load("/views/footer.html");  
+    });
+  </script>
 </head>
 
 <body>
+  <!-- Header -->
+  <div id="headers"></div>
 
   <!-- Find ID -->
-  <section class="findid">
+  <section class="find-id">
     <div class="inner">
 
       <div class="main-title">
         <span class="title">아이디 찾기</span>
       </div>
 
-      <form action="">
         <div class="text-body">
           <div class="notice">
-            <span class="find-title">회원정보에 등록한 이메일로 인증</span>
-            <span class="find-subtitle">본인확인 이메일 주소와 입력한 이메일 주소가 같아야, 인증번호를 받을 수 있습니다.</span>
+            <span class="find-title">유저명과 이메일로 확인</span>
+            <span class="find-subtitle">이메일 주소와 입력한 유저명이 같아야, 인증번호를 받을 수 있습니다.</span>
           </div>
 
-          <form action="">
-            <div class="row-group">
-              <div class="row">
-                <label for="fidEmail" class="sub-title">이메일</label>
-                <input type="email" id="fidEmail" name="fidEmail" required>
-              </div>
-              <!-- 인증번호 받기 버튼 -->
-              <input class="btn" type="submit" value="인증번호 받기">
-            </div>
+          <form method=post action='find-id'>
+
             <!-- 인증번호 입력받는 input -->
             <div class="row-group">
               <div class="row">
-                <input type="text" id="fidNumber" name="fidNumber" placeholder="인증번호를 입력하세요." required>
+                <label for="findName" class="sub-title">유저이름</label>
+                <input type="text" id="findName" name="findName" required>
               </div>
               <!-- 확인 버튼 -->
-              <input class="btn btn--orange submit-btn" type="submit" value="확인" onClick="location.href='/src/views/confirmid.html'">
+              
             </div>
+            <div class="row-group">
+                <div class="row">
+                  <label for="fidEmail" class="sub-title">이메일</label>
+                  <input type="email" id="findEmail" name="findEmail" required>
+                </div>
+                <!-- 인증번호 받기 버튼
+                <input class="btn" type="submit" value="인증번호 받기"> -->
+                <input class="btn btn--orange submit-btn" type="submit" value="확인" onClick="location.href='/views/confirmid.html'">
+              </div>
           </form>
           
         </div>
-      </form>
+     
 
     </div>
   </section>
 
   <!-- Footer -->
-  <div id="footers">
-    <%- include footer.ejs %>
-  </div>
+  <div id="footers"></div>
 
 </body>
 </html>
+
