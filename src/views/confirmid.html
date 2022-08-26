@@ -17,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp|Material+Symbols+Outlined" rel="stylesheet">
   <!-- CSS 파일 -->
   <link rel="stylesheet" href="/src/public/stylesheets/common.css">
-  <link rel="stylesheet" href="/src/public/stylesheets/signin.css">
+  <link rel="stylesheet" href="/src/public/stylesheets/confirmid.css">
   <!-- 공통 header 연결 -->
   <script type="text/javascript">
     $(document).ready( function() {
@@ -33,50 +33,24 @@
   <!-- Header -->
   <div id="headers"></div>
 
-  <!-- Sign In -->
-  <section class="signin">
+  <!-- Confirm ID -->
+  <section class="confirmid">
     <div class="inner">
-      
-      <div class="main-title">
-        <span class="title">로그인</span>
-      </div>
-    
-      <form action="">
-        <div class="text-body">
-          <div class="row">
-            <label for="loginId" class="sub-title">아이디</label>
-            <input type="text" id="loginId" name="loginId" required
-                  minlength="4" maxlength="15">
-          </div>
-    
-          <div class="row">
-            <label for="loginPw" class="sub-title">비밀번호</label>
-            <input type="password" id="loginPw" name="loginPw" minlength="8" required>
-          </div>
-          
-          <div class="btn-row">
-            <button type="submit" class="btn-row" id="loginBtn">
-              <span class="btn">로그인</span>
-            </button>
-          </div>
-    
-          <ul class="find-wrap">
-            <li>
-              <a href="/src/views/findid.html" target="_blank" class="find-text">아이디찾기</a>
-            </li>
-            <li>
-              <a href="/src/views/findpw.html" target="_blank" class="find-text">비밀번호 찾기</a>
-            </li>
-            <li>
-              <a href="/src/views/signup.html" target="_blank" class="find-text">회원가입</a>
-            </li>
 
+      <div class="main-title">
+        <span class="title">아이디 찾기</span>
+      </div>
+
+      <div class="text-body">
+        <div class="notice">
+          <span class="id-title">회원님의 아이디</span>
+          <span class="id-subtitle">inq1234</span>
         </div>
-      </form>
+      </div>
 
     </div>
   </section>
-  
+
   <!-- Footer -->
   <div id="footers"></div>
 

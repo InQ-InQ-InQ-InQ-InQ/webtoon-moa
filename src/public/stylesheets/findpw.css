@@ -1,0 +1,57 @@
+.findpw {
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.findpw .main-title {
+  font-size: var(--sub-title-font);
+  margin-bottom: 10px;
+}
+.findpw .main-title .title {
+  color: var(--moa-blue);
+  font-weight: 700;
+}
+.findpw .text-body .notice {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--small-font);
+  color: var(--moa-gray);
+  margin-bottom: 14px;
+}
+.findpw .text-body .notice .find-title {
+  font-weight: 600;
+}
+.findpw .text-body .row-group {
+  display: flex;
+}
+.findpw .text-body .row-group .row {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.findpw .text-body .row-group .row .sub-title {
+  font-weight: 600;
+  color: var(--moa-blue);
+  margin-bottom: 10px;
+}
+.findpw .text-body .row-group .row input {
+  width: 300px;
+  height: 40px;
+  color: var(--moa-blue);
+  border: 1px solid var(--moa-blue);
+  border-radius: 3px;
+  padding-left: 8px;
+}
+.findpw .text-body .row-group .row input::placeholder {
+  color: var(--moa-blue);
+}
+.findpw .text-body .row-group .btn {
+  height: 44px;
+  width: 96px;
+  margin-top: 34px;
+  margin-left: 15px;
+}
+.findpw .text-body .row-group .btn.submit-btn {
+  margin-top: 0;
+}
