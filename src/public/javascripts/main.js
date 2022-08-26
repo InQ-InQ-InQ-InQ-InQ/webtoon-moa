@@ -36,7 +36,7 @@ function create_webtoon(data, i) {
 
   let img_a = document.createElement("a");
   img_a.setAttribute('id', 'img_a' + id);
-  img_a.setAttribute('href', 'web_url');
+  img_a.setAttribute('href', web_url);
   document.getElementById('thumbnail' + id).appendChild(img_a);
 
   let img_src = document.createElement("img");
@@ -56,7 +56,7 @@ function create_webtoon(data, i) {
   document.getElementById("dl" + id).appendChild(m_dt);
 
   let m_a = document.createElement("a");
-  m_a.setAttribute('href', 'web_url');
+  m_a.setAttribute('href', web_url);
   m_a.textContent = title;
   document.getElementById("dt" + id).appendChild(m_a);
 
