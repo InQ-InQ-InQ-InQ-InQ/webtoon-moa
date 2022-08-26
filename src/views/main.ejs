@@ -17,19 +17,19 @@
   <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp|Material+Symbols+Outlined" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <!-- CSS 파일 -->
-  <link rel="stylesheet" href="/src/public/stylesheets/common.css">
-  <link rel="stylesheet" href="/src/public/stylesheets/main.css">
+  <link rel="stylesheet" href="/stylesheets/common.css">
+  <link rel="stylesheet" href="/stylesheets/main.css">
   <!-- JS 파일 -->
   <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
-  <script defer src="/src/main.js"></script>
+  <script defer src="/javascripts/main.js"></script>
   
   <!-- 공통 header 연결 -->
   <script type="text/javascript">
     $(document).ready( function() {
-      $("#headers").load("/src/views/header.html");  
+      $("#headers").load("/static/header.ejs");  
     });
     $(document).ready( function() {
-      $("#footers").load("/src/views/footer.html");  
+      $("#footers").load("/static/footer.ejs");  
     });
   </script>
 </head>

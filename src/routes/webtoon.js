@@ -16,7 +16,7 @@ router.get('/list/:day', function(request, response, next){
             console.log(`db error=${error}`);
             throw error;
         }
-        response.send(webtoons);
+        response.render('main', { webtoons: webtoons });
     });
 });
 
@@ -35,7 +35,7 @@ router.get('/list/:day/:platform', function(request, response, next) {
             console.log(`db error=${error}`);
             throw error;
         }
-        response.send(webtoons);
+        response.render('main', { webtoons: webtoons });
     });
 });
 
@@ -53,7 +53,7 @@ router.get('/search', function(request, response, next){
             console.log(`db error=${error}`);
             throw error;
         }
-        response.send(webtoons);
+        response.render('main', { webtoons: webtoons });
     })
 });
 
