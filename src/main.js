@@ -12,19 +12,19 @@ if (week == 0) {
 
 // 웹툰 카드 생성
 function create_webtoon(data, i) {
-  id = data[i].id;
-  title = data[i].title;
-  author = data[i].author;
-  img_url = data[i].img_url;
-  web_url = data[i].web_url;
-  click_count = data[i].click_count;
-
   // id = data[i].id;
-  // title = data[i].name;
-  // author = data[i].username;
-  // img_url = data[i].phone;
-  // web_url = data[i].website;
-  // click_count = data[i].id;
+  // title = data[i].title;
+  // author = data[i].author;
+  // img_url = data[i].img_url;
+  // web_url = data[i].web_url;
+  // click_count = data[i].click_count;
+
+  id = data[i].id;
+  title = data[i].name;
+  author = data[i].username;
+  img_url = data[i].phone;
+  web_url = data[i].website;
+  click_count = data[i].id;
   
   let one = document.createElement("li");
   one.setAttribute('id', 'one' + id);
@@ -73,10 +73,12 @@ function create_webtoon(data, i) {
   m_dd2.setAttribute('id', 'wish' + id);
   document.getElementById("dl" + id).appendChild(m_dd2);
 
-  let m_span = document.createElement("span");
-  m_span.setAttribute('id', 'w' + id);
-  m_span.textContent = "찜";
-  document.getElementById("wish" + id).appendChild(m_span);
+  let m_button = document.createElement("button");
+  m_button.setAttribute('id', 'w' + id);
+  m_button.setAttribute('class', 'material-icons');
+  m_button.setAttribute('value', false);
+  m_button.textContent = "favorite_border";
+  document.getElementById("wish" + id).appendChild(m_button);
 
   let m_click = document.createElement("p");
   m_click.innerText = click_count;
@@ -96,8 +98,8 @@ $(document).ready(function() {
 
   $.ajax({
     type: "GET",
-    url: "/webtoon/list/" + day + "?page=" + page,
-    // url: "https://jsonplaceholder.typicode.com/users",
+    // url: "/webtoon/list/" + day + "?page=" + page,
+    url: "https://jsonplaceholder.typicode.com/users",
     dataType: "json",
     success: function(data) {  
       for(let i = 0; i < data.length; i++) {
@@ -186,9 +188,38 @@ $('ul.sortby li.sort').click(function(){
   call(check_week, check_platform, v);
 });
 
-// 찜 버튼 클릭 안됨,,
-$('#w1').on("click", function(){
-  console.log("hello");
+// 즐겨찾기 버튼
+$(document).on("click", "[id^=w]", function(e) {
+  e.stopPropagation();
+
+  if ($(this).value == false) {
+    $(this).attr('value', true);
+  }
+  else {
+    $(this).attr('value', false);
+  }
+
+  const wish_id = $(this).id;
+  w_id = wish_id.substr(1);
+  console.log(w_id);
+
+  const b = $(this).value;
+  
+  $.ajax({
+    type: 'POST',
+    url: '/favorites',
+    data: {
+      webtoon_id: w_id,
+      is_favorite: b
+    },
+    dataType: "json",
+    success: function(data){
+      $('#wish_id').css('color', 'red');
+    },
+    error: function(request, status, error){
+      alert(`즐겨찾기 추가를 실패하였습니다.=${error}`)
+    }
+  })
 });
 
 // 하트 토글

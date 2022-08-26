@@ -196,10 +196,10 @@ input[type=radio]:checked + label {
   float: left;
 }
 
-.webtoon dd[id^=wish] span {
+.webtoon dd[id^=wish] button {
   margin-right: 10px;
   float: left;
-  cursor:pointer
+  cursor: pointer;
 }
 
 .webtoon dd[id^=wish] p {
