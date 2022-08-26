@@ -2,7 +2,7 @@
   <header>
     <div class="inner">
 
-      <div onClick="location.href='../home.html'" class="logo">
+      <div onClick="location.href='../'" class="logo">
         <img src="/images/moa_logo.png" alt="Moa-logo" />
       </div>
 
@@ -16,7 +16,11 @@
       </form>
   
       <div class="menu">
-        <a href="javascript:void(0)" class="login_name">로그인</a>
+        <% if(user === undefined){ %>
+          <a href="/users/sign-in" class="login_name">로그인</a>
+        <% } else { %>
+          <a href="/users/sign-out" class="login_name">로그아웃</a>
+        <% } %>
       </div>
 
     </div>

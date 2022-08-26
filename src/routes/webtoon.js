@@ -3,69 +3,79 @@ const router = express.Router();
 const db = require('../config/db');
 /**
  * 오늘 요일의 전체 웹툰보기 API
- * 홈으로 들어왔을 때, 이 라우터로 redirect
- * localhost:3000/webtoons/{day}?page={page}
+ * localhost:3000/webtoons/{day}?page={page}&sort={sortType}
  */
-router.get('/:day', function(request, response, next){
+router.get('/list/:day', function(request, response, next){
+    const user = request.session.user;
     const day = request.params.day;
-    const sortType = request.query.sort;
-    const page = request.query.page * 10;
+    const { page, sort } = request.query;
     const offset = 10;
-    
-    const sql = `SELECT * FROM webtoon WHERE week = ? ORDER BY ? DESC LIMIT ?, ?`; 
-    db.query(sql, [day, sortType, page, offset], function(error, webtoons){
-        if(error) {
-            console.log(`db error=${error}`);
-            throw error;
-        }
-        response.send(webtoons);
-    })
-})
-// 회원 즐겨찾기(좋아요) 순 웹툰 보기 API localhost:3000/webtoons/{favorites}/{day}
-/**
- * 플랫폼별, 조회순 웹툰 보기 API
- * localhost:3000/webtoons/{day}/{platform}?sort={sortType}&page={page}
- * 
- * +인기순과의 URL 매핑 구별을 위하여 category 추가(성유진)
- */
-router.get('/:day/:category/:platform', function(request, response, next) {
-    const day = request.params.day;
-    const platform_name = request.params.platform;
-    const sortType = request.query.sort;
-    const page = request.query.page * 10;
-    const offset = 10;
-    const sql = `SELECT * FROM webtoon WHERE platform_name = ? AND week = ? ORDER BY ? DESC LIMIT ?, ?`;
-    db.query(sql, [platform_name, day, sortType, page, offset], function(error, webtoons){
-        if(error) {
-            console.log(`db error=${error}`);
-            throw error;
-        }
-        response.send(webtoons);
-    })
-})
-/*
- *회원 즐겨찾기(좋아요) 순 웹툰 보기 API
- * localhost:3000/webtoons/{day}/favorites&page={page}
- */
-router.get('/:day/:favorites', function(request, response, next){
-    const day = request.params.day;
-    const sortType = request.query.sort;
-    const page = request.query.page * 10;
-    const offset = 10;
-    const favorites = 'favorite'
 
-    const sql = 'SELECT w.*, COUNT(*) AS 좋아요수 FROM webtoon w RIGHT JOIN favorites f ON w.id = f.webtoon_id GROUP BY f.webtoon_id';
-    db.query(sql,[favorites, day, page, offset], function(error, webtoons){
+    const sql = filterQueryBySortType(sort, 'WHERE week = ?'); 
+    db.query(sql, [day, sort, page * 10, offset], function(error, webtoons){
         if(error) {
             console.log(`db error=${error}`);
             throw error;
         }
-        response.send(webtoons);
-    })
-
+        response.render('main', { webtoons: webtoons, user: user });
+    });
 });
 
+/**
+ * 플랫폼별 웹툰 보기 API
+ * localhost:3000/webtoons/{day}/{platform}?page={page}&sort={sortType}
+ */
+router.get('/list/:day/:platform', function(request, response, next) {
+    const user = request.session.user;
+    const { day, platform } = request.params;
+    const { page, sort } = request.query;
+    const offset = 10;
 
+    const sql = filterQueryBySortType(sort, 'WHERE week = ? AND platform_name = ?');
+    db.query(sql, [day, platform, sort, page * 10, offset], function(error, webtoons){
+        if(error) {
+            console.log(`db error=${error}`);
+            throw error;
+        }
+        response.render('main', { webtoons: webtoons, user: user });
+    });
+});
 
+/**
+ * 웹툰명, 작가명으로 웹툰 검색 API
+ * localhost:3000/webtoons/search?name={search_name}page={page}&sort={sortType}
+ */
+router.get('/search', function(request, response, next){
+    const user = request.session.user;
+    const { name, page, sort } = request.query;
+    const offset = 10;
+
+    const sql = filterQueryBySortType(sort, 'WHERE title LIKE ? OR author LIKE ?');
+    db.query(sql, [`%${name}%`, `%${name}%`, sort, page * 10, offset], function(error, webtoons){
+        if(error) {
+            console.log(`db error=${error}`);
+            throw error;
+        }
+        response.render('main', { webtoons: webtoons, user: user });
+    })
+});
+
+function filterQueryBySortType(sort, condition){
+    let sql = '';
+    if(sort === 'favorites'){
+        sql += `
+        SELECT w.*, COUNT(*) AS favorites
+        FROM webtoon w 
+        RIGHT JOIN favorites f ON w.id = f.webtoon_id
+        ${condition}
+        GROUP BY f.webtoon_id
+        `;
+    } else {
+        sql += `SELECT * FROM webtoon ${condition}`;
+    }
+    sql += ' ORDER BY ? DESC LIMIT ?, ?'
+
+    return sql;
+}
 
 module.exports = router;

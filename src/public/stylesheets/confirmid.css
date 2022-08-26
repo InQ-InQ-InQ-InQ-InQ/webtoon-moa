@@ -1,0 +1,35 @@
+.confirmid {
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.confirmid .main-title {
+  font-size: var(--sub-title-font);
+  margin-bottom: 10px;
+}
+.confirmid .main-title .title {
+  color: var(--moa-blue);
+  font-weight: 700;
+}
+.confirmid .text-body {
+  margin-top: 20px;
+  width: 300px;
+  border: 1px solid var(--moa-blue);
+  padding: 30px;
+  height: 100px;
+}
+.confirmid .text-body .notice {
+  display: flex;
+  flex-direction: column;
+  margin-left: 90px;
+  margin-top: 10px;
+}
+.confirmid .text-body .notice .id-title {
+  margin-bottom: 15px;
+}
+.confirmid .text-body .notice .id-subtitle {
+  font-weight: 500;
+  font-size: var(--sub-title-font);
+  margin-left: 10px;
+}

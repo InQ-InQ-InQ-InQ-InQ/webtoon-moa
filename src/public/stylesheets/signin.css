@@ -30,13 +30,24 @@
   border-radius: 3px;
   padding-left: 8px;
 }
-.signin .text-body .btn-row .btn {
+.signin .text-body .btn {
   font-size: var(--large-font);
-  width: 392px;
+  width: 412px;
+  margin-bottom: 14px;
+}
+.signin .text-body .btn.kakao-btn {
+  background-color:  #F7E600;
+  color: #3A1D1D;
+}
+.signin .text-body .btn.naver-btn {
+  background-color: #2DB400;
 }
 .signin .text-body .find-wrap {
   display: flex;
   margin: 0 65px;
+}
+.signin .text-body .btn.naver-btn:hover {
+  color: var(--moa-white);
 }
 .signin .text-body .find-wrap li {
   margin: 15px 20px 0 0;

@@ -1,0 +1,57 @@
+.findid {
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.findid .main-title {
+  font-size: var(--sub-title-font);
+  margin-bottom: 10px;
+}
+.findid .main-title .title {
+  color: var(--moa-blue);
+  font-weight: 700;
+}
+.findid .text-body .notice {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--small-font);
+  color: var(--moa-gray);
+  margin-bottom: 14px;
+}
+.findid .text-body .notice .find-title {
+  font-weight: 600;
+}
+.findid .text-body .row-group {
+  display: flex;
+}
+.findid .text-body .row-group .row {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.findid .text-body .row-group .row .sub-title {
+  font-weight: 600;
+  color: var(--moa-blue);
+  margin-bottom: 10px;
+}
+.findid .text-body .row-group .row input {
+  width: 300px;
+  height: 40px;
+  color: var(--moa-blue);
+  border: 1px solid var(--moa-blue);
+  border-radius: 3px;
+  padding-left: 8px;
+}
+.findid .text-body .row-group .row input::placeholder {
+  color: var(--moa-blue);
+}
+.findid .text-body .row-group .btn {
+  height: 44px;
+  width: 96px;
+  margin-top: 34px;
+  margin-left: 15px;
+}
+.findid .text-body .row-group .btn.submit-btn {
+  margin-top: 0;
+}
