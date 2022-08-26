@@ -20,10 +20,10 @@ function create_webtoon(data, i) {
   // click_count = data[i].click_count;
 
   id = data[i].id;
-  title = data[i].name;
-  author = data[i].username;
-  img_url = data[i].phone;
-  web_url = data[i].website;
+  title = data[i].title;
+  author = data[i].author;
+  img_url = data[i].img_url;
+  web_url = data[i].web_url;
   click_count = data[i].id;
   
   let one = document.createElement("li");
@@ -209,7 +209,7 @@ $(document).on("click", "[id^=w]", function(e) {
   
   $.ajax({
     type: 'POST',
-    url: '/favorites',
+    url: '/api/favorites',
     data: {
       webtoon_id: w_id,
       is_favorite: b
