@@ -57,18 +57,11 @@
             <input type="password" id="loginPw" name="loginPw" minlength="8" required>
           </div>
           
-          <div class="btn-row">
-            <button type="submit" class="btn-row" id="loginBtn">
-              <span class="btn">로그인</span>
-            </button>
-          </div>
+          <button type="submit" class="btn" id="loginBtn">로그인</button>
           <!-- 소셜 로그인 -->
-          <a href="<%= kakaoLoginUrl %>">
-            <img src="/images/kakao_login_button.png"/>
-          </a>
-          <a href="<%= naverLoginUrl %>">
-            <img src="/images/naver_login_button.png"/>
-          </a>
+          <button type="submit" class="btn kakao-btn" id="loginBtn" onclick="location.href='<%= kakaoLoginUrl %>'">카카오 로그인</button>
+
+          <button type="submit" class="btn naver-btn" id="loginBtn" onclick="location.href='<%= naverLoginUrl %>'">네이버 로그인</button>
     
           <ul class="find-wrap">
             <li>
