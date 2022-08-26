@@ -18,20 +18,9 @@
   <!-- CSS 파일 -->
   <link rel="stylesheet" href="stylesheets/common.css">
   <link rel="stylesheet" href="stylesheets/confirmpw.css">
-  <!-- 공통 header 연결 -->
-  <script type="text/javascript">
-    $(document).ready( function() {
-      $("#headers").load("/static/header.ejs");  
-    });
-    $(document).ready( function() {
-      $("#footers").load("/static/footer.ejs");  
-    });
-  </script>
 </head>
 
 <body>
-  <!-- Header -->
-  <div id="headers"></div>
 
   <!-- Confirm PW -->
   <section class="confirmpw">
@@ -68,7 +57,9 @@
   </section>
 
   <!-- Footer -->
-  <div id="footers"></div>
+  <div id="footers">
+    <%- include footer.ejs %>
+  </div>
 
 </body>
 </html>
