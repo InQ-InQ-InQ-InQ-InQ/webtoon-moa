@@ -14,7 +14,7 @@ router.get('/sign-up', (request, response)=>{
     return;
   }
   
-  res.render('signup');
+  response.render('signup');
 });
 
 router.post('/sign-up', function(request, response){
