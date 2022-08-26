@@ -6,6 +6,7 @@ const db = require('../config/db');
  * localhost:3000/webtoons/{day}?page={page}&sort={sortType}
  */
 router.get('/list/:day', function(request, response, next){
+    const user = request.session.user;
     const day = request.params.day;
     const { page, sort } = request.query;
     const offset = 10;
@@ -16,7 +17,7 @@ router.get('/list/:day', function(request, response, next){
             console.log(`db error=${error}`);
             throw error;
         }
-        response.render('main', { webtoons: webtoons });
+        response.render('main', { webtoons: webtoons, user: user });
     });
 });
 
@@ -25,6 +26,7 @@ router.get('/list/:day', function(request, response, next){
  * localhost:3000/webtoons/{day}/{platform}?page={page}&sort={sortType}
  */
 router.get('/list/:day/:platform', function(request, response, next) {
+    const user = request.session.user;
     const { day, platform } = request.params;
     const { page, sort } = request.query;
     const offset = 10;
@@ -35,7 +37,7 @@ router.get('/list/:day/:platform', function(request, response, next) {
             console.log(`db error=${error}`);
             throw error;
         }
-        response.render('main', { webtoons: webtoons });
+        response.render('main', { webtoons: webtoons, user: user });
     });
 });
 
@@ -44,6 +46,7 @@ router.get('/list/:day/:platform', function(request, response, next) {
  * localhost:3000/webtoons/search?name={search_name}page={page}&sort={sortType}
  */
 router.get('/search', function(request, response, next){
+    const user = request.session.user;
     const { name, page, sort } = request.query;
     const offset = 10;
 
@@ -53,7 +56,7 @@ router.get('/search', function(request, response, next){
             console.log(`db error=${error}`);
             throw error;
         }
-        response.render('main', { webtoons: webtoons });
+        response.render('main', { webtoons: webtoons, user: user });
     })
 });
 

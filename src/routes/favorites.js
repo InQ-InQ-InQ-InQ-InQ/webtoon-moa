@@ -1,3 +1,4 @@
+const e = require('express');
 const express = require('express');
 const router = express.Router();
 const db = require('../config/db');
@@ -29,8 +30,14 @@ router.post('/', function(request, response){
       return;
     }
     const webtoon_id = request.body.webtoon_id;
+    const is_favorite = request.body.is_favorite;
+    let sql = '';
+    if(is_favorite){
+      sql += `INSERT INTO favorites (user_id, webtoon_id) VALUES (?, ?)`;
+    } else {
+      sql += `DELETE FROM favorites WHERE user_id = ? AND webtoon_id = ?`;
+    }
 
-    const sql = `INSERT INTO favorites (user_id, webtoon_id) VALUES (?, ?)`;
     db.query(sql, [user.id, webtoon_id], function(error, result){
         if(error) {
             console.log(`DB error=${error}`);

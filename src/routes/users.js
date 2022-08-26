@@ -98,6 +98,8 @@ router.get('/sign-out', function(request, response){
       throw error;
     }
 
+    console.log(request.session);
+
     response.redirect('/');
   })
 });

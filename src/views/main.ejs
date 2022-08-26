@@ -22,21 +22,13 @@
   <!-- JS 파일 -->
   <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
   <script defer src="/javascripts/main.js"></script>
-  
-  <!-- 공통 header 연결 -->
-  <script type="text/javascript">
-    $(document).ready( function() {
-      $("#headers").load("/static/header.ejs");  
-    });
-    $(document).ready( function() {
-      $("#footers").load("/static/footer.ejs");  
-    });
-  </script>
 </head>
 <body>
 
   <!-- Header -->
-  <div id="headers"></div>
+  <div id="headers">
+    <%- include header.ejs %>
+  </div>
 
   <section class="main">
     <div class="inner">
@@ -146,7 +138,9 @@
 
   </section>
   <!-- Footer -->
-  <div id="footers"></div>
+  <div id="footers">
+    <%- include footer.ejs %>
+  </div>
   <!-- <script src="/src/main.js"></script> -->
 </body>
 </html>
