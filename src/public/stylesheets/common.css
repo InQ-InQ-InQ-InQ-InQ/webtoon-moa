@@ -120,8 +120,8 @@ header .search .search-btn {
   color: var(--icon-color);
 }
 header .menu  {
-  margin-left: 10px;
-  margin-top: 49px;
+  margin-left: 30px;
+  margin-top: 55px;
 }
 header .menu .login_name {
   font-size: var(--small-font);
