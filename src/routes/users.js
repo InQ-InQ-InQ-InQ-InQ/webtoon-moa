@@ -5,6 +5,7 @@ const db = require('../config/db');
 const auth = require('./common/auth');
 const nodemailer = require('nodemailer');
 var crypto = require('crypto');
+const { checkSignUp } = require('./common/auth');
 require('dotenv').config();
 
 const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${process.env.KAKAO_CLIENT_ID}&redirect_uri=${process.env.KAKAO_REDIRECT_URI}`;
@@ -26,23 +27,23 @@ router.post('/sign-up', function(request, response){
     response.redirect('/');
     return;
   }
+  const { memberName, signupId, signupPw, signupPwCheck, signupEmail } = request.body;
 
-  const { id, identifier, password, username, email } = request.body;
-
-  const sql = `SELECT * FROM user WHERE id=?`; 
-  db.query(sql, [id], function(error, users){
-      if (users.length == 0) {
-          console.log('회원가입 성공')
-          db.query('insert into user(identifier, password, username, email) value(?,?,?,?)', [
-              identifier, password, username,  email
-          ]);
-          response.redirect('/')
-      } else {
+  const sql = 'SELECT * FROM user WHERE identifier=?';
+  db.query(sql, signupId, function(error, user){
+      if (user.length == 0) {
+        console.log('회원가입 성공')
+        db.query('insert into user(username, identifier, password, email) value(?,?,?,?)', [
+          memberName, signupId, signupPw, signupEmail
+        ]);
+        response.redirect('/');
+      }
+      else {
            console.log('회원가입 실패');
            response.send('<script>alert("회원가입 실패");</script>')
            response.redirect('/');
       }
-  })
+  });
 });
 
 router.get('/sign-in', function(request, response) {
