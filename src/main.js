@@ -12,24 +12,20 @@ if (week == 0) {
 
 // 웹툰 카드 생성
 function create_webtoon(data, i) {
-  // id = data[i].id;
-  // title = data[i].title;
-  // author = data[i].author;
-  // img_url = data[i].img_url;
-  // web_url = data[i].web_url;
-  // click_count = data[i].click_count;
+  id = data[i].id;
+  title = data[i].title;
+  author = data[i].author;
+  img_url = data[i].img_url;
+  web_url = data[i].web_url;
+  click_count = data[i].click_count;
 
   // id = data[i].id;
   // title = data[i].name;
-
-  id = data[i].id;
-  title = data[i].name;
-  author = data[i].username;
-  img_url = data[i].phone;
-  web_url = data[i].website;
-  click_count = data[i].id;
+  // author = data[i].username;
+  // img_url = data[i].phone;
+  // web_url = data[i].website;
+  // click_count = data[i].id;
   
-
   let one = document.createElement("li");
   one.setAttribute('id', 'one' + id);
   document.getElementById('webtoon_list').appendChild(one);
@@ -93,7 +89,6 @@ $(document).ready(function() {
     $('.week-button[week-button-index=' + week + ']').addClass('click-button');
     $('.week-button[week-button-index!=' + week + ']').removeClass('click-button');
     arrWeek.push(week)
-    // console.log(arrWeek)
   });
 
   let day = settingWeek(week);
@@ -120,8 +115,6 @@ $(document).ready(function() {
 
 // 클릭한 요일 색 반전 및 선택된 요일을 리스트에 저장, 요일과 플랫폼 정보 가져오기
 $('.week-button').each(function(index){
-  // console.log(index)
-
   $(this).attr('week-button-index', index);
 }).click(function(){
   var index = $(this).attr('week-button-index');
@@ -278,7 +271,6 @@ function call(check_week, check_platform) {
       };
     }
   });
-
 }
 
 // 요일, 플랫폼, 정렬 정보를 토대로 GET 요청
@@ -287,8 +279,6 @@ function call(check_week, check_platform, check_sort) {
   var platform = check_platform;
   var sortType = check_sort;
   var page = 1;
-
-  var webtoonData = new Array();
 
   $('#webtoon_list').empty();
 
