@@ -1,81 +1,19 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../config/db');
-/**
- * 오늘 요일의 전체 웹툰보기 API
- * localhost:3000/webtoons/{day}?page={page}&sort={sortType}
- */
+
 router.get('/list/:day', function(request, response, next){
     const user = request.session.user;
-    const day = request.params.day;
-    const { page, sort } = request.query;
-    const offset = 10;
-
-    const sql = filterQueryBySortType(sort, 'WHERE week = ?'); 
-    db.query(sql, [day, sort, page * 10, offset], function(error, webtoons){
-        if(error) {
-            console.log(`db error=${error}`);
-            throw error;
-        }
-        response.render('main', { webtoons: webtoons, user: user });
-    });
+    response.render('main', { user: user });
 });
 
-/**
- * 플랫폼별 웹툰 보기 API
- * localhost:3000/webtoons/{day}/{platform}?page={page}&sort={sortType}
- */
-router.get('/list/:day/:platform', function(request, response, next) {
+ router.get('/list/:day/:platform', function(request, response, next) {
     const user = request.session.user;
-    const { day, platform } = request.params;
-    const { page, sort } = request.query;
-    const offset = 10;
-
-    const sql = filterQueryBySortType(sort, 'WHERE week = ? AND platform_name = ?');
-    db.query(sql, [day, platform, sort, page * 10, offset], function(error, webtoons){
-        if(error) {
-            console.log(`db error=${error}`);
-            throw error;
-        }
-        response.render('main', { webtoons: webtoons, user: user });
-    });
+    response.render('main', { user: user });
 });
 
-/**
- * 웹툰명, 작가명으로 웹툰 검색 API
- * localhost:3000/webtoons/search?name={search_name}page={page}&sort={sortType}
- */
 router.get('/search', function(request, response, next){
     const user = request.session.user;
-    const { name, page, sort } = request.query;
-    const offset = 10;
-
-    const sql = filterQueryBySortType(sort, 'WHERE title LIKE ? OR author LIKE ?');
-    db.query(sql, [`%${name}%`, `%${name}%`, sort, page * 10, offset], function(error, webtoons){
-        if(error) {
-            console.log(`db error=${error}`);
-            throw error;
-        }
-        response.render('main', { webtoons: webtoons, user: user });
-    })
+    response.render('main', { user: user });
 });
-
-function filterQueryBySortType(sort, condition){
-    let sql = '';
-    if(sort === 'favorites'){
-        sql += `
-        SELECT w.*, COUNT(*) AS favorites
-        FROM webtoon w 
-        RIGHT JOIN favorites f ON w.id = f.webtoon_id
-        ${condition}
-        GROUP BY f.webtoon_id
-        `;
-    } else {
-        sql += `SELECT * FROM webtoon ${condition}`;
-    }
-    sql += ' ORDER BY ? DESC LIMIT ?, ?'
-
-    return sql;
-}
 
 module.exports = router;

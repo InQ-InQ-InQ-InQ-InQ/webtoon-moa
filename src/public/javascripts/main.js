@@ -40,7 +40,7 @@ function create_webtoon(data, i) {
   document.getElementById('thumbnail' + id).appendChild(img_a);
 
   let img_src = document.createElement("img");
-  img_src.setAttribute('src', 'img_url');
+  img_src.setAttribute('src', img_url);
   img_src.setAttribute('width', '83');
   img_src.setAttribute('height', '90');
   document.getElementById('img_a' + id).appendChild(img_src);
@@ -94,17 +94,19 @@ $(document).ready(function() {
   });
 
   let day = settingWeek(week);
-  let page = 1;
+  let page = 0;
 
   $.ajax({
     type: "GET",
-    // url: "/webtoon/list/" + day + "?page=" + page,
-    url: "https://jsonplaceholder.typicode.com/users",
+    url: `/api/webtoon/list/${day}`,
     dataType: "json",
     success: function(data) {  
+      console.log(data);
       for(let i = 0; i < data.length; i++) {
         create_webtoon(data, i);
       };
+    }, error: function(request, status, error){
+      alert(`error=${error}`)
     }
   })
 });
@@ -242,7 +244,7 @@ $("#heart").on("click", function() {
 
     $.ajax({
       type: "GET",
-      url: "/favorites",
+      url: "/api/favorites",
       // url: "https://jsonplaceholder.typicode.com/users",
       dataType: "json",
       success: function(data) {  
@@ -293,7 +295,7 @@ function call(check_week, check_platform) {
 
   $.ajax({
     type: "GET",
-    url: "/webtoon/list/" + day + "/" + platform + "?page=" + page,
+    url: "/api/webtoon/list/" + day + "/" + platform,
     // url: "https://jsonplaceholder.typicode.com/users",
     dataType: "json",
     success: function(data) {
@@ -315,7 +317,7 @@ function call(check_week, check_platform, check_sort) {
 
   $.ajax({
     type: "GET",
-    url: "/webtoon/list/" + day + "/" + platform + "?page=" + page + "&sort=" +sortType,
+    url: "/api/webtoon/list/" + day + "/" + platform,
     // url: "https://jsonplaceholder.typicode.com/users",
     dataType: "json",
     success: function(data) {
