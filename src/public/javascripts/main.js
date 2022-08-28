@@ -12,20 +12,13 @@ if (week == -1) {
 
 // 웹툰 카드 생성
 function create_webtoon(data, i) {
-  // id = data[i].id;
-  // title = data[i].title;
-  // author = data[i].author;
-  // img_url = data[i].img_url;
-  // web_url = data[i].web_url;
-  // click_count = data[i].click_count;
-
   id = data[i].id;
   title = data[i].title;
   author = data[i].author;
   img_url = data[i].img_url;
   web_url = data[i].web_url;
-  click_count = data[i].id;
-  
+  click_count = data[i].click_count;
+
   let one = document.createElement("li");
   one.setAttribute('id', 'one' + id);
   document.getElementById('webtoon_list').appendChild(one);
@@ -94,7 +87,6 @@ $(document).ready(function() {
   });
 
   let day = settingWeek(week);
-  let page = 0;
 
   $.ajax({
     type: "GET",
@@ -192,20 +184,22 @@ $('ul.sortby li.sort').click(function(){
 
 // 즐겨찾기 버튼
 $(document).on("click", "[id^=w]", function(e) {
-  // e.stopPropagation();
+  console.log("hello");
+  console.log($(this).val());
 
-  if ($(this).value === false) {
+  if ($(this).val() === 'false') {
     $(this).attr('value', true);
   }
   else {
     $(this).attr('value', false);
   }
 
-  const wish_id = $(this).id;
-  w_id = wish_id.substr(1);
-  console.log(w_id);
+  console.log($(this).val());
 
-  const b = $(this).value;
+  const wish_id = $(this).attr("id");
+  w_id = wish_id.substr(1);
+
+  const b = $(this).val();
   
   $.ajax({
     type: 'POST',
@@ -216,7 +210,8 @@ $(document).on("click", "[id^=w]", function(e) {
     },
     dataType: "json",
     success: function(data){
-      $('#wish_id').css('color', 'red');
+      // $('#wish_id').css('color', 'red');
+      console.log("즐겨찾기 성공");
     },
     error: function(request, status, error){
       alert(`즐겨찾기 추가를 실패하였습니다.=${error}`)
