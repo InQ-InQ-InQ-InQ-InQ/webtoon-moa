@@ -44,6 +44,9 @@
               <input type="text" id="findId" name="findId" placeholder="비밀번호를 찾고자 하는 아이디를 입력하세요." required>
             </div>
           </div> -->
+    <% if(exception){ %>
+      <div style="color:red;"><%= exception %></div>
+    <% } %>
      <form method="post" action="find-pw">
           <div class="row-group">
             <div class="row">

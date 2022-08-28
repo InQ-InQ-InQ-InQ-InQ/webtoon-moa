@@ -17,8 +17,8 @@ router.get('/sign-up', (request, response)=>{
     response.redirect('/');
     return;
   }
-  
-  response.render('signup');
+  const exception = request.query.exception;
+  response.render('signup', { exception: exception });
 });
 
 router.post('/sign-up', function(request, response){
@@ -28,8 +28,12 @@ router.post('/sign-up', function(request, response){
     return;
   }
   const { memberName, signupId, signupPw, signupPwCheck, signupEmail } = request.body;
+  if(signupPw !== signupPwCheck){
+    response.redirect('/users/sign-up?exception=비밀번호가 서로 일치하지 않습니다.');
+    return;
+  }
 
-  const sql = 'SELECT * FROM user WHERE identifier=?';
+  const sql = 'SELECT * FROM user WHERE identifier=? or email=?';
   db.query(sql, signupId, function(error, user){
       if (user.length == 0) {
         console.log('회원가입 성공')
@@ -39,9 +43,9 @@ router.post('/sign-up', function(request, response){
         response.redirect('/');
       }
       else {
-           console.log('회원가입 실패');
-           response.send('<script>alert("회원가입 실패");</script>')
-           response.redirect('/');
+           console.log('아이디 또는 이메일이 중복됩니다.');
+           response.redirect('/users/sign-up?exception=아이디 또는 이메일이 중복됩니다.');
+           return;
       }
   });
 });
@@ -102,21 +106,31 @@ router.get('/sign-out', function(request, response){
       throw error;
     }
 
-    console.log(request.session);
-
     response.redirect('/');
   })
 });
 
 router.get('/find-id', (request, response)=>{
+  //인증받은 사용자인지 체크
+  if(auth.isLogin(request, response)){
+    response.redirect('/');
+    return;
+  }
 
-  response.render('findid');
+  const exception = request.query.exception;
+  response.render('findid', { exception: exception });
 });
 
 router.post('/find-id',function(request, response){
-   const { findName, findEmail } = request.body;
-   const sql = 'SELECT * FROM user WHERE username = ?';
-   db.query(sql, findName, function(error, user){
+    //인증받은 사용자인지 체크
+    if(auth.isLogin(request, response)){
+      response.redirect('/');
+      return;
+    }
+
+    const { findName, findEmail } = request.body;
+    const sql = 'SELECT * FROM user WHERE username = ?';
+    db.query(sql, findName, function(error, user){
     if(error) {
       console.log(`DB error=${error}`);
       return;
@@ -140,10 +154,22 @@ router.post('/find-id',function(request, response){
 });
 
 router.get('/find-pw', (request, response)=>{
-  response.render('findpw');
+  //인증받은 사용자인지 체크
+  if(auth.isLogin(request, response)){
+    response.redirect('/');
+    return;
+  }
+
+  const exception = request.query.exception;
+  response.render('findpw', { exception: exception });
 });
 
 router.post('/find-pw', async (request, response)=> {
+  //인증받은 사용자인지 체크
+  if(auth.isLogin(request, response)){
+    response.redirect('/');
+    return;
+  }
   
   const { pwEmail } = request.body;
   
@@ -198,11 +224,24 @@ router.post('/find-pw', async (request, response)=> {
 });
 
 router.get('/confirm-pw', (response)=>{
-  response.render('confirm');
+  //인증받은 사용자인지 체크
+  if(auth.isLogin(request, response)){
+    response.redirect('/');
+    return;
+  }
+  
+  const exception = request.query.exception;
+  response.render('confirm', { exception: exception });
 });
 
 
 router.post('/confirm-pw', function(request,response){
+  //인증받은 사용자인지 체크
+  if(auth.isLogin(request, response)){
+    response.redirect('/');
+    return;
+  }
+
   const { pwToken } = request.body;
   const sql = 'SELECT * FROM user as u INNER JOIN emailauth as e on u.email = e.id WHERE e.token = ?';
   db.query(sql, pwToken, function(error, user){

@@ -38,6 +38,9 @@
             <span class="find-subtitle">이메일 주소와 입력한 유저명이 같아야, 인증번호를 받을 수 있습니다.</span>
           </div>
 
+          <% if(exception){ %>
+            <div style="color:red;"><%= exception %></div>
+          <% } %>
           <form method=post action='find-id'>
 
             <!-- 인증번호 입력받는 input -->

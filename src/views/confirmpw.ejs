@@ -36,6 +36,9 @@
           <span class="pw-subtitle">안전한 사용을 위해 새로운 비밀번호로 변경합니다.</span>
         </div>
 
+        <% if(exception){ %>
+          <div style="color:red;"><%= exception %></div>
+        <% } %>
         <form action="">
           <div class="row">
             <label for="" class="sub-title">재설정 비밀번호</label>

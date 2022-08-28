@@ -30,6 +30,9 @@
         <span class="title">회원 가입</span>
       </div>
 
+      <% if(exception){ %>
+        <div style="color:red;"><%= exception %></div>
+      <% } %>
       <form action="" method="post" class="form-example">
         <div class="text-body">
           <div class="row">

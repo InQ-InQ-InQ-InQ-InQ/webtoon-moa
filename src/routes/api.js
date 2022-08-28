@@ -82,4 +82,36 @@ function filterQueryBySortType(sort, condition){
     return sql;
 }
 
+// 사용자 즐겨찾기 보기 API
+router.get('/favorites', function(request, response){
+    const sql = `SELECT * FROM webtoon as w INNER JOIN favorites as f on w.id = f.webtoon_id WHERE f.user_id = ?`;
+    db.query(sql, user.id, function(error, favorites){
+        if(error) {
+            console.log(`DB error=${error}`);
+            return;
+        }
+        response.send(favorites);
+    });
+  })
+  
+  //즐겨찾기 추가하기 API
+router.post('/favorites', function(request, response){
+    const webtoon_id = request.body.webtoon_id;
+    const is_favorite = request.body.is_favorite;
+    let sql = '';
+    if(is_favorite){
+    sql += `INSERT INTO favorites (user_id, webtoon_id) VALUES (?, ?)`;
+    } else {
+    sql += `DELETE FROM favorites WHERE user_id = ? AND webtoon_id = ?`;
+    }
+
+    db.query(sql, [user.id, webtoon_id], function(error, result){
+        if(error) {
+            console.log(`DB error=${error}`);
+            return;
+        }
+        response.send(result);
+    });
+});
+
 module.exports = router;
