@@ -39,7 +39,7 @@
         <% if(exception){ %>
           <div style="color:red;"><%= exception %></div>
         <% } %>
-        <form action="">
+        <form method="post" action="/users/confirm-pw">
           <div class="row">
             <label for="" class="sub-title">재설정 비밀번호</label>
             <input type="password" id="rePw" name="rePw" minlength="8" required >

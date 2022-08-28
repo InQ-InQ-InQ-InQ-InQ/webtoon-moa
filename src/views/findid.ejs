@@ -41,7 +41,7 @@
         <% if(exception){ %>
           <div style="color:red;"><%= exception %></div>
         <% } %>
-        <form method=post action='find-id'>
+        <form method='post' action='/users/find-id'>
 
           <!-- 인증번호 입력받는 input -->
           <div class="row-group">
@@ -61,8 +61,8 @@
             <input class="btn" type="submit" value="인증번호 받기"> -->
           </div>
 
-          <input class="btn submit-btn btn--orange" type="submit" value="확인" onClick="location.href='/views/confirmid.html'">
-          
+          <input class="btn submit-btn btn--orange" type="submit" value="확인">
+
         </form>
       </div>
 

@@ -18,9 +18,8 @@
   /* line-height: 0px; */
   color: black;
   /* padding-bottom: 20px; */
-  margin-top: 0px;
+  margin-top: 20px;
   font-size: var(--sub-title-font);
-  margin-bottom: 25px;
   color: var(--moa-blue);
   font-weight: 700;
 }
