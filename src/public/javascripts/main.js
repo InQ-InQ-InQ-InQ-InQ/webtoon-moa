@@ -185,7 +185,6 @@ $('ul.sortby li.sort').click(function(){
 // 즐겨찾기 버튼
 $(document).on("click", "[id^=w]", function(e) {
   console.log("hello");
-  console.log($(this).val());
 
   if ($(this).val() === 'false') {
     $(this).attr('value', true);
@@ -194,19 +193,21 @@ $(document).on("click", "[id^=w]", function(e) {
     $(this).attr('value', false);
   }
 
-  console.log($(this).val());
 
   const wish_id = $(this).attr("id");
   w_id = wish_id.substr(1);
 
   const b = $(this).val();
   
+  console.log(w_id, b);
+
+
   $.ajax({
     type: 'POST',
     url: '/api/favorites',
     data: {
-      webtoon_id: w_id,
-      is_favorite: b
+      "webtoon_id": w_id,
+      "is_favorite": b
     },
     dataType: "json",
     success: function(data){
