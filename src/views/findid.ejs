@@ -32,37 +32,39 @@
         <span class="title">아이디 찾기</span>
       </div>
 
-        <div class="text-body">
-          <div class="notice">
-            <span class="find-title">유저명과 이메일로 확인</span>
-            <span class="find-subtitle">이메일 주소와 입력한 유저명이 같아야, 인증번호를 받을 수 있습니다.</span>
+      <div class="text-body">
+        <div class="notice">
+          <span class="find-title">유저명과 이메일로 확인</span>
+          <span class="find-subtitle">이메일 주소와 입력한 유저명이 같아야, 인증번호를 받을 수 있습니다.</span>
+        </div>
+
+        <% if(exception){ %>
+          <div style="color:red;"><%= exception %></div>
+        <% } %>
+        <form method=post action='find-id'>
+
+          <!-- 인증번호 입력받는 input -->
+          <div class="row-group">
+            <div class="row">
+              <label for="findName" class="sub-title">유저이름</label>
+              <input type="text" id="findName" name="findName" required>
+            </div>
+            <!-- 확인 버튼 -->
+            
+          </div>
+          <div class="row-group">
+            <div class="row">
+              <label for="fidEmail" class="sub-title">이메일</label>
+              <input type="email" id="findEmail" name="findEmail" required>
+            </div>
+            <!-- 인증번호 받기 버튼
+            <input class="btn" type="submit" value="인증번호 받기"> -->
           </div>
 
-          <% if(exception){ %>
-            <div style="color:red;"><%= exception %></div>
-          <% } %>
-          <form method=post action='find-id'>
-
-            <!-- 인증번호 입력받는 input -->
-            <div class="row-group">
-              <div class="row">
-                <label for="findName" class="sub-title">유저이름</label>
-                <input type="text" id="findName" name="findName" required>
-              </div>
-              <!-- 확인 버튼 -->
-              
-            </div>
-            <div class="row-group">
-                <div class="row">
-                  <label for="fidEmail" class="sub-title">이메일</label>
-                  <input type="email" id="findEmail" name="findEmail" required>
-                </div>
-                <!-- 인증번호 받기 버튼
-                <input class="btn" type="submit" value="인증번호 받기"> -->
-                <input class="btn btn--orange submit-btn" type="submit" value="확인" onClick="location.href='/views/confirmid.html'">
-              </div>
-          </form>
-        </div>
+          <input class="btn submit-btn btn--orange" type="submit" value="확인" onClick="location.href='/views/confirmid.html'">
+          
+        </form>
+      </div>
 
     </div>
   </section>
