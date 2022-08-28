@@ -1,0 +1,6 @@
+KAKAO_CLIENT_ID='9509931cded82ab4d5c62d9e87861f7d'
+KAKAO_SECRET_KEY='hZg2ekCHnNuI1hw64B3ZMfuP8D1tuqtf'
+KAKAO_REDIRECT_URI='http://localhost:3000/auth/kakao/callback'
+NAVER_CLIENT_ID='e4Bydt2i6MkR0f3KDf_9'
+NAVER_SECRET_KEY='nXtZQJHO1i'
+NAVER_REDIRECT_URI='http://localhost:3000/auth/naver/callback'
