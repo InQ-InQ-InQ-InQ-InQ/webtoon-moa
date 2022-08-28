@@ -205,7 +205,7 @@ $(document).on("click", "[id^=w]", function(e) {
 
   $.ajax({
     type: 'POST',
-    url: '/api/favorites',
+    url: '/api/webtoon/favorites',
     data: {
       "webtoon_id": w_id,
       "is_favorite": b
@@ -241,7 +241,7 @@ $("#heart").on("click", function() {
 
     $.ajax({
       type: "GET",
-      url: "/api/favorites",
+      url: "/api/webtoon/favorites",
       // url: "https://jsonplaceholder.typicode.com/users",
       dataType: "json",
       success: function(data) {  
