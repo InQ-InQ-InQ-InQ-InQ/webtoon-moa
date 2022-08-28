@@ -104,6 +104,7 @@ header .search {
 }
 header .search .icon.material-symbols-outlined {
   font-size: 30px;
+  cursor: pointer;
 }
 header .search .search-text {
   height: 45px;
