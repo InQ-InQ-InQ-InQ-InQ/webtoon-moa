@@ -34,8 +34,8 @@ router.post('/sign-up', function(request, response){
   }
 
   const sql = 'SELECT * FROM user WHERE identifier=? or email=?';
-  db.query(sql, signupId, function(error, user){
-      if (user.length == 0) {
+  db.query(sql, [signupId, signupEmail], function(error, user){
+      if (user[0] === undefined) {
         console.log('회원가입 성공')
         db.query('insert into user(username, identifier, password, email) value(?,?,?,?)', [
           memberName, signupId, signupPw, signupEmail
