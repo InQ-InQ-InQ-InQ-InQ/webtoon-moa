@@ -8,7 +8,7 @@ const auth = require('./common/auth');
 router.get('/', function(request, response){
   const user = auth.getLoginUser(request, response);
   if(user === undefined){
-    response.redirect('/users/sign-in');
+    alert("로그인이 필요한 서비스입니다.");
     return;
   }
 
@@ -26,11 +26,12 @@ router.get('/', function(request, response){
 router.post('/', function(request, response){
     const user = auth.getLoginUser(request, response);
     if(user === undefined){
-      response.redirect('/users/sign-in');
+      alert("로그인이 필요한 서비스입니다.");
       return;
     }
     const webtoon_id = request.body.webtoon_id;
     const is_favorite = request.body.is_favorite;
+    console.log(webtoon_id);
     let sql = '';
     if(is_favorite){
       sql += `INSERT INTO favorites (user_id, webtoon_id) VALUES (?, ?)`;
@@ -43,32 +44,8 @@ router.post('/', function(request, response){
             console.log(`DB error=${error}`);
             return;
         }
-        response.redirect('/');
+        response.send(result);
     });
 });
-
-// 즐겨찾기 AJAX 코드
-/*
-<script type="text/javascript">
-      $('#favorite_button').click(() => {
-        const webtoon_id = $('#favorite_button').val();
-
-        $.ajax({
-          type: 'POST',
-          url: '/favorites',
-          data: {
-            webtoon_id: webtoon_id
-          },
-          dataType: 'json',
-          success: function(data){
-            $('#favorite_button').css('color', 'red');
-          },
-          error: function(request, status, error){
-            alert(`즐겨찾기 추가를 실패하였습니다.=${error}`)
-          }
-        })
-      })
-    </script>
-*/
 
 module.exports = router;

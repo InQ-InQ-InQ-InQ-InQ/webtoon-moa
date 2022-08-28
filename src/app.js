@@ -38,7 +38,7 @@ const apiRouter = require('./routes/api');
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/webtoon', webtoonRouter);
-app.use('/favorites', favoritesRouter);
+app.use('/api/favorites', favoritesRouter);
 app.use('/auth', oauthRouter);
 app.use('/api/webtoon', apiRouter);
 

@@ -108,7 +108,7 @@ router.get('/sign-out', function(request, response){
   })
 });
 
-router.get('/find-id', (response)=>{
+router.get('/find-id', (request, response)=>{
 
   response.render('findid');
 });
@@ -139,7 +139,7 @@ router.post('/find-id',function(request, response){
   });
 });
 
-router.get('/find-pw', (response)=>{
+router.get('/find-pw', (request, response)=>{
   response.render('findpw');
 });
 

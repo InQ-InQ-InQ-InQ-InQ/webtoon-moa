@@ -192,9 +192,9 @@ $('ul.sortby li.sort').click(function(){
 
 // 즐겨찾기 버튼
 $(document).on("click", "[id^=w]", function(e) {
-  e.stopPropagation();
+  // e.stopPropagation();
 
-  if ($(this).value == false) {
+  if ($(this).value === false) {
     $(this).attr('value', true);
   }
   else {

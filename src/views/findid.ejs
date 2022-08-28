@@ -18,15 +18,6 @@
   <!-- CSS 파일 -->
   <link rel="stylesheet" href="/stylesheets/common.css">
   <link rel="stylesheet" href="/stylesheets/findid.css">
-  <!-- 공통 header 연결 -->
-  <script type="text/javascript">
-    $(document).ready( function() {
-      $("#headers").load("/views/header.html");  
-    });
-    $(document).ready( function() {
-      $("#footers").load("/views/footer.html");  
-    });
-  </script>
 </head>
 
 <body>
@@ -76,7 +67,9 @@
   </section>
 
   <!-- Footer -->
-  <div id="footers"></div>
+  <div id="footers">
+    <%- include footer.ejs %>
+  </div>
 
 </body>
 </html>
