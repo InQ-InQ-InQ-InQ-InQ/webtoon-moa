@@ -6,7 +6,7 @@ var arrSort = new Array();  // 플랫폼 array
 
 week -= 1
 
-if (week == 0) {
+if (week == -1) {
   week = 6
 }
 

@@ -3,8 +3,12 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', function(request, response, next) {
-  const day = new Date().getDay();
-  response.redirect(`/webtoon/list/${day}?page=0`);
+  let day = new Date().getDay();
+  if(day == 0){
+    day = 7;
+  }
+  console.log(day);
+  response.redirect(`/webtoon/list/${day}`);
 });
 
 module.exports = router;
