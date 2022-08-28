@@ -31,11 +31,12 @@
       <div class="main-title">
         <span class="title">비밀번호 찾기</span>
       </div>
-        <div class="text-body">
-          <div class="notice">
-            <span class="find-title">회원정보에 등록한 이메일로 인증</span>
-            <span class="find-subtitle">본인확인 이메일 주소와 입력한 이메일 주소가 같아야, 인증번호를 받을 수 있습니다.</span>
-          </div>
+
+      <div class="text-body">
+        <div class="notice">
+          <span class="find-title">회원정보에 등록한 이메일로 인증</span>
+          <span class="find-subtitle">본인확인 이메일 주소와 입력한 이메일 주소가 같아야, 인증번호를 받을 수 있습니다.</span>
+        </div>
 
    
           <!-- <div class="row-group">
@@ -44,10 +45,10 @@
               <input type="text" id="findId" name="findId" placeholder="비밀번호를 찾고자 하는 아이디를 입력하세요." required>
             </div>
           </div> -->
-    <% if(exception){ %>
-      <div style="color:red;"><%= exception %></div>
-    <% } %>
-     <form method="post" action="find-pw">
+        <% if(exception){ %>
+          <div style="color:red;"><%= exception %></div>
+        <% } %>
+        <form action="/users/find-pw" method="post" action="find-pw">
           <div class="row-group">
             <div class="row">
               <label for="pwEmail" class="sub-title">이메일</label>
@@ -65,7 +66,8 @@
             <!-- <input class="btn btn--orange submit-btn" type="submit" value="확인"> -->
             <!-- <input class="btn btn--orange submit-btn" type="submit" value="확인" onClick="location.href='/views/confirmpw.html'"> -->
           <!-- </div>  -->
-    </form>
+        </form>
+      </div>
 
     </div>
   </section>
