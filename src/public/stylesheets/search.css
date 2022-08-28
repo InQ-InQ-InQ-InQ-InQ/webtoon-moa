@@ -1,0 +1,42 @@
+.search {
+  margin-top: 60px;
+}
+.search .main-title {
+  font-size: var(--sub-title-font);
+  margin-bottom: 10px;
+}
+.search .main-title .title {
+  color: var(--moa-blue);
+  font-weight: 700;
+}
+/* Card */
+.search .webtoon {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.search .webtoon .card {
+  padding: 10px 0 15px 0;
+}
+.search .webtoon .card .title {
+  font-size: var(--large-font);
+  margin-bottom: 5px;
+}
+.search .webtoon .card .info {
+  display: flex;
+}
+.search .webtoon .card .info .platform {
+  margin-right: 10px;
+}
+.search .webtoon .card .info .platform::after {
+  content: "|";
+  color: var(--moa-gray);
+  font-size: var(--btn-font);
+  padding-left: 10px;
+}
+.search .webtoon .card .info .platform .pf-title,
+.search .webtoon .card .info .author .at-title {
+  color: var(--moa-gray);
+}
+.search .webtoon .card .info .author {
+
+}

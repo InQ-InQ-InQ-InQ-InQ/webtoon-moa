@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webtoon MOA</title>
+  <!-- favicon 선언 -->
+  <link rel="icon" href="/images/moa_icon.png">
+  <!-- 브라우저 기본 CSS 초기화 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" 
+  crossorigin="anonymous"></script>
+  <!-- Material icons --> 
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp|Material+Symbols+Outlined" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <!-- CSS 파일 -->
+  <link rel="stylesheet" href="/stylesheets/common.css">
+  <link rel="stylesheet" href="/stylesheets/search.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <div id="headers">
+    <%- include header.ejs %>
+  </div>
+
+  <section class="search">
+    <div class="inner">
+
+      <div class="main-title">
+        <span class="title">검색결과</span>
+      </div>
+      <hr>
+
+      <div class="webtoon">
+        <form action="" method="post">
+
+          <div class="card">
+            <div class="title">제목</div>
+            <div class="info">
+              <div class="platform">
+                <span class="pf-title">플랫폼:</span>
+                <span class="pf-name">네이버</span>
+              </div>
+              <div class="author">
+                <span class="at-title">글/그림:</span>
+                <span class="at-name">누구누구씨</span>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="footers">
+    <%- include footer.ejs %>
+  </div>
+
+</body>
+</html>
