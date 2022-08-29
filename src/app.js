@@ -30,15 +30,11 @@ app.use(
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const webtoonRouter = require('./routes/webtoon');
-const favoritesRouter = require('./routes/favorites');
 const oauthRouter = require('./routes/oauth');
 const apiRouter = require('./routes/api');
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/webtoon', webtoonRouter);
-app.use('/api/favorites', favoritesRouter);
 app.use('/auth', oauthRouter);
 app.use('/api/webtoon', apiRouter);
 

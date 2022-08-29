@@ -215,7 +215,7 @@ $(document).on("click", "[id^=w]", function(e) {
       console.log("즐겨찾기 성공");
     },
     error: function(request, status, error){
-      alert(`즐겨찾기 추가를 실패하였습니다.=${error}`)
+      alert(`로그인이 필요한 서비스입니다.`);
     }
   })
 });

@@ -41,7 +41,7 @@ router.get('/list/:day', function(request, response, next){
             console.log(`db error=${error}`);
             throw error;
         }
-        response.send(webtoons);
+        response.status(200).send(webtoons);
     });
 });
 
@@ -61,24 +61,19 @@ router.get('/search', function(request, response, next){
             console.log(`db error=${error}`);
             throw error;
         }
-        response.send(webtoons);
+        response.status(200).send(webtoons);
     })
 });
 
 function filterQueryBySortType(sort, condition){
-    let sql = '';
-    if(sort === 'favorites'){
-        sql += `
-        SELECT w.*, COUNT(*) AS favorites
-        FROM webtoon w 
-        RIGHT JOIN favorites f ON w.id = f.webtoon_id
+    const sql = `
+        SELECT * FROM webtoon w
+        LEFT JOIN
+        (SELECT f.webtoon_id, COUNT(webtoon_id) as likes FROM favorites f GROUP BY webtoon_id) as f
+        ON w.id = f.webtoon_id
         ${condition}
-        GROUP BY f.webtoon_id
-        `;
-    } else {
-        sql += `SELECT * FROM webtoon ${condition}`;
-    }
-    sql += ' ORDER BY ? DESC'
+        ORDER BY ? DESC
+        `
 
     return sql;
 }
@@ -87,7 +82,7 @@ function filterQueryBySortType(sort, condition){
 router.get('/favorites', function(request, response){
     const user = auth.getLoginUser(request, response);
     if(user === undefined){
-        alert("로그인이 필요한 서비스입니다.");
+        response.status(403).send('로그인이 필요한 서비스입니다.');
         return;
     }
     const sql = `SELECT * FROM webtoon as w INNER JOIN favorites as f on w.id = f.webtoon_id WHERE f.user_id = ?`;
@@ -96,7 +91,7 @@ router.get('/favorites', function(request, response){
             console.log(`DB error=${error}`);
             return;
         }
-        response.send(favorites);
+        response.status(200).send(favorites);
     });
 })
   
@@ -104,7 +99,8 @@ router.get('/favorites', function(request, response){
 router.post('/favorites', function(request, response){
     const user = auth.getLoginUser(request, response);
     if(user === undefined){
-        alert("로그인이 필요한 서비스입니다.");
+        console.log(`user=${user}`);
+        response.status(403).send('로그인이 필요한 서비스입니다.');
         return;
     }
     const webtoon_id = request.body.webtoon_id;
@@ -121,9 +117,22 @@ router.post('/favorites', function(request, response){
             console.log(`DB error=${error}`);
             return;
         }
-        response.send(result);
+        response.status(200).json('ok');
     });
     
+});
+
+//조회수 증가 API
+router.post('/click', function(request, response){
+    const click_count = request.body.webtoon_id;
+    const sql = 'UPDATE webtoon SET click_count += 1 WHERE webtoon_id = ?';
+    db.query(sql, click_count, function(error, result){
+        if(error) {
+            console.log(`DB error=${error}`);
+            return;
+        }
+        response.status(200).json('ok');
+    });
 });
 
 module.exports = router;
