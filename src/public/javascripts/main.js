@@ -139,18 +139,18 @@ $('ul.sortby li.sort').click(function(){
   }
   else {
     if (arrSort.includes(v) == false) {
+      arrSort.pop();
       arrSort.push(v);
     }
     else {
-      let idx = arrSort.indexOf(v);
-      arrSort.splice(idx, 1);
+      arrSort.pop();
     }
   }
 
   let len = arrSort.length;
 
   if (len != 0) {
-    let checked_sort = parseInt(arrSort[len - 1]);
+    let checked_sort = parseInt(arrSort[0]);
 
     console.log(checked_sort);
 
@@ -168,7 +168,6 @@ $('ul.sortby li.sort').click(function(){
       if ($("#popular").hasClass("popular_check") === true) {
         $(".popular_check").attr('class','popular');
       }
-
     }
   }
 
@@ -242,7 +241,6 @@ $("#heart").on("click", function() {
     $.ajax({
       type: "GET",
       url: "/api/webtoon/favorites",
-      // url: "https://jsonplaceholder.typicode.com/users",
       dataType: "json",
       success: function(data) {  
         for(let i = 0; i < data.length; i++) {
@@ -266,6 +264,7 @@ $("#heart").on("click", function() {
     console.log(check_week, check_platform)
     call(check_week, check_platform);
   }
+  console.log(h);
 });
 
 // 선택된 플랫폼을 리스트에 저장, 요일과 플랫폼 정보 가져오기
@@ -286,14 +285,12 @@ $('input[type=radio][name="chk_platform"]').click(function() {
 function call(check_week, check_platform) {
   var day = check_week;
   var platform = check_platform;
-  var page = 1;
 
   $('#webtoon_list').empty();
 
   $.ajax({
     type: "GET",
     url: "/api/webtoon/list/" + day + "/" + platform,
-    // url: "https://jsonplaceholder.typicode.com/users",
     dataType: "json",
     success: function(data) {
       for(let i = 0; i < data.length; i++) {
@@ -308,14 +305,12 @@ function call(check_week, check_platform, check_sort) {
   var day = check_week;
   var platform = check_platform;
   var sortType = check_sort;
-  var page = 1;
 
   $('#webtoon_list').empty();
 
   $.ajax({
     type: "GET",
-    url: "/api/webtoon/list/" + day + "/" + platform,
-    // url: "https://jsonplaceholder.typicode.com/users",
+    url: "/api/webtoon/list/" + day + "/" + platform + "&sort=" + sortType,
     dataType: "json",
     success: function(data) {
       for(let i = 0; i < data.length; i++) {
