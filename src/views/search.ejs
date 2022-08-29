@@ -36,27 +36,25 @@
       <hr>
 
       <div class="webtoon">
-        <form action="" method="post">
 
+        <% for(let i=0; i<webtoons.length; i++) {%>
           <div class="card">
             <div class="title">
-              <a href="h">제목</a>
+              <a href="<%= webtoons[i].web_url %>"><%= webtoons[i].title %></a>
             </div>
             <div class="info">
               <div class="platform">
                 <span class="pf-title">플랫폼:</span>
-                <span class="pf-name">네이버</span>
+                <span class="pf-name"><%= webtoons[i].platform_name %></span>
               </div>
               <div class="author">
                 <span class="at-title">글/그림:</span>
-                <span class="at-name">누구누구씨</span>
+                <span class="at-name"><%= webtoons[i].author %></span>
               </div>
             </div>
           </div>
-
-        </form>
+          <% } %>
       </div>
-
     </div>
   </section>
 

@@ -45,26 +45,6 @@ router.get('/list/:day', function(request, response, next){
     });
 });
 
-/**
- * 웹툰명, 작가명으로 웹툰 검색 API
- * localhost:3000/api/webtoons/search?name={search_name}?sort={sortType}
- */
-router.get('/search', function(request, response, next){
-    let { name, sort } = request.query;
-    if(sort.length === undefined){
-        sort = 'title';
-    }
-
-    const sql = filterQueryBySortType(sort, 'WHERE title LIKE ? OR author LIKE ?');
-    db.query(sql, [`%${name}%`, `%${name}%`, sort], function(error, webtoons){
-        if(error) {
-            console.log(`db error=${error}`);
-            throw error;
-        }
-        response.status(200).send(webtoons);
-    })
-});
-
 function filterQueryBySortType(sort, condition){
     const sql = `
         SELECT * FROM webtoon w
