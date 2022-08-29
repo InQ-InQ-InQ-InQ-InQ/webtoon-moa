@@ -276,8 +276,9 @@ $('input[type=radio][name="chk_platform"]').click(function() {
   let check_week = parseInt(arrWeek[arrWeek.length - 1]);
   let check_platform = arrPlatform[arrPlatform.length - 1];
 
-  check_week = settingWeek(check_week)
-  console.log(check_week, check_platform)
+  check_week = settingWeek(check_week);
+  console.log(check_week, check_platform);
+  console.log("hello");
   call(check_week, check_platform);
 });
 
@@ -310,7 +311,7 @@ function call(check_week, check_platform, check_sort) {
 
   $.ajax({
     type: "GET",
-    url: "/api/webtoon/list/" + day + "/" + platform + "&sort=" + sortType,
+    url: "/api/webtoon/list/" + day + "/" + platform + "?sort=" + sortType,
     dataType: "json",
     success: function(data) {
       for(let i = 0; i < data.length; i++) {
