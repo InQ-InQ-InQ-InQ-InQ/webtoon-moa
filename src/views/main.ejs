@@ -33,19 +33,20 @@
   <section class="main">
     <div class="inner">
 
+      <!-- 정렬 방법 -->
       <div class="view_type">
         <div class="sub_title">요일별 웹툰</div>
         <ul class="sortby">
+
           <li class="sort" value="1">
             <div id="popular" class="popular">인기순</div>
           </li>
           <li class="sort" value="2">
             <div id="count" class="count">조회순</div>
           </li>
-          <!-- <a class="sort_popular" href=""></a>
-          <a class="sort_count" onclick="" href=""></a> -->
+
+          <!-- 하트 토글 -->
           <li class="sort2">
-            <!-- <a class="sort_wish" onclick="" href=""> -->
               <div class="wish" value="wish">
                 <input type="checkbox" id="checkbox" />
                 <label for="checkbox">
@@ -92,13 +93,14 @@
                   </svg>
                 </label>
               </div>
-            <!-- </a> -->
           </li>
         </ul>
       </div>
       <hr>
 
+      
       <div class="content">
+        <!-- 요일 -->
         <div class="week">
           <button class="week-button btn" value="mon">월요일</button>
           <button class="week-button btn" value="tue">화요일</button>
@@ -109,10 +111,10 @@
           <button class="week-button btn" value="sun">일요일</button>
         </div>
         
+        <!-- 플랫폼 -->
         <div class="platform">
           <div class="platform-box">
             <input type="radio" name="chk_platform" id="radio1" value="" checked><label for="radio1">전체</label>
-            <!-- onclick="location.href=''"> -->
           </div>
           <div class="platform-box">
             <input type="radio" name="chk_platform" id="radio2" value="naverwebtoon"><label for="radio2">네이버웹툰</label>
@@ -141,61 +143,5 @@
   <div id="footers">
     <%- include footer.ejs %>
   </div>
-  <!-- <script src="/src/main.js"></script> -->
 </body>
 </html>
-<!-- 
-
-
-<div class="webtoon">
-  <ul id="webtoon_list">
-    <li class="one" + id>
-      <div class="thumbnail" + id>
-        <a href="">
-          <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
-        </a>
-      </div>
-
-      <dl>
-        <dt>
-          <a href="" title="참교육">참교육</a>
-        </dt>
-
-        <dd class="author" + id>
-          <p>채용택 / 한가람</p>
-        </dd>
-
-        <dd class="wish" + id>              
-            <span class="heart">
-              <em style="width:98.56%">찜</em>
-            </span>
-            <strong>10</strong>
-        </dd>
-      </dl>
-    </li>
-
-
-    <li class="one">
-      <div class="thumbnail">
-        <a href="" title="참교육">
-          <img src="https://shared-comic.pstatic.net/thumb/webtoon/758037/thumbnail/thumbnail_IMAG10_a2297504-4912-4c7e-a5a8-524d6fc77103.jpg" width="83" height="90" title="참교육">
-        </a>
-      </div>
-
-      <dl>
-        <dt>
-          <a href="" title="참교육">참교육</a>
-        </dt>
-
-        <dd class="author">
-          <p>채용택 / 한가람</p>
-        </dd>
-
-        <dd class="wish">              
-            <span class="heart">
-              <em style="width:98.56%">찜</em>
-            </span>
-            <strong>10</strong>
-        </dd>
-      </dl>
-    </li> -->
