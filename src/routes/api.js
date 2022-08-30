@@ -86,7 +86,7 @@ router.post('/favorites', function(request, response){
     const webtoon_id = request.body.webtoon_id;
     const is_favorite = request.body.is_favorite;
     let sql = '';
-    if(is_favorite == 'false'){
+    if(is_favorite == 'true'){
         sql += `INSERT INTO favorites (user_id, webtoon_id) VALUES (?, ?)`;
     } else {
         sql += `DELETE FROM favorites WHERE user_id = ? AND webtoon_id = ?`;
@@ -104,9 +104,9 @@ router.post('/favorites', function(request, response){
 
 //조회수 증가 API
 router.post('/click', function(request, response){
-    const click_count = request.body.webtoon_id;
-    const sql = 'UPDATE webtoon SET click_count += 1 WHERE webtoon_id = ?';
-    db.query(sql, click_count, function(error, result){
+    const webtoon_id = request.body.webtoon_id;
+    const sql = `UPDATE webtoon SET click_count = click_count + 1 WHERE id = ?`;
+    db.query(sql, webtoon_id, function(error, result){
         if(error) {
             console.log(`DB error=${error}`);
             return;
