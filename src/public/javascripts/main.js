@@ -40,9 +40,8 @@ function create_webtoon(data, i) {
   img_src.setAttribute('width', '83');
   img_src.setAttribute('height', '90');
   document.getElementById('img_a' + id).appendChild(img_src);
-
-
-
+  //
+  //
   let m_dl = document.createElement("dl");
   m_dl.setAttribute('id', 'dl' + id);
   document.getElementById("one" + id).appendChild(m_dl);
@@ -128,24 +127,23 @@ $('.week-button').each(function(index){
   let check_platform = arrPlatform[arrPlatform.length - 1];
 
   check_week = settingWeek(check_week)
-  console.log(check_week, check_platform)
+  // console.log(check_week, check_platform)
   call(check_week, check_platform);
 });
 
 // sort
 $('ul.sortby li.sort').click(function(){
-  console.log(this);
+  // console.log(this);
   let v = parseInt($(this).val());
-  console.log(v);
+  // console.log(v);
 
-  // 만약 heart 버튼이 눌려져있으면, is-active 삭제
+  // 만약 heart 버튼이 눌려져있으면,
   if ($("#heart-svg").hasClass('is-active') === true) {
-    console.log("hello");
+  // div(wish) 새로고침 => 비어있는 하트
   $(".wish").html($(".wish").html());
+  // is-active 삭제
   // $("#heart-svg").removeClass('is-active');
   }
-
-  
 
   if (arrSort.length == 0) {
     arrSort.push(v);
@@ -291,7 +289,6 @@ $('input[type=radio][name="chk_platform"]').click(function() {
 
   check_week = settingWeek(check_week);
   console.log(check_week, check_platform);
-  console.log("hello");
   call(check_week, check_platform);
 });
 
@@ -363,7 +360,6 @@ $(document).on("click", "dt>a", function(e) {
   click_plus(id);
 });
 
-
 // 조회순 +1 이벤트
 function click_plus(id) {
   $.ajax({
@@ -379,5 +375,5 @@ function click_plus(id) {
     error: function(request, status, error){
       console.log("오류 발생");
     }
-  })
+  });
 }
