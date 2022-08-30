@@ -71,6 +71,7 @@ function create_webtoon(data, i) {
   let m_button = document.createElement("button");
   m_button.setAttribute('id', 'w' + id);
   m_button.setAttribute('class', 'material-icons');
+  m_button.setAttribute('onclick', 'addLike()');
   m_button.setAttribute('value', false); 
   // m_button.setAttribute('value', b); 이렇게 수정해야 함
   m_button.textContent = "favorite_border";
@@ -80,6 +81,7 @@ function create_webtoon(data, i) {
   m_click.innerText = click_count;
   document.getElementById("wish" + id).appendChild(m_click);
 }
+
 
 // 오늘 날짜 색 반전
 $(document).ready(function() {
@@ -198,9 +200,15 @@ $(document).on("click", "Button[id^=w]", function() { //w로 시작하는 버튼
 
   if ($(this).val() === 'false') {
     $(this).attr('value', true);
+    // 하트 채우기
+    $(this).text('favorite');
+    $(this).css('color','#f44336');
   }
   else {
     $(this).attr('value', false);
+    // 하트 채우기 없애기
+    $(this).text('favorite_border');
+    $(this).css('color','black');
   }
 
   const wish_id = $(this).attr("id");
