@@ -19,6 +19,9 @@ function create_webtoon(data, i) {
   web_url = data[i].web_url;
   click_count = data[i].click_count;
 
+  // 추가해야 함
+  // b = data[i].is_favorite;
+
   let one = document.createElement("li");
   one.setAttribute('id', 'one' + id);
   document.getElementById('webtoon_list').appendChild(one);
@@ -69,7 +72,8 @@ function create_webtoon(data, i) {
   let m_button = document.createElement("button");
   m_button.setAttribute('id', 'w' + id);
   m_button.setAttribute('class', 'material-icons');
-  m_button.setAttribute('value', false);
+  m_button.setAttribute('value', false); 
+  // m_button.setAttribute('value', b); 이렇게 수정해야 함
   m_button.textContent = "favorite_border";
   document.getElementById("wish" + id).appendChild(m_button);
 
@@ -134,6 +138,15 @@ $('ul.sortby li.sort').click(function(){
   let v = parseInt($(this).val());
   console.log(v);
 
+  // 만약 heart 버튼이 눌려져있으면, is-active 삭제
+  if ($("#heart-svg").hasClass('is-active') === true) {
+    console.log("hello");
+  $(".wish").html($(".wish").html());
+  // $("#heart-svg").removeClass('is-active');
+  }
+
+  
+
   if (arrSort.length == 0) {
     arrSort.push(v);
   }
@@ -182,9 +195,8 @@ $('ul.sortby li.sort').click(function(){
 });
 
 // 즐겨찾기 버튼
-$(document).on("click", "[id^=w]", function(e) {
-  e.stopImmediatePropagation();
-  console.log("hello");
+$(document).on("click", "Button[id^=w]", function() { //w로 시작하는 버튼
+  // e.stopImmediatePropagation();
 
   if ($(this).val() === 'false') {
     $(this).attr('value', true);
@@ -193,14 +205,12 @@ $(document).on("click", "[id^=w]", function(e) {
     $(this).attr('value', false);
   }
 
-
   const wish_id = $(this).attr("id");
   w_id = wish_id.substr(1);
 
   const b = $(this).val();
   
   console.log(w_id, b);
-
 
   $.ajax({
     type: 'POST',
@@ -211,8 +221,7 @@ $(document).on("click", "[id^=w]", function(e) {
     },
     dataType: "json",
     success: function(data){
-      // $('#wish_id').css('color', 'red');
-      console.log("즐겨찾기 성공");
+      console.log("성공");
     },
     error: function(request, status, error){
       alert(`로그인이 필요한 서비스입니다.`);
@@ -222,7 +231,11 @@ $(document).on("click", "[id^=w]", function(e) {
 
 // 하트 토글
 let h = 0;
-$("#heart").on("click", function() {
+$(document).on("click", "svg[id=heart-svg]", function(e) {
+  
+// $("#heart").on("click", function() {
+  e.stopImmediatePropagation();
+  
   $(this).toggleClass("is-active");
 
   if ($("#count").hasClass("count_check") === true) {
@@ -324,4 +337,47 @@ function call(check_week, check_platform, check_sort) {
 // 프론트 단에서는 월화수목금토일(0 ~ 6) => 백엔드 단에서는(1 ~ 7)
 function settingWeek(check_week) {
   return check_week += 1
+}
+
+// 웹툰 썸네일 클릭 시 이벤트 발생
+$(document).on("click", "a[id^=img_a]", function(e) { 
+  e.stopImmediatePropagation();
+
+  thum_id = ($(this).attr("id"));
+  id = thum_id.substr(5);
+  // console.log(id);  
+
+  click_plus(id);
+});
+
+// 웹툰 제목 클릭 시 이벤트 발생
+$(document).on("click", "dt>a", function(e) { 
+  e.stopImmediatePropagation();
+
+  dt = $(this).parent();
+
+  title_id = (dt.attr("id"));
+  id = title_id.substr(2);
+  // console.log(id);  
+
+  click_plus(id);
+});
+
+
+// 조회순 +1 이벤트
+function click_plus(id) {
+  $.ajax({
+    type: 'POST',
+    url: '/click',
+    data: {
+      "webtoon_id": id,
+    },
+    dataType: "json",
+    success: function(data){
+      console.log("조회수 1 증가");
+    },
+    error: function(request, status, error){
+      console.log("오류 발생");
+    }
+  })
 }
