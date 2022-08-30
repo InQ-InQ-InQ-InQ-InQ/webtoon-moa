@@ -364,7 +364,7 @@ $(document).on("click", "dt>a", function(e) {
 function click_plus(id) {
   $.ajax({
     type: 'POST',
-    url: '/click',
+    url: '/api/webtoon/click',
     data: {
       "webtoon_id": id,
     },
@@ -377,3 +377,12 @@ function click_plus(id) {
     }
   });
 }
+
+// 뒤로가기 시 페이지 새로고침
+$(window).bind("pageshow", function (event) {
+  if (self.name != 'reload') {
+    self.name = 'reload';
+    self.location.reload(true);
+  }
+  else self.name ='';
+});
