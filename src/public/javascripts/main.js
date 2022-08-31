@@ -11,13 +11,14 @@ if (week == -1) {
 }
 
 // 웹툰 카드 생성
-function create_webtoon(data, i) {
+function create_webtoon(data, favorites, i) {
   id = data[i].id;
   title = data[i].title;
   author = data[i].author;
   img_url = data[i].img_url;
   web_url = data[i].web_url;
   click_count = data[i].click_count;
+  favorite_count = data[i].favorite_count;
 
   // 추가해야 함
   // b = data[i].is_favorite;
@@ -68,15 +69,25 @@ function create_webtoon(data, i) {
   m_dd2.setAttribute('id', 'wish' + id);
   document.getElementById("dl" + id).appendChild(m_dd2);
 
-  let m_button = document.createElement("button");
-  m_button.setAttribute('id', 'w' + id);
-  m_button.setAttribute('class', 'material-icons');
-  m_button.setAttribute('onclick', 'addLike()');
-  m_button.setAttribute('value', false); 
-  // m_button.setAttribute('value', b); 이렇게 수정해야 함
-  m_button.textContent = "favorite_border";
-  document.getElementById("wish" + id).appendChild(m_button);
+  if(favorites !== undefined){
+    let m_button = document.createElement("button");
+    m_button.setAttribute('id', 'w' + id);
+    m_button.setAttribute('class', 'material-icons');
+    m_button.setAttribute('onclick', 'addLike()');
+    m_button.setAttribute('value', false);
 
+    // m_button.setAttribute('value', b); 이렇게 수정해야 함
+    m_button.textContent = "favorite_border";
+    document.getElementById("wish" + id).appendChild(m_button);
+    for(let i = 0; i < favorites.length; i++){
+      if(favorites[i].favorite === id){
+        m_button.setAttribute('value', true);
+        document.getElementById("w" + id).style.color='red';
+        document.getElementById("w" + id).textContent='favorite';
+      }
+    }
+  }
+  
   let m_click = document.createElement("p");
   m_click.innerText = click_count;
   document.getElementById("wish" + id).appendChild(m_click);
@@ -102,7 +113,7 @@ $(document).ready(function() {
       const webtoons = data.webtoons;
       const favorites = data.favorites;
       for(let i = 0; i < webtoons.length; i++) {
-        create_webtoon(webtoons, i);
+        create_webtoon(webtoons, favorites, i);
       };
     }, error: function(request, status, error){
       console.error(`error=${error}`);
@@ -263,9 +274,9 @@ $(document).on("click", "svg[id=heart-svg]", function(e) {
       type: "GET",
       url: "/api/webtoon/favorites",
       dataType: "json",
-      success: function(data) {  
+      success: function(data) { 
         for(let i = 0; i < data.length; i++) {
-          create_webtoon(data, i);
+          create_webtoon(data, undefined, i);
         };
       }
     })
@@ -317,7 +328,7 @@ function call(check_week, check_platform) {
       const webtoons = data.webtoons;
       const favorites = data.favorites;
       for(let i = 0; i < webtoons.length; i++) {
-        create_webtoon(webtoons, i);
+        create_webtoon(webtoons, favorites, i);
       };
     }
   });
@@ -339,7 +350,7 @@ function call(check_week, check_platform, check_sort) {
       const webtoons = data.webtoons;
       const favorites = data.favorites;
       for(let i = 0; i < webtoons.length; i++) {
-        create_webtoon(webtoons, i);
+        create_webtoon(webtoons, favorites, i);
       };
     }
   });

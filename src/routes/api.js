@@ -15,7 +15,7 @@ router.get('/list/:day', function(request, response, next){
         sort = 'title';
     }
 
-    const sql = filterQueryBySortType(sort, 'WHERE week = ?'); 
+    const sql = filterQueryBySortType('WHERE week = ?'); 
     db.query(sql, [day, sort], function(error, webtoons){
         errorHandler(error);
         if(user === undefined){
@@ -42,7 +42,7 @@ router.get('/list/:day', function(request, response, next){
         sort = 'title';
     }
 
-    const sql = filterQueryBySortType(sort, 'WHERE week = ? AND platform_name = ?');
+    const sql = filterQueryBySortType('WHERE week = ? AND platform_name = ?');
     db.query(sql, [day, platform, sort], function(error, webtoons){
         errorHandler(error);
         if(user === undefined){
@@ -65,9 +65,9 @@ router.get('/favorites', function(request, response){
         return;
     }
     const sql = `SELECT * FROM webtoon as w INNER JOIN favorites as f on w.id = f.webtoon_id WHERE f.user_id = ?`;
-    db.query(sql, user.id, function(error, favorites){
+    db.query(sql, user.id, function(error, webtoons){
         errorHandler(error);
-        response.status(200).send(favorites);
+        response.status(200).send(webtoons);
     });
 })
 
@@ -75,7 +75,6 @@ router.get('/favorites', function(request, response){
 router.post('/favorites', function(request, response){
     const user = auth.getLoginUser(request, response);
     if(user === undefined){
-        console.log(`user=${user}`);
         response.status(403).send('로그인이 필요한 서비스입니다.');
         return;
     }
@@ -105,7 +104,7 @@ router.post('/click', function(request, response){
     });
 });
 
-function filterQueryBySortType(sort, condition){
+function filterQueryBySortType(condition){
     const sql = `
         SELECT * FROM webtoon w
         LEFT JOIN
