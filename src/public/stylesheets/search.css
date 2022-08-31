@@ -13,6 +13,14 @@
 .search .webtoon {
   margin-top: 10px;
 }
+.search .webtoon .nothing {
+  font-size: var(--sub-title-font);
+  font-weight: 700;
+  margin: 0 auto;
+  height: 30px;
+  width: 200px;
+  padding: 100px 0;
+}
 .search .webtoon .card {
   padding: 10px 0 15px 0;
 }
