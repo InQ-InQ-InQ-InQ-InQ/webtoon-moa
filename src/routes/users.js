@@ -1,4 +1,7 @@
 const express = require('express');
+const bodyParser =require('body-parser');
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
+
 const { route } = require('.');
 const router = express.Router();
 const db = require('../config/db');
@@ -146,12 +149,54 @@ router.post('/find-id',function(request, response){
       return;
     }
     else{
-      console.log('아이디는'+user[0].identifier);
-      response.end;
-      // response.redirect('/');
+      // console.log('아이디는'+user[0].identifier);
+     
+      response.redirect('/users/confirm-id');
     }
   });
 });
+
+router.get('/confirm-id', (request, response)=>{
+  //인증받은 사용자인지 체크
+  if(auth.isLogin(request, response)){
+    response.redirect('/');
+    return;
+  }
+  
+  const exception = request.query.exception;
+  const findId = request.body.toString();
+  var context = "";
+  response.render('confirmid', { exception: exception ,findId : findId, context:context});
+});
+
+
+router.post('/confirm-id', urlencodedParser, function(request,response){
+  const exception = request.query.exception;
+  var context = "";
+  //인증받은 사용자인지 체크
+  if(auth.isLogin(request, response)){
+    response.redirect('/');
+    return;
+  }
+
+  const { idToken } = request.body;
+  const sql = 'SELECT * FROM user u LEFT JOIN emailauth e on u.email = e.email WHERE e.id = ?';
+  db.query(sql, idToken, function(error, user){
+   if(error) {
+     console.log(`DB error=${error}`);
+     return;
+   }
+   else{
+
+    console.log(user);
+    findId= user[0].identifier;
+    context = findId.toString();
+    response.render('confirmid',{exception: exception ,findId : findId, context: context});
+    response.end;
+   }
+ });
+});
+
 
 router.get('/find-pw', (request, response)=>{
   //인증받은 사용자인지 체크
@@ -171,33 +216,32 @@ router.post('/find-pw', async (request, response)=> {
     return;
   }
   
-  const { pwEmail } = request.body;
-  
-  const sql = `SELECT * FROM user WHERE email=?`; 
-  db.query(sql, pwEmail, function(error, user){
+  const { pwEmail,pwId } = request.body;
+  const sql = `SELECT * FROM user WHERE identifier=?`; 
+  db.query(sql, pwId, function(error, user){
   if(error) {
       console.log(`DB error=${error}`);
       return;
     }
   if(user[0] === undefined){
-    console.log(`이메일이 없습니다`);
+    console.log(`아이디가 없습니다`);
     response.redirect(`/users/find-pw?exception=존재하지 않는 계정입니다.`);
     return;
   }
   else if(pwEmail !== user[0].email){
     console.log('Incorrect email');
-    response.redirect('/users/find-pw?exception=존재하지 않는 계정입니다.');
+    response.redirect('/users/find-pw?exception=아이디와 이메일주소가 일치하지 않습니다.');
     return;
   }
   else{
     const token = crypto.randomBytes(20).toString('hex'); // 3. token 생성(인증코드)
     const data = {
       //인증코드 테이블에 넣을 데이터 정리
-      id: pwEmail,
-      token,
+      id: token,
+      email: pwEmail,
       // ttl: 300, // ttl 값 설정 (5분)
     };
-    db.query('INSERT INTO emailauth (id,token) VALUES (?,?)',[data.id,data.token],
+    db.query('INSERT INTO emailauth (id,email) VALUES (?,?)',[data.id,data.email],
     function(error,results){
       if(error) console.log(error);
     })
@@ -214,16 +258,21 @@ router.post('/find-pw', async (request, response)=> {
     const emailOptions = {
       from: 'rnlduadns@gmail.com',
       to: pwEmail,
-      subject: ' 웹툰모아 인증번호입니다.',
-      html: '인증번호: '
-           + `${token}`,
+      subject: ' 웹툰모아 비밀번호입니다.',
+      html: '사용자 비밀번호: '
+           + `${user[0].password}`,
     };
     transporter.sendMail(emailOptions,response);
+
+    response.redirect('/users/confirm-pw');
+
   } 
   });
 });
 
-router.get('/confirm-pw', (response)=>{
+
+
+router.get('/confirm-pw', (request, response)=>{
   //인증받은 사용자인지 체크
   if(auth.isLogin(request, response)){
     response.redirect('/');
@@ -231,11 +280,15 @@ router.get('/confirm-pw', (response)=>{
   }
   
   const exception = request.query.exception;
-  response.render('confirm', { exception: exception });
+  const findPw = request.body.toString();
+  var context = "";
+  response.render('confirmpw', { exception: exception ,findPw : findPw, context:context});
 });
 
 
-router.post('/confirm-pw', function(request,response){
+router.post('/confirm-pw', urlencodedParser, function(request,response){
+  const exception = request.query.exception;
+  var context = "";
   //인증받은 사용자인지 체크
   if(auth.isLogin(request, response)){
     response.redirect('/');
@@ -243,17 +296,19 @@ router.post('/confirm-pw', function(request,response){
   }
 
   const { pwToken } = request.body;
-  const sql = 'SELECT * FROM user as u INNER JOIN emailauth as e on u.email = e.id WHERE e.token = ?';
+  const sql = 'SELECT * FROM user u LEFT JOIN emailauth e on u.email = e.email WHERE e.id = ?';
   db.query(sql, pwToken, function(error, user){
    if(error) {
      console.log(`DB error=${error}`);
      return;
    }
    else{
-     console.log('비밀번호는'+user[0].password+'입니다.');
-     response.end;
-     //response.redirect('/');
-    //  response.redirect('/users/teach-password');
+
+    console.log(user);
+    findPw= user[0].password;
+    context = findPw.toString();
+    response.render('confirmpw',{exception: exception ,findPw : findPw, context: context});
+    response.end;
    }
  });
 });

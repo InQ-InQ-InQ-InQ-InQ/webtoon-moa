@@ -48,15 +48,23 @@
         <% if(exception){ %>
           <div style="color:red;"><%= exception %></div>
         <% } %>
-        <form action="/users/find-pw" method="post" action="find-pw">
+        <form method="post" action="find-pw">
+          <div class="row-group">
+            <div class="row">
+              <label for="pwEmail" class="sub-title">아이디</label>
+              <input type="text" id="pwId" name="pwId" required>
+            </div>
+          </div>
+
           <div class="row-group">
             <div class="row">
               <label for="pwEmail" class="sub-title">이메일</label>
               <input type="text" id="pwEmail" name="pwEmail" required>
             </div>
-            <!-- 인증번호 받기 버튼 -->
-            <input class="btn" type="submit" value="인증번호받기">
           </div>
+            <!-- 인증번호 받기 버튼 -->
+            <input class="btn btn--orange submit-btn" type="submit" value="인증번호 입력" onClick="location.href='/users/confirm-pw'">
+          
           <!-- 인증번호 입력받는 input
           <div class="row-group">
             <div class="row">
@@ -64,9 +72,10 @@
             </div>
             확인 버튼 -->
             <!-- <input class="btn btn--orange submit-btn" type="submit" value="확인"> -->
-            <!-- <input class="btn btn--orange submit-btn" type="submit" value="확인" onClick="location.href='/views/confirmpw.html'"> -->
+            <!-- <input class="btn btn--orange submit-btn" type="submit" value="확인" onClick="location.href='/views/confirmpw.ejs'"> -->
           <!-- </div>  -->
         </form>
+        
       </div>
 
     </div>

@@ -30,7 +30,7 @@ CREATE TABLE FAVORITES (
 
 CREATE TABLE EmailAuth (
     id varchar(255) PRIMARY KEY,
-    token varchar(255) NOT NULL
+    email varchar(255) NOT NULL
 );
 
 
