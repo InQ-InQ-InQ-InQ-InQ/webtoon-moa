@@ -18,7 +18,6 @@ function create_webtoon(data, favorites, i) {
   img_url = data[i].img_url;
   web_url = data[i].web_url;
   click_count = data[i].click_count;
-  favorite_count = data[i].favorite_count;
 
   // 추가해야 함
   // b = data[i].is_favorite;
@@ -88,9 +87,9 @@ function create_webtoon(data, favorites, i) {
     }
   }
   
-  let m_click = document.createElement("p");
-  m_click.innerText = click_count;
-  document.getElementById("wish" + id).appendChild(m_click);
+  let m_click_count = document.createElement("p");
+  m_click_count.innerText = click_count;
+  document.getElementById("wish" + id).appendChild(m_click_count);
 }
 
 
@@ -340,7 +339,17 @@ function call(check_week, check_platform) {
 function call(check_week, check_platform, check_sort) {
   var day = check_week;
   var platform = check_platform;
-  var sortType = check_sort;
+
+  var sortType;
+
+  if (check_sort == 1) {
+    sortType = "favorite_count";
+  }
+  else if (check_sort == 2) {
+    sortType = "click_count";
+  }
+
+  console.log(sortType);
 
   $('#webtoon_list').empty();
 
@@ -356,6 +365,7 @@ function call(check_week, check_platform, check_sort) {
       };
     }
   });
+  console.log("sort...");
 }
 
 // 프론트 단에서는 월화수목금토일(0 ~ 6) => 백엔드 단에서는(1 ~ 7)
