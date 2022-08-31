@@ -153,7 +153,7 @@ router.post('/find-id',async (request, response)=>{
       const data = {
         //인증코드 테이블에 넣을 데이터 정리
         id: token,
-        email: pwEmail,
+        email: findEmail,
         // ttl: 300, // ttl 값 설정 (5분)
       };
       db.query('INSERT INTO emailauth (id,email) VALUES (?,?)',[data.id,data.email],
@@ -165,14 +165,14 @@ router.post('/find-id',async (request, response)=>{
           port: 465,
           secure: true,
           auth:{
-            user:'rnlduadns@gmail.com',
-            pass:'jhajsizzazqlpiud'
+            user: 'rnlduadns@gmail.com',
+            pass: 'jhajsizzazqlpiud',
           },
       });
   
       const emailOptions = {
         from: 'rnlduadns@gmail.com',
-        to: pwEmail,
+        to: findEmail,
         subject: ' 웹툰모아 인증번호설정.',
         html: '인증번호: '
              + `${token}`,
@@ -284,8 +284,8 @@ router.post('/find-pw', async (request, response)=> {
         port: 465,
         secure: true,
         auth:{
-          user:'rnlduadns@gmail.com',
-          pass:'jhajsizzazqlpiud'
+          user: 'rnlduadns@gmail.com',
+          pass: 'jhajsizzazqlpiud',
         },
     });
 
