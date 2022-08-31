@@ -19,9 +19,6 @@ function create_webtoon(data, favorites, i) {
   web_url = data[i].web_url;
   click_count = data[i].click_count;
 
-  // 추가해야 함
-  // b = data[i].is_favorite;
-
   let one = document.createElement("li");
   one.setAttribute('id', 'one' + id);
   document.getElementById('webtoon_list').appendChild(one);
@@ -72,10 +69,10 @@ function create_webtoon(data, favorites, i) {
     let m_button = document.createElement("button");
     m_button.setAttribute('id', 'w' + id);
     m_button.setAttribute('class', 'material-icons');
-    m_button.setAttribute('onclick', 'addLike()');
     m_button.setAttribute('value', false);
+    m_button.setAttribute('onclick', 'addLike()');
 
-    // m_button.setAttribute('value', b); 이렇게 수정해야 함
+
     m_button.textContent = "favorite_border";
     document.getElementById("wish" + id).appendChild(m_button);
     for(let i = 0; i < favorites.length; i++){
@@ -91,7 +88,6 @@ function create_webtoon(data, favorites, i) {
   m_click_count.innerText = click_count;
   document.getElementById("wish" + id).appendChild(m_click_count);
 }
-
 
 // 오늘 날짜 색 반전
 $(document).ready(function() {
@@ -147,9 +143,9 @@ $('.week-button').each(function(index){
 
 // sort
 $('ul.sortby li.sort').click(function(){
-  // console.log(this);
+  console.log(this);
   let v = parseInt($(this).val());
-  // console.log(v);
+  console.log(v);
 
   // 만약 heart 버튼이 눌려져있으면,
   if ($("#heart-svg").hasClass('is-active') === true) {
@@ -250,7 +246,6 @@ $(document).on("click", "Button[id^=w]", function() { //w로 시작하는 버튼
 // 하트 토글
 let h = 0;
 $(document).on("click", "svg[id=heart-svg]", function(e) {
-  
 // $("#heart").on("click", function() {
   e.stopImmediatePropagation();
   
@@ -297,7 +292,6 @@ $(document).on("click", "svg[id=heart-svg]", function(e) {
     console.log(check_week, check_platform)
     call(check_week, check_platform);
   }
-  console.log(h);
 });
 
 // 선택된 플랫폼을 리스트에 저장, 요일과 플랫폼 정보 가져오기
