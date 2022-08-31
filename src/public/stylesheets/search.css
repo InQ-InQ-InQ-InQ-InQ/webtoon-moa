@@ -11,17 +11,18 @@
 }
 /* Card */
 .search .webtoon {
-  margin-top: 20px;
-  margin-left: 20px;
+  margin-top: 10px;
 }
 .search .webtoon .card {
   padding: 10px 0 15px 0;
 }
 .search .webtoon .card .title {
-  font-size: var(--large-font);
+  font-size: var(--mideum-font);
+  font-weight: 600;
   margin-bottom: 5px;
 }
 .search .webtoon .card .info {
+  font-size: var(--small-font);
   display: flex;
 }
 .search .webtoon .card .info .platform {
@@ -36,7 +37,4 @@
 .search .webtoon .card .info .platform .pf-title,
 .search .webtoon .card .info .author .at-title {
   color: var(--moa-gray);
-}
-.search .webtoon .card .info .author {
-
 }

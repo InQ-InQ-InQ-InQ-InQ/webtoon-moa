@@ -105,6 +105,7 @@ header .search {
 header .search .icon.material-symbols-outlined {
   font-size: 30px;
   cursor: pointer;
+  margin-top: 2px;
 }
 header .search .search-text {
   height: 45px;
@@ -121,8 +122,8 @@ header .search .search-btn {
   color: var(--icon-color);
 }
 header .menu  {
-  margin-left: 30px;
-  margin-top: 55px;
+  margin-left: 22px;
+  margin-top: 50px;
 }
 header .menu .login_name {
   font-size: var(--small-font);
@@ -141,6 +142,8 @@ footer > .inner {
   height: 120px;
   display: flex;
   justify-content: space-between;
+  margin-top: 50px;
+  margin-bottom: 80px;
 }
 footer .line {
   background-color: var(--line-color);
