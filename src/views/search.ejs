@@ -37,22 +37,26 @@
 
       <div class="webtoon">
 
-        <% for(let i=0; i<webtoons.length; i++) {%>
-          <div class="card">
-            <div class="title">
-              <a href="<%= webtoons[i].web_url %>"><%= webtoons[i].title %></a>
-            </div>
-            <div class="info">
-              <div class="platform">
-                <span class="pf-title">플랫폼:</span>
-                <span class="pf-name"><%= webtoons[i].platform_name %></span>
+        <% if(webtoons.length === 0){ %>
+          <div class="nothing">검색결과 없음</div>
+        <% } else { %>
+          <% for(let i=0; i<webtoons.length; i++) {%>
+            <div class="card">
+              <div class="title">
+                <a href="<%= webtoons[i].web_url %>"><%= webtoons[i].title %></a>
               </div>
-              <div class="author">
-                <span class="at-title">글/그림:</span>
-                <span class="at-name"><%= webtoons[i].author %></span>
+              <div class="info">
+                <div class="platform">
+                  <span class="pf-title">플랫폼:</span>
+                  <span class="pf-name"><%= webtoons[i].platform_name %></span>
+                </div>
+                <div class="author">
+                  <span class="at-title">글/그림:</span>
+                  <span class="at-name"><%= webtoons[i].author %></span>
+                </div>
               </div>
             </div>
-          </div>
+            <% } %>
         <% } %>
       </div>
     </div>
