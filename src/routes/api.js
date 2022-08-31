@@ -8,6 +8,7 @@ const auth = require('./common/auth');
  * localhost:3000/api/webtoons/{day}?sort={sortType}
  */
 router.get('/list/:day', function(request, response, next){
+    const user = auth.getLoginUser(request, response);
     const day = request.params.day;
     let sort = request.query;
     if(sort.length === undefined){
@@ -16,11 +17,16 @@ router.get('/list/:day', function(request, response, next){
 
     const sql = filterQueryBySortType(sort, 'WHERE week = ?'); 
     db.query(sql, [day, sort], function(error, webtoons){
-        if(error) {
-            console.log(`db error=${error}`);
-            throw error;
+        errorHandler(error);
+        if(user === undefined){
+            response.status(200).send({ webtoons: webtoons });
+        } else {
+            const favoriteSql = 'SELECT webtoon_id as favorite FROM favorites WHERE user_id = ?';
+            db.query(favoriteSql, user.id, function(error, favorites){
+                errorHandler(error);
+                response.status(200).send({ webtoons: webtoons, favorites: favorites });
+            })
         }
-        response.send(webtoons);
     });
 });
 
@@ -29,6 +35,7 @@ router.get('/list/:day', function(request, response, next){
  * localhost:3000/api/webtoons/{day}/{platform}?sort={sortType}
  */
  router.get('/list/:day/:platform', function(request, response, next) {
+    const user = auth.getLoginUser(request, response);
     const { day, platform } = request.params;
     let sort = request.query;
     if(sort.length === undefined){
@@ -37,26 +44,18 @@ router.get('/list/:day', function(request, response, next){
 
     const sql = filterQueryBySortType(sort, 'WHERE week = ? AND platform_name = ?');
     db.query(sql, [day, platform, sort], function(error, webtoons){
-        if(error) {
-            console.log(`db error=${error}`);
-            throw error;
+        errorHandler(error);
+        if(user === undefined){
+            response.status(200).send({ webtoons: webtoons });
+        } else {
+            const favoriteSql = 'SELECT webtoon_id as favorite FROM favorites WHERE user_id = ?';
+            db.query(favoriteSql, user.id, function(error, favorites){
+                errorHandler(error);
+                response.status(200).send({ webtoons: webtoons, favorites: favorites });
+            })
         }
-        response.status(200).send(webtoons);
     });
 });
-
-function filterQueryBySortType(sort, condition){
-    const sql = `
-        SELECT * FROM webtoon w
-        LEFT JOIN
-        (SELECT f.webtoon_id, COUNT(webtoon_id) as likes FROM favorites f GROUP BY webtoon_id) as f
-        ON w.id = f.webtoon_id
-        ${condition}
-        ORDER BY ? DESC
-        `
-
-    return sql;
-}
 
 // 사용자 즐겨찾기 보기 API
 router.get('/favorites', function(request, response){
@@ -67,10 +66,7 @@ router.get('/favorites', function(request, response){
     }
     const sql = `SELECT * FROM webtoon as w INNER JOIN favorites as f on w.id = f.webtoon_id WHERE f.user_id = ?`;
     db.query(sql, user.id, function(error, favorites){
-        if(error) {
-            console.log(`DB error=${error}`);
-            return;
-        }
+        errorHandler(error);
         response.status(200).send(favorites);
     });
 })
@@ -93,10 +89,7 @@ router.post('/favorites', function(request, response){
     }
 
     db.query(sql, [user.id, webtoon_id], function(error, result){
-        if(error) {
-            console.log(`DB error=${error}`);
-            return;
-        }
+        errorHandler(error);
         response.status(200).json('ok');
     });
     
@@ -107,12 +100,29 @@ router.post('/click', function(request, response){
     const webtoon_id = request.body.webtoon_id; //수정
     const sql = `UPDATE webtoon SET click_count = click_count + 1 WHERE id = ?`; //수정
     db.query(sql, webtoon_id, function(error, result){
-        if(error) {
-            console.log(`DB error=${error}`);
-            return;
-        }
+        errorHandler(error);
         response.status(200).json('ok');
     });
 });
+
+function filterQueryBySortType(sort, condition){
+    const sql = `
+        SELECT * FROM webtoon w
+        LEFT JOIN
+        (SELECT f.webtoon_id, COUNT(webtoon_id) as favorite_count FROM favorites f GROUP BY webtoon_id) as f
+        ON w.id = f.webtoon_id
+        ${condition}
+        ORDER BY ? DESC
+        `
+
+    return sql;
+}
+
+function errorHandler(error){
+    if(error){
+        console.log(`db error=${error}`);
+        throw error;
+    }
+}
 
 module.exports = router;
