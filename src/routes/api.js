@@ -67,7 +67,7 @@ router.get('/favorites', function(request, response){
     const sql = `SELECT * FROM webtoon as w INNER JOIN favorites as f on w.id = f.webtoon_id WHERE f.user_id = ?`;
     db.query(sql, user.id, function(error, webtoons){
         errorHandler(error);
-        response.status(200).send(webtoons);
+        response.status(200).send({ webtoons: webtoons, favorites: webtoons });
     });
 })
 

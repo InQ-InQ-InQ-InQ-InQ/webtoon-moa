@@ -80,7 +80,7 @@ function create_webtoon(data, favorites, i) {
     m_button.textContent = "favorite_border";
     document.getElementById("wish" + id).appendChild(m_button);
     for(let i = 0; i < favorites.length; i++){
-      if(favorites[i].favorite === id){
+      if(favorites[i].favorite === id || favorites[i].id === id){
         m_button.setAttribute('value', true);
         document.getElementById("w" + id).style.color='red';
         document.getElementById("w" + id).textContent='favorite';
@@ -275,8 +275,10 @@ $(document).on("click", "svg[id=heart-svg]", function(e) {
       url: "/api/webtoon/favorites",
       dataType: "json",
       success: function(data) { 
-        for(let i = 0; i < data.length; i++) {
-          create_webtoon(data, undefined, i);
+        const webtoons = data.webtoons;
+        const favorites = data.favorites;
+        for(let i = 0; i < webtoons.length; i++) {
+          create_webtoon(webtoons, favorites, i);
         };
       }
     })
