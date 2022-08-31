@@ -99,11 +99,13 @@ $(document).ready(function() {
     dataType: "json",
     success: function(data) {  
       console.log(data);
-      for(let i = 0; i < data.length; i++) {
-        create_webtoon(data, i);
+      const webtoons = data.webtoons;
+      const favorites = data.favorites;
+      for(let i = 0; i < webtoons.length; i++) {
+        create_webtoon(webtoons, i);
       };
     }, error: function(request, status, error){
-      alert(`error=${error}`)
+      console.error(`error=${error}`);
     }
   })
 });
@@ -312,8 +314,10 @@ function call(check_week, check_platform) {
     url: "/api/webtoon/list/" + day + "/" + platform,
     dataType: "json",
     success: function(data) {
-      for(let i = 0; i < data.length; i++) {
-        create_webtoon(data, i);
+      const webtoons = data.webtoons;
+      const favorites = data.favorites;
+      for(let i = 0; i < webtoons.length; i++) {
+        create_webtoon(webtoons, i);
       };
     }
   });
@@ -332,8 +336,10 @@ function call(check_week, check_platform, check_sort) {
     url: "/api/webtoon/list/" + day + "/" + platform + "?sort=" + sortType,
     dataType: "json",
     success: function(data) {
-      for(let i = 0; i < data.length; i++) {
-        create_webtoon(data, i);
+      const webtoons = data.webtoons;
+      const favorites = data.favorites;
+      for(let i = 0; i < webtoons.length; i++) {
+        create_webtoon(webtoons, i);
       };
     }
   });
