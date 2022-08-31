@@ -29,14 +29,18 @@
       <div class="main-title">
         <span class="title">아이디 찾기</span>
       </div>
+      <% if(exception){ %>
+        <div style="color:red;"><%= exception %></div>
+      <% } %>
 
       <form method="post" action="/users/confirm-id">
         <div class="row">
           <label for="" class="sub-title">인증번호</label>
-          <input type="password" value="확인" id="idToken" name="idToken" required >
+          <input type="password" id="idToken" name="idToken" required >
           <!-- <span class="error-box" id="pwMsg">필수 정보입니다.</span> -->
         </div>
-
+    
+        <input class="btn" type="submit" value="확인">
 
       </form>
     </div>

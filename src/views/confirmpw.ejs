@@ -31,6 +31,9 @@
       <div class="main-title">
         <span class="title">비밀번호 확인</span>
       </div>
+      <% if(exception){ %>
+        <div style="color:red;"><%= exception %></div>
+      <% } %>
 
       <div class="text-body">
         <div class="notice">
@@ -42,12 +45,11 @@
           <div style="color:red;"><%= exception %></div>
         <% } %>
         
-       
 
         <form method="post" action="/users/confirm-pw">
           <div class="row">
             <label for="" class="sub-title">인증번호</label>
-            <input type="password" value="확인" id="pwToken" name="pwToken" required >
+            <input class="btn" type="password" value="확인" id="pwToken" name="pwToken" required >
             <!-- <span class="error-box" id="pwMsg">필수 정보입니다.</span> -->
           </div>
 

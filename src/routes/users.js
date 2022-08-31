@@ -124,7 +124,7 @@ router.get('/find-id', (request, response)=>{
   response.render('findid', { exception: exception });
 });
 
-router.post('/find-id',function(request, response){
+router.post('/find-id',async (request, response)=>{
     //인증받은 사용자인지 체크
     if(auth.isLogin(request, response)){
       response.redirect('/');
@@ -149,11 +149,40 @@ router.post('/find-id',function(request, response){
       return;
     }
     else{
-      // console.log('아이디는'+user[0].identifier);
-     
+      const token = crypto.randomBytes(20).toString('hex'); // 3. token 생성(인증코드)
+      const data = {
+        //인증코드 테이블에 넣을 데이터 정리
+        id: token,
+        email: pwEmail,
+        // ttl: 300, // ttl 값 설정 (5분)
+      };
+      db.query('INSERT INTO emailauth (id,email) VALUES (?,?)',[data.id,data.email],
+      function(error,results){
+        if(error) console.log(error);
+      })
+      const transporter = nodemailer.createTransport({
+          service:'gmail',
+          port: 465,
+          secure: true,
+          auth:{
+            user:'rnlduadns@gmail.com',
+            pass:'jhajsizzazqlpiud'
+          },
+      });
+  
+      const emailOptions = {
+        from: 'rnlduadns@gmail.com',
+        to: pwEmail,
+        subject: ' 웹툰모아 인증번호설정.',
+        html: '인증번호: '
+             + `${token}`,
+      };
+      transporter.sendMail(emailOptions,response);
+  
       response.redirect('/users/confirm-id');
-    }
-  });
+  
+    } 
+    });
 });
 
 router.get('/confirm-id', (request, response)=>{
@@ -185,6 +214,11 @@ router.post('/confirm-id', urlencodedParser, function(request,response){
    if(error) {
      console.log(`DB error=${error}`);
      return;
+   }
+   if(user[0] === undefined){
+    console.log(`incorrect idToken`);
+    response.redirect(`/users/confirm-id?exception=인증번호를 틀렸습니다.`);
+    return;
    }
    else{
 
@@ -302,13 +336,18 @@ router.post('/confirm-pw', urlencodedParser, function(request,response){
      console.log(`DB error=${error}`);
      return;
    }
+   if(user[0] === undefined){
+    console.log(`incorrect pwToken`);
+    response.redirect(`/users/confirm-pw?exception=인증번호를 틀렸습니다.`);
+    return;
+   }
    else{
 
     console.log(user);
     findPw= user[0].password;
     context = findPw.toString();
     response.render('confirmpw',{exception: exception ,findPw : findPw, context: context});
-    response.end;
+    response.redirect('/users/sign-up');
    }
  });
 });
