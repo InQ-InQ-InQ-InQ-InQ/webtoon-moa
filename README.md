@@ -2,19 +2,29 @@
 
 ## 🖥 사용자 인터페이스(UI)
 
-- 추가 예정
+### 메인 페이지
+<img src="./images/main.png"  width="700" height="500">
+### 즐겨찾기 페이지
+<img src="./images/favorites.png"  width="700" height="500">
+### 검색 페이지
+<img src="./images/search.png"  width="700" height="500">
+### 로그인, 회원가입
+<img src="./images/sign-in.png"  width="350" height="500">
+<img src="./images/sign-up.png"  width="350" height="500">
+### 아이디, 비밀번호 찾기
+<img src="./images/find-id.png"  width="300" height="400">
+<img src="./images/find-pw.png"  width="400" height="400">
 
 ## ⚙️ 개발 환경(Development Environment)
 
 | 분류 | 개발환경 | 
 |---|---|
 | 운영체제 | Windows 11 64bit / Mac OS |
-| 개발도구 | Visual Studio Code |
+| 개발도구 | Visual Studio Code, Postman, pm2 |
 | 프레임워크 | Express.js 4.16.1 |
 | 데이터베이스 | MySQL (Release 8.0.29) |
 | 버전 관리 | Github, Git |
-| 배포 및 운영 | 미정 |
-| 오픈소스 및 외부 라이브러리 | 네이버 웹툰, 카카오 웹툰, 카카오 페이지 크롤링 |
+| 오픈소스 및 외부 라이브러리 | 네이버 웹툰, 카카오 웹툰, 카카오 페이지 크롤링, [카카오, 네이버 로그인 API], nodemailer |
 
 
 ## 🛠 세부 기술 스택(Tech Stack)
@@ -22,6 +32,7 @@
 ### 백엔드(Back-end)
 - **Node.js**
 - **Express.js**
+- **Javascript**
 
 ### 데이터베이스(Database)
 
