@@ -44,7 +44,7 @@
 - **CSS**
 - **JavaScript**
 - **JQuery**
-- **BootStrap**
+- **Ajax**
 
 ### ETC
 
