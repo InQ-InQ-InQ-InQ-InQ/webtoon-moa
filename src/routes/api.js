@@ -10,13 +10,10 @@ const auth = require('./common/auth');
 router.get('/list/:day', function(request, response, next){
     const user = auth.getLoginUser(request, response);
     const day = request.params.day;
-    let sort = request.query;
-    if(sort.length === undefined){
-        sort = 'title';
-    }
+    const sort = request.query.sort;
 
-    const sql = filterQueryBySortType('WHERE week = ?'); 
-    db.query(sql, [day, sort], function(error, webtoons){
+    const sql = filterQueryBySortType(sort, 'WHERE week = ?'); 
+    db.query(sql, [day], function(error, webtoons){
         errorHandler(error);
         if(user === undefined){
             response.status(200).send({ webtoons: webtoons });
@@ -37,13 +34,10 @@ router.get('/list/:day', function(request, response, next){
  router.get('/list/:day/:platform', function(request, response, next) {
     const user = auth.getLoginUser(request, response);
     const { day, platform } = request.params;
-    let sort = request.query;
-    if(sort.length === undefined){
-        sort = 'title';
-    }
+    const sort = request.query.sort;
 
-    const sql = filterQueryBySortType('WHERE week = ? AND platform_name = ?');
-    db.query(sql, [day, platform, sort], function(error, webtoons){
+    const sql = filterQueryBySortType(sort, 'WHERE week = ? AND platform_name = ?');
+    db.query(sql, [day, platform], function(error, webtoons){
         errorHandler(error);
         if(user === undefined){
             response.status(200).send({ webtoons: webtoons });
@@ -64,7 +58,10 @@ router.get('/favorites', function(request, response){
         response.status(403).send('로그인이 필요한 서비스입니다.');
         return;
     }
-    const sql = `SELECT * FROM webtoon as w INNER JOIN favorites as f on w.id = f.webtoon_id WHERE f.user_id = ?`;
+    const sql = `
+        SELECT w.id, w.title, w.author, w.img_url, w.web_url, w.platform_name, w.genre_name, w.week, w.click_count, f.user_id
+        FROM webtoon as w INNER JOIN favorites as f on w.id = f.webtoon_id WHERE f.user_id = ?
+    `;
     db.query(sql, user.id, function(error, webtoons){
         errorHandler(error);
         response.status(200).send({ webtoons: webtoons, favorites: webtoons });
@@ -104,15 +101,21 @@ router.post('/click', function(request, response){
     });
 });
 
-function filterQueryBySortType(condition){
-    const sql = `
+function filterQueryBySortType(sort = 'title', condition){
+    let sql = `
         SELECT * FROM webtoon w
         LEFT JOIN
         (SELECT f.webtoon_id, COUNT(webtoon_id) as favorite_count FROM favorites f GROUP BY webtoon_id) as f
         ON w.id = f.webtoon_id
         ${condition}
-        ORDER BY ? DESC
         `
+    if(sort === undefined){
+        sql += 'ORDER BY w.title DESC;';
+    } else if(sort === 'click_count'){
+        sql += 'ORDER BY w.click_count DESC;';
+    } else if(sort === 'favorite_count'){
+        sql += 'ORDER BY f.favorite_count DESC;';
+    }
 
     return sql;
 }
