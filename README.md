@@ -133,3 +133,7 @@ src % node init.js
 ## 📐 트러블 슈팅(Trouble Shooting)
 
 - 추가 예정
+
+## 시연 영상 
+
+<img width="90%" src="https://i.imgur.com/7wbelwe.mp4"/>
