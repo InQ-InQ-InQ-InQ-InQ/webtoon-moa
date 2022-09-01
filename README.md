@@ -135,4 +135,4 @@ src % node init.js
 - 추가 예정
 
 ## 시연 영상 
-[영상링크](https://i.imgur.com/7wbelwe.mp4"/)
+[영상링크](https://i.imgur.com/7wbelwe.mp4/)  
