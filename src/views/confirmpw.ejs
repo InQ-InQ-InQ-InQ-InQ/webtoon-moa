@@ -41,17 +41,13 @@
           <!-- <span class="pw-subtitle">안전한 사용을 위해 새로운 비밀번호로 변경합니다.</span> -->
         </div>
 
-        <% if(exception){ %>
-          <div style="color:red;"><%= exception %></div>
-        <% } %>
-        
-
         <form method="post" action="/users/confirm-pw">
           <div class="row">
             <label for="" class="sub-title">인증번호</label>
-            <input class="btn" type="password" value="확인" id="pwToken" name="pwToken" required >
+            <input type="password" value="확인" id="pwToken" name="pwToken" required >
             <!-- <span class="error-box" id="pwMsg">필수 정보입니다.</span> -->
           </div>
+          <input class="btn btn--orange submit-btn" type="submit" value="확인" onClick="location.href='/'">
 
 
         </form>

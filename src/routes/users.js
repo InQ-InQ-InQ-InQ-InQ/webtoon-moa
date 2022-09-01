@@ -298,7 +298,7 @@ router.post('/find-pw', async (request, response)=> {
     };
     transporter.sendMail(emailOptions,response);
 
-    response.redirect('/users/confirm-pw');
+    response.redirect('/users/sign-in');
 
   } 
   });
