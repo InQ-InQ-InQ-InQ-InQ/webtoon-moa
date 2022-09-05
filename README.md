@@ -3,14 +3,22 @@
 ## 🖥 사용자 인터페이스(UI)
 
 ### 메인 페이지
+
 <img src="./images/main.png"  width="700" height="500">
+
 ### 즐겨찾기 페이지
+
 <img src="./images/favorites.png"  width="700" height="500">
+
 ### 검색 페이지
+
 <img src="./images/search.png"  width="700" height="500">
+
 ### 로그인, 회원가입
+
 <img src="./images/sign-in.png"  width="350" height="500">
 <img src="./images/sign-up.png"  width="350" height="500">
+
 ### 아이디, 비밀번호 찾기
 <img src="./images/find-id.png"  width="300" height="400">
 <img src="./images/find-pw.png"  width="400" height="400">
@@ -132,7 +140,40 @@ src % node init.js
 
 ## 📐 트러블 슈팅(Trouble Shooting)
 
-- 추가 예정
+### Back-end
+
+📌**이채민**
+
+- 로그인 시 DB에서 사용자 정보를 찾아올 때, JSON 값으로 반환되는줄 알고 세션에 그대로 저장했다가 세션에서 값을 못불러오는 문제 발생 → DB에서 값을 가져오면 JSON Array로 반환되었기 때문에 세션에 첫번째 인덱스 값을 넣어주니 해결되었다.
+- 크롤링할 때 모든정보를 가져와지지 않는 문제점 → 이미지가 일부 안가져와지는 문제를 해결하지 못하였다. img 태그가 두개인데 무조건 첫번째꺼를 가져오게 되었다.
+
+📌**성유진**
+
+- 렌더링할 때 정확한 값이 띄워지지 않는 문제점 → **렌더링 하기전에 값을 디코딩**해서 뷰로 뿌려주었다.
+- ejs파일에 DB 정보 출력시 공백 에러 - 출력페이지에 `urlencondedParser` 사용선언, 출력메시지를 문자열 변수에 포함하여 해결
+- 즐겨찾기 출력시 사용자별로 출력 불가 - 테이블간 외래키 사용하여 **INNER JOIN**하여 해결
+- nodemailer 메일 전송 불가 문제 -  메일 어플리케이션 사용 용도 비밀번호 생성(계정권한 부여),  **메일에서 사용할 인증코드 용 데이터는 따로 테이블 생성하여 해결**
+
+### Front-end
+
+📌**조수빈**
+
+- jQuery 클릭 이벤트 버블링 - `.stopPropagation()` 사용, 부모 태그로의 **이벤트 전파 중단하여 해결**
+- ReferenceError (실행 순서 문제) - `$(document).ready(function(){})` 를 사용하여 스크립트가 다 **준비된 상태에서 함수를 실행하는 방식으로 해결**
+- 뒤로 가기 시 데이터가 refresh 되지 않는 문제 (Ajax 비동기 통신) - `$(window).bind("pageshow", function (event) {})` 를 사용하여 뒤로 가기 이벤트를 감지하고, 뒤로 가기 이벤트가 일어나면 reload 함수를 통해 데이터를 refresh 해주어 해결
+
+📌**최소연**
+
+- [웹툰 카드], 웹툰 제목이 긴 경우 배열이 씹히는 현상 발생 - 제목의 길이를 제한해두고 잘린 제목은 생략부호 처리. css에서 아래와 같이 작성
+- `overflow: hidden;text-overflow: ellipsis;-o-text-overflow: ellipsis;white-space: nowrap;max-width: 130px;`
+    - `overflow: hidden`으로 정해둔 사이즈가 넘어가는 경우에는 해당 글자 뒤를 안보이게 설정
+    - `text-overflow: ellipsis;` 정해둔 사이즈가 넘어가면 …(생략부호) 처리가 되도록 함
+    - `white-space: nowrap;` 공백문자가 있는 경우 줄바꿈 처리하지 않도록 함
+    - `max-width`로 길이를 명확히 제한하여, 해당 사이즈를 넘어갈 경우에는 … 처리가 되도록 하였음.
+- 즐겨찾기 버튼 클릭시 색상 변경 문제 발생
+- 기존: 새로운 함수를 선언하여 색상 변경 시도 -> 두번 클릭해야 작동, **즐겨찾기 해제시 색상 변경이 작동하지 않는 문제 발생**
+- 해결 -> 기존 즐겨찾기 코드(값 넘겨주는)에 색상 변경 코드만 추가
+    - 해당 변수에서 text값만 변경해주면 채워주는 하트로 변경이 가능하기 때문에 (google icon코드 사용) `text()`를 사용하여 **text값만을 변경해주는 방식으로 해결**함
 
 ## 시연 영상 
 [영상링크](https://i.imgur.com/7wbelwe.mp4/)  
