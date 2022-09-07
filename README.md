@@ -1,27 +1,7 @@
 # 📚 Webtoon-Moa
 
-## 🖥 사용자 인터페이스(UI)
-
-### 메인 페이지
-
-<img src="./images/main.png"  width="700" height="500">
-
-### 즐겨찾기 페이지
-
-<img src="./images/favorites.png"  width="700" height="500">
-
-### 검색 페이지
-
-<img src="./images/search.png"  width="700" height="500">
-
-### 로그인, 회원가입
-
-<img src="./images/sign-in.png"  width="350" height="500">
-<img src="./images/sign-up.png"  width="350" height="500">
-
-### 아이디, 비밀번호 찾기
-<img src="./images/find-id.png"  width="300" height="400">
-<img src="./images/find-pw.png"  width="400" height="400">
+## 📽 시연 영상
+![webtoon_moa](https://user-images.githubusercontent.com/79958455/188825783-26ddafa5-5d4f-4db1-acb5-5402c7e5e287.gif)
 
 ## ⚙️ 개발 환경(Development Environment)
 
@@ -54,9 +34,6 @@
 - **JQuery**
 - **Ajax**
 
-### ETC
-
-- 추가 예정
 
 ## 📝 도메인 모델 분석(Domain Model Analysis)
 
@@ -175,5 +152,29 @@ src % node init.js
 - 해결 -> 기존 즐겨찾기 코드(값 넘겨주는)에 색상 변경 코드만 추가
     - 해당 변수에서 text값만 변경해주면 채워주는 하트로 변경이 가능하기 때문에 (google icon코드 사용) `text()`를 사용하여 **text값만을 변경해주는 방식으로 해결**함
 
-## 시연 영상 
+
+## 🖥 사용자 인터페이스(UI)
+
+### 메인 페이지
+
+<img src="./images/main.png"  width="700" height="500">
+
+### 즐겨찾기 페이지
+
+<img src="./images/favorites.png"  width="700" height="500">
+
+### 검색 페이지
+
+<img src="./images/search.png"  width="700" height="500">
+
+### 로그인, 회원가입
+
+<img src="./images/sign-in.png"  width="350" height="500">
+<img src="./images/sign-up.png"  width="350" height="500">
+
+### 아이디, 비밀번호 찾기
+<img src="./images/find-id.png"  width="300" height="400">
+<img src="./images/find-pw.png"  width="400" height="400">
+
+## 📍 영상 링크
 [영상링크](https://i.imgur.com/7wbelwe.mp4/)  
